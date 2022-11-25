@@ -119,3 +119,40 @@
 [debug] > Exec(sbtPopOnFailure, None, None)
 [debug] > Exec(resumeFromFailure, None, None)
 [debug] > Exec(set _root_.org.jetbrains.sbt.StructureKeys.sbtStructureOptions in Global := "download resolveClassifiers resolveSbtClassifiers", None, None)
+[info] Defining Global / sbtStructureOptions
+[info] The new value will be used by Global / ssOptions
+[debug] Defining 
+[debug] 	Global / sbtStructureOptions
+[debug] 
+[debug] The new value will be used by 
+[debug] 	Global / ssOptions
+[info] Reapplying settings...
+[info] set current project to SpinalTemplateSbt (in build file:/C:/Users/Administrator/Desktop/spinalhdl_coding/untitled2/)
+[debug] > Exec(preferScala2, None, None)
+[debug] > Exec(*/*:dumpStructureTo C:/Users/Administrator/AppData/Local/Temp/sbt-structure.xml, None, None)
+[debug] Evaluating tasks: Global / dumpStructureTo
+[warn] sbt 0.13 shell syntax is deprecated; use slash syntax instead: Global / dumpStructureTo
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[warn] Unrecognized repository Scala Plugin Bundled Repository, ignoring it
+[warn] Unrecognized repository Scala Plugin Bundled Repository, ignoring it
+[warn] Unrecognized repository Scala Plugin Bundled Repository, ignoring it
+[info] Writing structure to C:\Users\Administrator\AppData\Local\Temp\sbt-structure.xml...
+[info] Done.
+[success] Total time: 1 s, completed 2022年11月25日 上午9:42:16
+[debug] > Exec(session clear-all, None, None)
+[info] Reapplying settings...
+[info] set current project to SpinalTemplateSbt (in build file:/C:/Users/Administrator/Desktop/spinalhdl_coding/untitled2/)
+[debug] > Exec(set ideaPort in Global := 53762, None, None)
+[info] Defining Global / ideaPort
+[info] The new value will be used by Compile / compile, Test / compile
+[debug] Defining 
+[debug] 	Global / ideaPort
+[debug] 
+[debug] The new value will be used by 
+[debug] 	Compile / compile
+[debug] 	Test / compile
+[info] Reapplying settings...
+[info] set current project to SpinalTemplateSbt (in build file:/C:/Users/Administrator/Desktop/spinalhdl_coding/untitled2/)
+[debug] > Exec(idea-shell, None, None)
+[debug] > Exec(, None, None)
+[debug] > Exec(idea-shell, None, None)
