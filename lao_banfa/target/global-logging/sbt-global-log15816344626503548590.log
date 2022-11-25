@@ -1,0 +1,13 @@
+[debug] > Exec(stb publishLocal, None, None)
+[error] Expected ID character
+[error] Not a valid command: stb (similar: set, last, iflast)
+[error] Expected project ID
+[error] Expected configuration
+[error] Expected ':'
+[error] Expected key
+[error] Not a valid key: stb (similar: test, state, ps)
+[error] stb publishLocal
+[error]    ^
+[debug] > Exec(idea-shell, None, None)
+[debug] > Exec(, None, None)
+[debug] > Exec(idea-shell, None, None)

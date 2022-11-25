@@ -1,0 +1,185 @@
+2022.11.24 22:15:28 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at c:\Users\Administrator\Desktop\spinalhdl coding\.vscode\.metals\lsp.trace.json or C:\Users\Administrator\AppData\Local\scalameta\metals\cache\lsp.trace.json
+2022.11.24 22:15:30 INFO  logging to file C:\Users\Administrator\Desktop\spinalhdl coding\.vscode\.metals\metals.log
+2022.11.24 22:15:30 INFO  Started: Metals version 0.11.9 in workspace 'C:\Users\Administrator\Desktop\spinalhdl coding\.vscode' for client Visual Studio Code 1.73.1.
+2022.11.24 22:15:31 INFO  time: initialize in 0.95s
+2022.11.24 22:15:32 WARN  Build server is not auto-connectable.
+2022.11.24 22:15:32 WARN  no build tool detected in workspace 'C:\Users\Administrator\Desktop\spinalhdl coding\.vscode'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2022.11.24 22:15:32 WARN  no build target for: C:\Users\Administrator\Desktop\spinalhdl coding\.vscode\helloworld.scala
+2022.11.24 22:15:32 WARN  no build target for: C:\Users\Administrator\Desktop\spinalhdl coding\.vscode\helloworld.scala
+2022.11.24 22:15:34 INFO  no build target found for C:\Users\Administrator\Desktop\spinalhdl coding\.vscode\helloworld.scala. Using presentation compiler with project's scala-library version: 3.2.0
+2022.11.24 22:15:35 INFO  time: code lens generation in 2.62s
+2022.11.24 22:15:35 INFO  time: code lens generation in 3.02s
+2022.11.24 22:16:50 INFO  shutting down Metals
+2022.11.24 22:22:06 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at c:\Users\Administrator\Desktop\spinalhdl_coding\.vscode\.metals\lsp.trace.json or C:\Users\Administrator\AppData\Local\scalameta\metals\cache\lsp.trace.json
+2022.11.24 22:22:08 INFO  logging to file C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode\.metals\metals.log
+2022.11.24 22:22:08 INFO  Started: Metals version 0.11.9 in workspace 'C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode' for client Visual Studio Code 1.73.1.
+2022.11.24 22:22:09 INFO  time: initialize in 0.94s
+2022.11.24 22:22:10 WARN  Build server is not auto-connectable.
+2022.11.24 22:22:10 WARN  no build tool detected in workspace 'C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2022.11.24 22:22:10 WARN  no build target for: C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode\helloworld.scala
+2022.11.24 22:22:11 INFO  no build target found for C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode\helloworld.scala. Using presentation compiler with project's scala-library version: 3.2.0
+2022.11.24 22:22:12 INFO  time: code lens generation in 2.53s
+2022.11.24 22:22:12 INFO  time: code lens generation in 1.97s
+2022.11.24 22:27:33 WARN  no build target for: C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode\helloworld.scala
+11月 24, 2022 10:27:33 下午 org.eclipse.lsp4j.jsonrpc.RemoteEndpoint fallbackResponseError
+严重: Internal error: java.lang.reflect.InvocationTargetException
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$null$0(GenericEndpoint.java:67)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.request(GenericEndpoint.java:120)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleRequest(RemoteEndpoint.java:261)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:190)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$null$0(GenericEndpoint.java:65)
+	... 11 more
+Caused by: java.nio.file.FileSystemNotFoundException: Provider "output" not installed
+	at java.base/java.nio.file.Path.of(Path.java:212)
+	at java.base/java.nio.file.Paths.get(Paths.java:98)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionURIMtags.toAbsolutePath(MtagsEnrichments.scala:117)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionStringMtags.toAbsolutePath(MtagsEnrichments.scala:143)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:609)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:606)
+	at scala.meta.internal.metals.debug.DebugProvider.debugDiscovery(DebugProvider.scala:399)
+	at scala.meta.internal.metals.MetalsLanguageServer.executeCommand(MetalsLanguageServer.scala:1963)
+	... 16 more
+
+2022.11.24 22:27:43 WARN  no build target for: C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode\helloworld.scala
+11月 24, 2022 10:27:43 下午 org.eclipse.lsp4j.jsonrpc.RemoteEndpoint fallbackResponseError
+严重: Internal error: java.lang.reflect.InvocationTargetException
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$null$0(GenericEndpoint.java:67)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.request(GenericEndpoint.java:120)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleRequest(RemoteEndpoint.java:261)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:190)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$null$0(GenericEndpoint.java:65)
+	... 11 more
+Caused by: java.nio.file.FileSystemNotFoundException: Provider "output" not installed
+	at java.base/java.nio.file.Path.of(Path.java:212)
+	at java.base/java.nio.file.Paths.get(Paths.java:98)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionURIMtags.toAbsolutePath(MtagsEnrichments.scala:117)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionStringMtags.toAbsolutePath(MtagsEnrichments.scala:143)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:609)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:606)
+	at scala.meta.internal.metals.debug.DebugProvider.debugDiscovery(DebugProvider.scala:399)
+	at scala.meta.internal.metals.MetalsLanguageServer.executeCommand(MetalsLanguageServer.scala:1963)
+	... 16 more
+
+2022.11.24 22:29:00 INFO  shutting down Metals
+2022.11.24 22:29:13 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at c:\Users\Administrator\Desktop\spinalhdl_coding\.vscode\.metals\lsp.trace.json or C:\Users\Administrator\AppData\Local\scalameta\metals\cache\lsp.trace.json
+2022.11.24 22:29:15 INFO  logging to file C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode\.metals\metals.log
+2022.11.24 22:29:15 INFO  Started: Metals version 0.11.9 in workspace 'C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode' for client Visual Studio Code 1.73.1.
+2022.11.24 22:29:16 INFO  time: initialize in 0.93s
+2022.11.24 22:29:17 WARN  Build server is not auto-connectable.
+2022.11.24 22:29:17 WARN  no build tool detected in workspace 'C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2022.11.24 22:29:17 WARN  no build target for: C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode\helloworld.scala
+2022.11.24 22:29:19 INFO  no build target found for C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode\helloworld.scala. Using presentation compiler with project's scala-library version: 3.2.0
+11月 24, 2022 10:29:19 下午 org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+信息: Unsupported notification method: $/setTrace
+2022.11.24 22:29:20 INFO  time: code lens generation in 2.47s
+11月 24, 2022 10:35:00 下午 org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+信息: Unsupported notification method: $/setTrace
+11月 24, 2022 10:35:11 下午 org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+信息: Unsupported notification method: $/setTrace
+2022.11.24 22:35:17 INFO  shutting down Metals
+2022.11.24 22:36:03 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at c:\Users\Administrator\Desktop\spinalhdl_coding\.vscode\.metals\lsp.trace.json or C:\Users\Administrator\AppData\Local\scalameta\metals\cache\lsp.trace.json
+2022.11.24 22:36:05 INFO  logging to file C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode\.metals\metals.log
+2022.11.24 22:36:05 INFO  Started: Metals version 0.11.9 in workspace 'C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode' for client Visual Studio Code 1.73.1.
+2022.11.24 22:36:06 INFO  time: initialize in 0.93s
+2022.11.24 22:36:07 WARN  Build server is not auto-connectable.
+2022.11.24 22:36:07 WARN  no build tool detected in workspace 'C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2022.11.24 22:36:27 WARN  no build tool detected in workspace 'C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2022.11.24 22:36:32 WARN  no build tool detected in workspace 'C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2022.11.24 22:37:23 WARN  no build target for: C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode\.vscode\build.sbt
+2022.11.24 22:37:25 INFO  no build target found for C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode\.vscode\build.sbt. Using presentation compiler with project's scala-library version: 3.2.0
+2022.11.24 22:37:25 INFO  time: code lens generation in 2.14s
+2022.11.24 22:43:37 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at c:\Users\Administrator\Desktop\spinalhdl_coding\.vscode\.metals\lsp.trace.json or C:\Users\Administrator\AppData\Local\scalameta\metals\cache\lsp.trace.json
+2022.11.24 22:43:39 INFO  logging to file C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode\.metals\metals.log
+2022.11.24 22:43:39 INFO  Started: Metals version 0.11.9 in workspace 'C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode' for client Visual Studio Code 1.73.1.
+2022.11.24 22:43:44 INFO  time: initialize in 4.57s
+2022.11.24 22:43:45 WARN  Build server is not auto-connectable.
+2022.11.24 22:43:45 WARN  no build tool detected in workspace 'C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2022.11.24 22:43:45 WARN  no build target for: C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode\.vscode\build.sbt
+2022.11.24 22:43:48 INFO  no build target found for C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode\.vscode\build.sbt. Using presentation compiler with project's scala-library version: 3.2.0
+2022.11.24 22:43:49 INFO  time: code lens generation in 4.14s
+2022.11.24 22:44:15 WARN  no build target for: C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode\helloworld.scala
+2022.11.24 22:45:37 WARN  no build tool detected in workspace 'C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2022.11.24 22:45:41 WARN  no build tool detected in workspace 'C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2022.11.24 22:45:41 WARN  no build tool detected in workspace 'C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2022.11.24 22:45:50 WARN  no build tool detected in workspace 'C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+11月 24, 2022 10:49:05 下午 org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+信息: Unsupported notification method: $/setTrace
+11月 24, 2022 10:55:07 下午 org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+信息: Unsupported notification method: $/setTrace
+11月 24, 2022 10:56:43 下午 org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+信息: Unsupported notification method: $/setTrace
+2022.11.24 22:56:44 INFO  shutting down Metals
+2022.11.24 22:56:55 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at c:\Users\Administrator\Desktop\spinalhdl_coding\.vscode\.metals\lsp.trace.json or C:\Users\Administrator\AppData\Local\scalameta\metals\cache\lsp.trace.json
+2022.11.24 22:56:57 INFO  logging to file C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode\.metals\metals.log
+2022.11.24 22:56:57 INFO  Started: Metals version 0.11.9 in workspace 'C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode' for client Visual Studio Code 1.73.1.
+2022.11.24 22:56:58 INFO  time: initialize in 1.06s
+2022.11.24 22:56:59 WARN  Build server is not auto-connectable.
+2022.11.24 22:56:59 WARN  no build tool detected in workspace 'C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2022.11.24 22:56:59 WARN  no build target for: C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode\helloworld.scala
+2022.11.24 22:56:59 WARN  no build target for: C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode\.vscode\build.sbt
+2022.11.24 22:57:01 INFO  no build target found for C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode\.vscode\build.sbt. Using presentation compiler with project's scala-library version: 3.2.0
+2022.11.24 22:57:47 WARN  no build target for: C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode\hhh.scala
+11月 24, 2022 10:59:41 下午 org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+警告: Unmatched cancel notification for request id 148
+2022.11.24 23:02:04 WARN  no build target for: C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode\hhh.scala
+2022.11.24 23:02:04 WARN  no build target for: C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode\.vscode\build.sbt
+2022.11.24 23:02:05 WARN  no build target for: C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode\hhh.scala
+11月 24, 2022 11:02:05 下午 org.eclipse.lsp4j.jsonrpc.RemoteEndpoint fallbackResponseError
+严重: Internal error: scala.meta.internal.metals.debug.BuildTargetNotFoundForPathException: No build target could be found for the path: C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode\hhh.scala
+java.util.concurrent.CompletionException: scala.meta.internal.metals.debug.BuildTargetNotFoundForPathException: No build target could be found for the path: C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode\hhh.scala
+	at java.base/java.util.concurrent.CompletableFuture.encodeThrowable(CompletableFuture.java:332)
+	at java.base/java.util.concurrent.CompletableFuture.uniAcceptNow(CompletableFuture.java:747)
+	at java.base/java.util.concurrent.CompletableFuture.uniAcceptStage(CompletableFuture.java:735)
+	at java.base/java.util.concurrent.CompletableFuture.thenAcceptAsync(CompletableFuture.java:2186)
+	at scala.concurrent.java8.FuturesConvertersImpl$CF.thenAccept(FutureConvertersImpl.scala:37)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleRequest(RemoteEndpoint.java:279)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:190)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: scala.meta.internal.metals.debug.BuildTargetNotFoundForPathException: No build target could be found for the path: C:\Users\Administrator\Desktop\spinalhdl_coding\.vscode\hhh.scala
+	at scala.meta.internal.metals.debug.DebugProvider.debugDiscovery(DebugProvider.scala:412)
+	at scala.meta.internal.metals.MetalsLanguageServer.executeCommand(MetalsLanguageServer.scala:1963)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$null$0(GenericEndpoint.java:65)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.request(GenericEndpoint.java:120)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleRequest(RemoteEndpoint.java:261)
+	... 9 more
+
+2022.11.24 23:02:23 INFO  shutting down Metals

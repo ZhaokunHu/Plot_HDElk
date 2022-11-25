@@ -1,0 +1,426 @@
+[debug] > Exec(;reload; set _root_.org.jetbrains.sbt.StructureKeys.sbtStructureOptions in Global := "download resolveClassifiers resolveSbtClassifiers" ;preferScala2;*/*:dumpStructureTo C:/Users/Administrator/AppData/Local/Temp/sbt-structure.xml; session clear-all ; set ideaPort in Global := 53762, None, None)
+[debug] > Exec(reload, None, None)
+[debug] > Exec(sbtStashOnFailure, None, None)
+[debug] > Exec(onFailure loadFailed, None, None)
+[debug] > Exec(loadp, None, None)
+[info] welcome to sbt 1.8.0 (Oracle Corporation Java 17.0.5)
+[debug]       Load.loadUnit: plugins took 20.7344ms
+[debug]       Load.loadUnit: defsScala took 0.004ms
+[debug] [Loading] Scanning directory C:\Users\Administrator\.sbt\1.0\plugins
+[debug] [Loading] Found non-root projects 
+[debug] [Loading] Done in C:\Users\Administrator\.sbt\1.0\plugins, returning: ()
+[debug] deducing auto plugins based on known facts Set(Atom(sbt.plugins.CorePlugin)) and clauses Clauses(Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.ScriptedPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.SbtPlugin),Set(Atom(sbt.ScriptedPlugin)))
+[debug] Clause(Atom(sbt.plugins.SemanticdbPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JUnitXmlReportPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.MiniDependencyTreePlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.plugins.IvyPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.SemanticdbPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.JUnitXmlReportPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.Giter8TemplatePlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.MiniDependencyTreePlugin))))
+[debug]   :: deduced result: Matched(sbt.plugins.CorePlugin,sbt.plugins.Giter8TemplatePlugin,sbt.plugins.IvyPlugin,sbt.plugins.JvmPlugin,sbt.plugins.MiniDependencyTreePlugin,sbt.plugins.JUnitXmlReportPlugin,sbt.plugins.SemanticdbPlugin)
+[debug] Plugins.deducer#function took 1.8004 ms
+[debug]           Load.resolveProject(global-plugins) took 0.7384ms
+[debug]         Load.loadTransitive: finalizeProject(Project(id global-plugins, base: C:\Users\Administrator\.sbt\1.0\plugins, plugins: List(<none>))) took 2.94ms
+[debug] [Loading] Done in C:\Users\Administrator\.sbt\1.0\plugins, returning: (global-plugins)
+[debug]       Load.loadUnit: loadedProjectsRaw took 3.9797ms
+[debug]       Load.loadUnit: cleanEvalClasses took 0.0097ms
+[debug]     Load.loadUnit(file:/C:/Users/Administrator/.sbt/1.0/plugins/, ...) took 25.5768ms
+[debug]   Load.apply: load took 26.4277ms
+[debug]   Load.apply: resolveProjects took 0.061ms
+[debug]   Load.apply: finalTransforms took 3.2925ms
+[debug]   Load.apply: config.delegates took 0.2025ms
+[debug]   Load.apply: Def.make(settings)... took 23.8917ms
+[debug]   Load.apply: structureIndex took 7.3908ms
+[debug]   Load.apply: mkStreams took 0.0015ms
+[info] loading global plugins from C:\Users\Administrator\.sbt\1.0\plugins
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[debug] Load.defaultLoad until apply took 263.4424ms
+[debug]           Load.loadUnit: plugins took 17.2993ms
+[debug]           Load.loadUnit: defsScala took 0.0034ms
+[debug] [Loading] Scanning directory C:\Users\Administrator\Desktop\spinalhdl_coding\untitled2\project
+[debug]             Load.loadUnit: mkEval took 0.2641ms
+[debug] [Loading] Found non-root projects 
+[debug] [Loading] Done in C:\Users\Administrator\Desktop\spinalhdl_coding\untitled2\project, returning: ()
+[debug] deducing auto plugins based on known facts Set(Atom(sbt.plugins.CorePlugin)) and clauses Clauses(Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.ScriptedPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.SbtPlugin),Set(Atom(sbt.ScriptedPlugin)))
+[debug] Clause(Atom(sbt.plugins.SemanticdbPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JUnitXmlReportPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.MiniDependencyTreePlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.plugins.IvyPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.SemanticdbPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.JUnitXmlReportPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.Giter8TemplatePlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.MiniDependencyTreePlugin))))
+[debug]   :: deduced result: Matched(sbt.plugins.CorePlugin,sbt.plugins.Giter8TemplatePlugin,sbt.plugins.IvyPlugin,sbt.plugins.JvmPlugin,sbt.plugins.MiniDependencyTreePlugin,sbt.plugins.JUnitXmlReportPlugin,sbt.plugins.SemanticdbPlugin)
+[debug] Plugins.deducer#function took 1.4936 ms
+[info] loading settings for project untitled2-build from idea.sbt ...
+[debug]               Load.resolveProject(untitled2-build) took 5.5808ms
+[debug]             Load.loadTransitive: finalizeProject(Project(id untitled2-build, base: C:\Users\Administrator\Desktop\spinalhdl_coding\untitled2\project, plugins: List(<none>))) took 7.4245ms
+[debug] [Loading] Done in C:\Users\Administrator\Desktop\spinalhdl_coding\untitled2\project, returning: (untitled2-build)
+[debug]           Load.loadUnit: loadedProjectsRaw took 22.0004ms
+[debug]           Load.loadUnit: cleanEvalClasses took 2.9755ms
+[debug]         Load.loadUnit(file:/C:/Users/Administrator/Desktop/spinalhdl_coding/untitled2/project/, ...) took 43.2722ms
+[debug]       Load.apply: load took 44.1562ms
+[debug]       Load.apply: resolveProjects took 0.0615ms
+[debug]       Load.apply: finalTransforms took 3.5642ms
+[debug]       Load.apply: config.delegates took 0.1447ms
+[debug]       Load.apply: Def.make(settings)... took 20.8577ms
+[debug]       Load.apply: structureIndex took 11.8469ms
+[debug]       Load.apply: mkStreams took 0.0027ms
+[info] loading project definition from C:\Users\Administrator\Desktop\spinalhdl_coding\untitled2\project
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[debug]     Load.loadUnit: plugins took 203.0942ms
+[debug]     Load.loadUnit: defsScala took 0.0031ms
+[debug] [Loading] Scanning directory C:\Users\Administrator\Desktop\spinalhdl_coding\untitled2
+[debug]       Load.loadUnit: mkEval took 0.3396ms
+[debug] [Loading] Found root project root w/ remaining 
+[debug] deducing auto plugins based on known facts Set(Atom(sbt.plugins.CorePlugin)) and clauses Clauses(Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.ScriptedPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.SbtPlugin),Set(Atom(sbt.ScriptedPlugin)))
+[debug] Clause(Atom(sbt.plugins.SemanticdbPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JUnitXmlReportPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.MiniDependencyTreePlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(org.jetbrains.sbt.StructurePlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(org.jetbrains.sbt.IdeaShellPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(org.jetbrains.sbt.indices.SbtIntellijIndicesPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.plugins.IvyPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.SemanticdbPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.JUnitXmlReportPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.Giter8TemplatePlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.MiniDependencyTreePlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(org.jetbrains.sbt.StructurePlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(org.jetbrains.sbt.IdeaShellPlugin)))
+[debug] Clause(And(Set(Atom(sbt.plugins.CorePlugin), Atom(sbt.plugins.JvmPlugin))),Set(Atom(org.jetbrains.sbt.indices.SbtIntellijIndicesPlugin))))
+[debug]   :: deduced result: Matched(sbt.plugins.CorePlugin,sbt.plugins.Giter8TemplatePlugin,sbt.plugins.IvyPlugin,sbt.plugins.JvmPlugin,sbt.plugins.SemanticdbPlugin,org.jetbrains.sbt.indices.SbtIntellijIndicesPlugin,sbt.plugins.JUnitXmlReportPlugin,org.jetbrains.sbt.IdeaShellPlugin,org.jetbrains.sbt.StructurePlugin,sbt.plugins.MiniDependencyTreePlugin)
+[debug] Plugins.deducer#function took 2.0894 ms
+[info] loading settings for project root from build.sbt ...
+[debug]         Load.resolveProject(root) took 30.2312ms
+[debug]       Load.loadTransitive: finalizeProject(Project(id root, base: C:\Users\Administrator\Desktop\spinalhdl_coding\untitled2, dependencies: List(ClasspathDependency(RootProject(https://github.com/Trigl/akka-learning.git),None)), plugins: List(<none>))) took 32.8089ms
+[debug] [Loading] Done in C:\Users\Administrator\Desktop\spinalhdl_coding\untitled2, returning: (root)
+[debug]     Load.loadUnit: loadedProjectsRaw took 82.3063ms
+[debug]     Load.loadUnit: cleanEvalClasses took 12.2942ms
+[debug]   Load.loadUnit(file:/C:/Users/Administrator/Desktop/spinalhdl_coding/untitled2/, ...) took 298.4773ms
+[debug]           Load.loadUnit: plugins took 19.2576ms
+[debug]           Load.loadUnit: defsScala took 0.0037ms
+[debug] [Loading] Scanning directory C:\Users\Administrator\.sbt\1.0\staging\aeca185d20680abf5e75\akka-learning\project
+[debug]             Load.loadUnit: mkEval took 0.2857ms
+[debug] [Loading] Found non-root projects 
+[debug] [Loading] Done in C:\Users\Administrator\.sbt\1.0\staging\aeca185d20680abf5e75\akka-learning\project, returning: ()
+[debug] deducing auto plugins based on known facts Set(Atom(sbt.plugins.CorePlugin)) and clauses Clauses(Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.ScriptedPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.SbtPlugin),Set(Atom(sbt.ScriptedPlugin)))
+[debug] Clause(Atom(sbt.plugins.SemanticdbPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JUnitXmlReportPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.MiniDependencyTreePlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.plugins.IvyPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.SemanticdbPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.JUnitXmlReportPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.Giter8TemplatePlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.MiniDependencyTreePlugin))))
+[debug]   :: deduced result: Matched(sbt.plugins.CorePlugin,sbt.plugins.Giter8TemplatePlugin,sbt.plugins.IvyPlugin,sbt.plugins.JvmPlugin,sbt.plugins.MiniDependencyTreePlugin,sbt.plugins.JUnitXmlReportPlugin,sbt.plugins.SemanticdbPlugin)
+[debug] Plugins.deducer#function took 1.2572 ms
+[info] loading settings for project akka-learning-build from idea.sbt ...
+[debug]               Load.resolveProject(akka-learning-build) took 0.9659ms
+[debug]             Load.loadTransitive: finalizeProject(Project(id akka-learning-build, base: C:\Users\Administrator\.sbt\1.0\staging\aeca185d20680abf5e75\akka-learning\project, plugins: List(<none>))) took 2.5286ms
+[debug] [Loading] Done in C:\Users\Administrator\.sbt\1.0\staging\aeca185d20680abf5e75\akka-learning\project, returning: (akka-learning-build)
+[debug]           Load.loadUnit: loadedProjectsRaw took 17.7013ms
+[debug]           Load.loadUnit: cleanEvalClasses took 4.5885ms
+[debug]         Load.loadUnit(file:/C:/Users/Administrator/.sbt/1.0/staging/aeca185d20680abf5e75/akka-learning/project/, ...) took 42.5064ms
+[debug]       Load.apply: load took 43.605ms
+[debug]       Load.apply: resolveProjects took 0.0807ms
+[debug]       Load.apply: finalTransforms took 3.3614ms
+[debug]       Load.apply: config.delegates took 0.1418ms
+[debug]       Load.apply: Def.make(settings)... took 24.9427ms
+[debug]       Load.apply: structureIndex took 8.3395ms
+[debug]       Load.apply: mkStreams took 0.0018ms
+[info] loading project definition from C:\Users\Administrator\.sbt\1.0\staging\aeca185d20680abf5e75\akka-learning\project
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[debug]     Load.loadUnit: plugins took 143.8249ms
+[debug]     Load.loadUnit: defsScala took 0.0022ms
+[debug] [Loading] Scanning directory C:\Users\Administrator\.sbt\1.0\staging\aeca185d20680abf5e75\akka-learning
+[debug]       Load.loadUnit: mkEval took 0.2448ms
+[debug] [Loading] Found non-root projects 
+[debug] [Loading] Done in C:\Users\Administrator\.sbt\1.0\staging\aeca185d20680abf5e75\akka-learning, returning: ()
+[debug] deducing auto plugins based on known facts Set(Atom(sbt.plugins.CorePlugin)) and clauses Clauses(Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.ScriptedPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.SbtPlugin),Set(Atom(sbt.ScriptedPlugin)))
+[debug] Clause(Atom(sbt.plugins.SemanticdbPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JUnitXmlReportPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.MiniDependencyTreePlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(org.jetbrains.sbt.StructurePlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(org.jetbrains.sbt.IdeaShellPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(org.jetbrains.sbt.indices.SbtIntellijIndicesPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.plugins.IvyPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.SemanticdbPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.JUnitXmlReportPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.Giter8TemplatePlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.MiniDependencyTreePlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(org.jetbrains.sbt.StructurePlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(org.jetbrains.sbt.IdeaShellPlugin)))
+[debug] Clause(And(Set(Atom(sbt.plugins.CorePlugin), Atom(sbt.plugins.JvmPlugin))),Set(Atom(org.jetbrains.sbt.indices.SbtIntellijIndicesPlugin))))
+[debug]   :: deduced result: Matched(sbt.plugins.CorePlugin,sbt.plugins.Giter8TemplatePlugin,sbt.plugins.IvyPlugin,sbt.plugins.JvmPlugin,sbt.plugins.SemanticdbPlugin,org.jetbrains.sbt.indices.SbtIntellijIndicesPlugin,sbt.plugins.JUnitXmlReportPlugin,org.jetbrains.sbt.IdeaShellPlugin,org.jetbrains.sbt.StructurePlugin,sbt.plugins.MiniDependencyTreePlugin)
+[debug] Plugins.deducer#function took 1.7322 ms
+[info] loading settings for project akka-learning from build.sbt ...
+[debug]         Load.resolveProject(akka-learning) took 0.9223ms
+[debug]       Load.loadTransitive: finalizeProject(Project(id akka-learning, base: C:\Users\Administrator\.sbt\1.0\staging\aeca185d20680abf5e75\akka-learning, plugins: List(<none>))) took 2.9769ms
+[debug] [Loading] Done in C:\Users\Administrator\.sbt\1.0\staging\aeca185d20680abf5e75\akka-learning, returning: (akka-learning)
+[debug]     Load.loadUnit: loadedProjectsRaw took 55.5622ms
+[debug]     Load.loadUnit: cleanEvalClasses took 19.4518ms
+[debug]   Load.loadUnit(https://github.com/Trigl/akka-learning.git, ...) took 219.6843ms
+[debug] Load.apply: load took 520.1988ms
+[debug] Load.apply: resolveProjects took 0.0881ms
+[debug] Load.apply: finalTransforms took 19.0381ms
+[debug] Load.apply: config.delegates took 0.2138ms
+[debug] Load.apply: Def.make(settings)... took 54.0058ms
+[debug] Load.apply: structureIndex took 12.9307ms
+[debug] Load.apply: mkStreams took 0.0023ms
+[warn] Discarding 1 session setting.  Use 'session save' to persist session settings.
+[info] set current project to scala-learning (in build file:/C:/Users/Administrator/Desktop/spinalhdl_coding/untitled2/)
+[debug] > Exec(sbtPopOnFailure, None, None)
+[debug] > Exec(resumeFromFailure, None, None)
+[debug] > Exec(set _root_.org.jetbrains.sbt.StructureKeys.sbtStructureOptions in Global := "download resolveClassifiers resolveSbtClassifiers", None, None)
+[info] Defining Global / sbtStructureOptions
+[info] The new value will be used by Global / ssOptions
+[debug] Defining 
+[debug] 	Global / sbtStructureOptions
+[debug] 
+[debug] The new value will be used by 
+[debug] 	Global / ssOptions
+[info] Reapplying settings...
+[info] set current project to scala-learning (in build file:/C:/Users/Administrator/Desktop/spinalhdl_coding/untitled2/)
+[debug] > Exec(preferScala2, None, None)
+[debug] > Exec(*/*:dumpStructureTo C:/Users/Administrator/AppData/Local/Temp/sbt-structure.xml, None, None)
+[debug] Evaluating tasks: Global / dumpStructureTo
+[warn] sbt 0.13 shell syntax is deprecated; use slash syntax instead: Global / dumpStructureTo
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[warn] Unrecognized repository Scala Plugin Bundled Repository, ignoring it
+[warn] Unrecognized repository Scala Plugin Bundled Repository, ignoring it
+[warn] 
+[warn] 	Note: Unresolved dependencies path:
+[warn] Unrecognized repository Scala Plugin Bundled Repository, ignoring it
+[warn] Unrecognized repository Scala Plugin Bundled Repository, ignoring it
+[warn] Unrecognized repository Scala Plugin Bundled Repository, ignoring it
+[warn] Unrecognized repository Scala Plugin Bundled Repository, ignoring it
+[error] sbt.librarymanagement.ResolveException: Error downloading org.scala-lang:scala-library:2.12.4
+[error]   Not found
+[error]   Not found
+[error]   not found: C:\Users\Administrator\.ivy2\localorg.scala-lang\scala-library\2.12.4\ivys\ivy.xml
+[error]   download error: Caught javax.net.ssl.SSLHandshakeException (PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target) while downloading https://repo1.maven.org/maven2/org/scala-lang/scala-library/2.12.4/scala-library-2.12.4.pom
+[error] Error downloading com.typesafe.akka:akka-http_2.12:10.0.11
+[error]   Not found
+[error]   Not found
+[error]   not found: C:\Users\Administrator\.ivy2\localcom.typesafe.akka\akka-http_2.12\10.0.11\ivys\ivy.xml
+[error]   download error: Caught javax.net.ssl.SSLHandshakeException (PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target) while downloading https://repo1.maven.org/maven2/com/typesafe/akka/akka-http_2.12/10.0.11/akka-http_2.12-10.0.11.pom
+[error] Error downloading com.typesafe.akka:akka-http-spray-json_2.12:10.0.11
+[error]   Not found
+[error]   Not found
+[error]   not found: C:\Users\Administrator\.ivy2\localcom.typesafe.akka\akka-http-spray-json_2.12\10.0.11\ivys\ivy.xml
+[error]   download error: Caught javax.net.ssl.SSLHandshakeException (PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target) while downloading https://repo1.maven.org/maven2/com/typesafe/akka/akka-http-spray-json_2.12/10.0.11/akka-http-spray-json_2.12-10.0.11.pom
+[error] Error downloading com.typesafe.akka:akka-stream_2.12:2.5.10
+[error]   Not found
+[error]   Not found
+[error]   not found: C:\Users\Administrator\.ivy2\localcom.typesafe.akka\akka-stream_2.12\2.5.10\ivys\ivy.xml
+[error]   download error: Caught javax.net.ssl.SSLHandshakeException (PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target) while downloading https://repo1.maven.org/maven2/com/typesafe/akka/akka-stream_2.12/2.5.10/akka-stream_2.12-2.5.10.pom
+[error] 	at lmcoursier.CoursierDependencyResolution.unresolvedWarningOrThrow(CoursierDependencyResolution.scala:344)
+[error] 	at lmcoursier.CoursierDependencyResolution.$anonfun$update$38(CoursierDependencyResolution.scala:313)
+[error] 	at scala.util.Either$LeftProjection.map(Either.scala:573)
+[error] 	at lmcoursier.CoursierDependencyResolution.update(CoursierDependencyResolution.scala:313)
+[error] 	at sbt.librarymanagement.DependencyResolution.update(DependencyResolution.scala:60)
+[error] 	at sbt.internal.LibraryManagement$.resolve$1(LibraryManagement.scala:59)
+[error] 	at sbt.internal.LibraryManagement$.$anonfun$cachedUpdate$12(LibraryManagement.scala:133)
+[error] 	at sbt.util.Tracked$.$anonfun$lastOutput$1(Tracked.scala:73)
+[error] 	at sbt.internal.LibraryManagement$.$anonfun$cachedUpdate$20(LibraryManagement.scala:146)
+[error] 	at scala.util.control.Exception$Catch.apply(Exception.scala:228)
+[error] 	at sbt.internal.LibraryManagement$.$anonfun$cachedUpdate$11(LibraryManagement.scala:146)
+[error] 	at sbt.internal.LibraryManagement$.$anonfun$cachedUpdate$11$adapted(LibraryManagement.scala:127)
+[error] 	at sbt.util.Tracked$.$anonfun$inputChangedW$1(Tracked.scala:219)
+[error] 	at sbt.internal.LibraryManagement$.cachedUpdate(LibraryManagement.scala:160)
+[error] 	at sbt.Classpaths$.$anonfun$updateTask0$1(Defaults.scala:3687)
+[error] 	at scala.Function1.$anonfun$compose$1(Function1.scala:49)
+[error] 	at sbt.internal.util.$tilde$greater.$anonfun$$u2219$1(TypeFunctions.scala:62)
+[error] 	at sbt.std.Transform$$anon$4.work(Transform.scala:68)
+[error] 	at sbt.Execute.$anonfun$submit$2(Execute.scala:282)
+[error] 	at sbt.internal.util.ErrorHandling$.wideConvert(ErrorHandling.scala:23)
+[error] 	at sbt.Execute.work(Execute.scala:291)
+[error] 	at sbt.Execute.$anonfun$submit$1(Execute.scala:282)
+[error] 	at sbt.ConcurrentRestrictions$$anon$4.$anonfun$submitValid$1(ConcurrentRestrictions.scala:265)
+[error] 	at sbt.CompletionService$$anon$2.call(CompletionService.scala:64)
+[error] 	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+[error] 	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+[error] 	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+[error] 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+[error] 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+[error] 	at java.base/java.lang.Thread.run(Thread.java:833)
+[error] sbt.librarymanagement.ResolveException: Error downloading org.scala-lang:scala-library:2.12.4
+[error]   Not found
+[error]   Not found
+[error]   not found: C:\Users\Administrator\.ivy2\localorg.scala-lang\scala-library\2.12.4\ivys\ivy.xml
+[error]   download error: Caught javax.net.ssl.SSLHandshakeException (PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target) while downloading https://repo1.maven.org/maven2/org/scala-lang/scala-library/2.12.4/scala-library-2.12.4.pom
+[error] Error downloading com.typesafe.akka:akka-http_2.12:10.0.11
+[error]   Not found
+[error]   Not found
+[error]   not found: C:\Users\Administrator\.ivy2\localcom.typesafe.akka\akka-http_2.12\10.0.11\ivys\ivy.xml
+[error]   download error: Caught javax.net.ssl.SSLHandshakeException (PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target) while downloading https://repo1.maven.org/maven2/com/typesafe/akka/akka-http_2.12/10.0.11/akka-http_2.12-10.0.11.pom
+[error] Error downloading com.typesafe.akka:akka-http-spray-json_2.12:10.0.11
+[error]   Not found
+[error]   Not found
+[error]   not found: C:\Users\Administrator\.ivy2\localcom.typesafe.akka\akka-http-spray-json_2.12\10.0.11\ivys\ivy.xml
+[error]   download error: Caught javax.net.ssl.SSLHandshakeException (PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target) while downloading https://repo1.maven.org/maven2/com/typesafe/akka/akka-http-spray-json_2.12/10.0.11/akka-http-spray-json_2.12-10.0.11.pom
+[error] Error downloading com.typesafe.akka:akka-stream_2.12:2.5.10
+[error]   Not found
+[error]   Not found
+[error]   not found: C:\Users\Administrator\.ivy2\localcom.typesafe.akka\akka-stream_2.12\2.5.10\ivys\ivy.xml
+[error]   download error: Caught javax.net.ssl.SSLHandshakeException (PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target) while downloading https://repo1.maven.org/maven2/com/typesafe/akka/akka-stream_2.12/2.5.10/akka-stream_2.12-2.5.10.pom
+[error] 	at lmcoursier.CoursierDependencyResolution.unresolvedWarningOrThrow(CoursierDependencyResolution.scala:344)
+[error] 	at lmcoursier.CoursierDependencyResolution.$anonfun$update$38(CoursierDependencyResolution.scala:313)
+[error] 	at scala.util.Either$LeftProjection.map(Either.scala:573)
+[error] 	at lmcoursier.CoursierDependencyResolution.update(CoursierDependencyResolution.scala:313)
+[error] 	at sbt.librarymanagement.DependencyResolution.update(DependencyResolution.scala:60)
+[error] 	at sbt.internal.LibraryManagement$.resolve$1(LibraryManagement.scala:59)
+[error] 	at sbt.internal.LibraryManagement$.$anonfun$cachedUpdate$12(LibraryManagement.scala:133)
+[error] 	at sbt.util.Tracked$.$anonfun$lastOutput$1(Tracked.scala:73)
+[error] 	at sbt.internal.LibraryManagement$.$anonfun$cachedUpdate$20(LibraryManagement.scala:146)
+[error] 	at scala.util.control.Exception$Catch.apply(Exception.scala:228)
+[error] 	at sbt.internal.LibraryManagement$.$anonfun$cachedUpdate$11(LibraryManagement.scala:146)
+[error] 	at sbt.internal.LibraryManagement$.$anonfun$cachedUpdate$11$adapted(LibraryManagement.scala:127)
+[error] 	at sbt.util.Tracked$.$anonfun$inputChangedW$1(Tracked.scala:219)
+[error] 	at sbt.internal.LibraryManagement$.cachedUpdate(LibraryManagement.scala:160)
+[error] 	at sbt.Classpaths$.$anonfun$updateTask0$1(Defaults.scala:3687)
+[error] 	at scala.Function1.$anonfun$compose$1(Function1.scala:49)
+[error] 	at sbt.internal.util.$tilde$greater.$anonfun$$u2219$1(TypeFunctions.scala:62)
+[error] 	at sbt.std.Transform$$anon$4.work(Transform.scala:68)
+[error] 	at sbt.Execute.$anonfun$submit$2(Execute.scala:282)
+[error] 	at sbt.internal.util.ErrorHandling$.wideConvert(ErrorHandling.scala:23)
+[error] 	at sbt.Execute.work(Execute.scala:291)
+[error] 	at sbt.Execute.$anonfun$submit$1(Execute.scala:282)
+[error] 	at sbt.ConcurrentRestrictions$$anon$4.$anonfun$submitValid$1(ConcurrentRestrictions.scala:265)
+[error] 	at sbt.CompletionService$$anon$2.call(CompletionService.scala:64)
+[error] 	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+[error] 	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+[error] 	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+[error] 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+[error] 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+[error] 	at java.base/java.lang.Thread.run(Thread.java:833)
+[error] sbt.librarymanagement.ResolveException: Error downloading org.scala-lang:scala-library:2.12.4
+[error]   Not found
+[error]   Not found
+[error]   not found: C:\Users\Administrator\.ivy2\localorg.scala-lang\scala-library\2.12.4\ivys\ivy.xml
+[error]   download error: Caught javax.net.ssl.SSLHandshakeException (PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target) while downloading https://repo1.maven.org/maven2/org/scala-lang/scala-library/2.12.4/scala-library-2.12.4.pom
+[error] Error downloading com.typesafe.akka:akka-http_2.12:10.0.11
+[error]   Not found
+[error]   Not found
+[error]   not found: C:\Users\Administrator\.ivy2\localcom.typesafe.akka\akka-http_2.12\10.0.11\ivys\ivy.xml
+[error]   download error: Caught javax.net.ssl.SSLHandshakeException (PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target) while downloading https://repo1.maven.org/maven2/com/typesafe/akka/akka-http_2.12/10.0.11/akka-http_2.12-10.0.11.pom
+[error] Error downloading com.typesafe.akka:akka-http-spray-json_2.12:10.0.11
+[error]   Not found
+[error]   Not found
+[error]   not found: C:\Users\Administrator\.ivy2\localcom.typesafe.akka\akka-http-spray-json_2.12\10.0.11\ivys\ivy.xml
+[error]   download error: Caught javax.net.ssl.SSLHandshakeException (PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target) while downloading https://repo1.maven.org/maven2/com/typesafe/akka/akka-http-spray-json_2.12/10.0.11/akka-http-spray-json_2.12-10.0.11.pom
+[error] Error downloading com.typesafe.akka:akka-stream_2.12:2.5.10
+[error]   Not found
+[error]   Not found
+[error]   not found: C:\Users\Administrator\.ivy2\localcom.typesafe.akka\akka-stream_2.12\2.5.10\ivys\ivy.xml
+[error]   download error: Caught javax.net.ssl.SSLHandshakeException (PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target) while downloading https://repo1.maven.org/maven2/com/typesafe/akka/akka-stream_2.12/2.5.10/akka-stream_2.12-2.5.10.pom
+[error] 	at lmcoursier.CoursierDependencyResolution.unresolvedWarningOrThrow(CoursierDependencyResolution.scala:344)
+[error] 	at lmcoursier.CoursierDependencyResolution.$anonfun$update$38(CoursierDependencyResolution.scala:313)
+[error] 	at scala.util.Either$LeftProjection.map(Either.scala:573)
+[error] 	at lmcoursier.CoursierDependencyResolution.update(CoursierDependencyResolution.scala:313)
+[error] 	at sbt.librarymanagement.DependencyResolution.update(DependencyResolution.scala:60)
+[error] 	at sbt.internal.LibraryManagement$.resolve$1(LibraryManagement.scala:59)
+[error] 	at sbt.internal.LibraryManagement$.$anonfun$cachedUpdate$12(LibraryManagement.scala:133)
+[error] 	at sbt.util.Tracked$.$anonfun$lastOutput$1(Tracked.scala:73)
+[error] 	at sbt.internal.LibraryManagement$.$anonfun$cachedUpdate$20(LibraryManagement.scala:146)
+[error] 	at scala.util.control.Exception$Catch.apply(Exception.scala:228)
+[error] 	at sbt.internal.LibraryManagement$.$anonfun$cachedUpdate$11(LibraryManagement.scala:146)
+[error] 	at sbt.internal.LibraryManagement$.$anonfun$cachedUpdate$11$adapted(LibraryManagement.scala:127)
+[error] 	at sbt.util.Tracked$.$anonfun$inputChangedW$1(Tracked.scala:219)
+[error] 	at sbt.internal.LibraryManagement$.cachedUpdate(LibraryManagement.scala:160)
+[error] 	at sbt.Classpaths$.$anonfun$updateTask0$1(Defaults.scala:3687)
+[error] 	at scala.Function1.$anonfun$compose$1(Function1.scala:49)
+[error] 	at sbt.internal.util.$tilde$greater.$anonfun$$u2219$1(TypeFunctions.scala:62)
+[error] 	at sbt.std.Transform$$anon$4.work(Transform.scala:68)
+[error] 	at sbt.Execute.$anonfun$submit$2(Execute.scala:282)
+[error] 	at sbt.internal.util.ErrorHandling$.wideConvert(ErrorHandling.scala:23)
+[error] 	at sbt.Execute.work(Execute.scala:291)
+[error] 	at sbt.Execute.$anonfun$submit$1(Execute.scala:282)
+[error] 	at sbt.ConcurrentRestrictions$$anon$4.$anonfun$submitValid$1(ConcurrentRestrictions.scala:265)
+[error] 	at sbt.CompletionService$$anon$2.call(CompletionService.scala:64)
+[error] 	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+[error] 	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+[error] 	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+[error] 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+[error] 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+[error] 	at java.base/java.lang.Thread.run(Thread.java:833)
+[error] (ProjectRef(uri("https://github.com/Trigl/akka-learning.git"), "akka-learning") / update) sbt.librarymanagement.ResolveException: Error downloading org.scala-lang:scala-library:2.12.4
+[error]   Not found
+[error]   Not found
+[error]   not found: C:\Users\Administrator\.ivy2\localorg.scala-lang\scala-library\2.12.4\ivys\ivy.xml
+[error]   download error: Caught javax.net.ssl.SSLHandshakeException (PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target) while downloading https://repo1.maven.org/maven2/org/scala-lang/scala-library/2.12.4/scala-library-2.12.4.pom
+[error] Error downloading com.typesafe.akka:akka-http_2.12:10.0.11
+[error]   Not found
+[error]   Not found
+[error]   not found: C:\Users\Administrator\.ivy2\localcom.typesafe.akka\akka-http_2.12\10.0.11\ivys\ivy.xml
+[error]   download error: Caught javax.net.ssl.SSLHandshakeException (PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target) while downloading https://repo1.maven.org/maven2/com/typesafe/akka/akka-http_2.12/10.0.11/akka-http_2.12-10.0.11.pom
+[error] Error downloading com.typesafe.akka:akka-http-spray-json_2.12:10.0.11
+[error]   Not found
+[error]   Not found
+[error]   not found: C:\Users\Administrator\.ivy2\localcom.typesafe.akka\akka-http-spray-json_2.12\10.0.11\ivys\ivy.xml
+[error]   download error: Caught javax.net.ssl.SSLHandshakeException (PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target) while downloading https://repo1.maven.org/maven2/com/typesafe/akka/akka-http-spray-json_2.12/10.0.11/akka-http-spray-json_2.12-10.0.11.pom
+[error] Error downloading com.typesafe.akka:akka-stream_2.12:2.5.10
+[error]   Not found
+[error]   Not found
+[error]   not found: C:\Users\Administrator\.ivy2\localcom.typesafe.akka\akka-stream_2.12\2.5.10\ivys\ivy.xml
+[error]   download error: Caught javax.net.ssl.SSLHandshakeException (PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target) while downloading https://repo1.maven.org/maven2/com/typesafe/akka/akka-stream_2.12/2.5.10/akka-stream_2.12-2.5.10.pom
+[error] (ssExtractDependencies) sbt.librarymanagement.ResolveException: Error downloading org.scala-lang:scala-library:2.12.4
+[error]   Not found
+[error]   Not found
+[error]   not found: C:\Users\Administrator\.ivy2\localorg.scala-lang\scala-library\2.12.4\ivys\ivy.xml
+[error]   download error: Caught javax.net.ssl.SSLHandshakeException (PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target) while downloading https://repo1.maven.org/maven2/org/scala-lang/scala-library/2.12.4/scala-library-2.12.4.pom
+[error] Error downloading com.typesafe.akka:akka-http_2.12:10.0.11
+[error]   Not found
+[error]   Not found
+[error]   not found: C:\Users\Administrator\.ivy2\localcom.typesafe.akka\akka-http_2.12\10.0.11\ivys\ivy.xml
+[error]   download error: Caught javax.net.ssl.SSLHandshakeException (PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target) while downloading https://repo1.maven.org/maven2/com/typesafe/akka/akka-http_2.12/10.0.11/akka-http_2.12-10.0.11.pom
+[error] Error downloading com.typesafe.akka:akka-http-spray-json_2.12:10.0.11
+[error]   Not found
+[error]   Not found
+[error]   not found: C:\Users\Administrator\.ivy2\localcom.typesafe.akka\akka-http-spray-json_2.12\10.0.11\ivys\ivy.xml
+[error]   download error: Caught javax.net.ssl.SSLHandshakeException (PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target) while downloading https://repo1.maven.org/maven2/com/typesafe/akka/akka-http-spray-json_2.12/10.0.11/akka-http-spray-json_2.12-10.0.11.pom
+[error] Error downloading com.typesafe.akka:akka-stream_2.12:2.5.10
+[error]   Not found
+[error]   Not found
+[error]   not found: C:\Users\Administrator\.ivy2\localcom.typesafe.akka\akka-stream_2.12\2.5.10\ivys\ivy.xml
+[error]   download error: Caught javax.net.ssl.SSLHandshakeException (PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target) while downloading https://repo1.maven.org/maven2/com/typesafe/akka/akka-stream_2.12/2.5.10/akka-stream_2.12-2.5.10.pom
+[error] (ProjectRef(uri("https://github.com/Trigl/akka-learning.git"), "akka-learning") / ssExtractDependencies) sbt.librarymanagement.ResolveException: Error downloading org.scala-lang:scala-library:2.12.4
+[error]   Not found
+[error]   Not found
+[error]   not found: C:\Users\Administrator\.ivy2\localorg.scala-lang\scala-library\2.12.4\ivys\ivy.xml
+[error]   download error: Caught javax.net.ssl.SSLHandshakeException (PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target) while downloading https://repo1.maven.org/maven2/org/scala-lang/scala-library/2.12.4/scala-library-2.12.4.pom
+[error] Error downloading com.typesafe.akka:akka-http_2.12:10.0.11
+[error]   Not found
+[error]   Not found
+[error]   not found: C:\Users\Administrator\.ivy2\localcom.typesafe.akka\akka-http_2.12\10.0.11\ivys\ivy.xml
+[error]   download error: Caught javax.net.ssl.SSLHandshakeException (PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target) while downloading https://repo1.maven.org/maven2/com/typesafe/akka/akka-http_2.12/10.0.11/akka-http_2.12-10.0.11.pom
+[error] Error downloading com.typesafe.akka:akka-http-spray-json_2.12:10.0.11
+[error]   Not found
+[error]   Not found
+[error]   not found: C:\Users\Administrator\.ivy2\localcom.typesafe.akka\akka-http-spray-json_2.12\10.0.11\ivys\ivy.xml
+[error]   download error: Caught javax.net.ssl.SSLHandshakeException (PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target) while downloading https://repo1.maven.org/maven2/com/typesafe/akka/akka-http-spray-json_2.12/10.0.11/akka-http-spray-json_2.12-10.0.11.pom
+[error] Error downloading com.typesafe.akka:akka-stream_2.12:2.5.10
+[error]   Not found
+[error]   Not found
+[error]   not found: C:\Users\Administrator\.ivy2\localcom.typesafe.akka\akka-stream_2.12\2.5.10\ivys\ivy.xml
+[error]   download error: Caught javax.net.ssl.SSLHandshakeException (PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target) while downloading https://repo1.maven.org/maven2/com/typesafe/akka/akka-stream_2.12/2.5.10/akka-stream_2.12-2.5.10.pom
+[error] Total time: 2 s, completed 2022年11月25日 上午9:40:14
+[debug] > Exec(idea-shell, None, None)
+[debug] > Exec(, None, None)
+[debug] > Exec(idea-shell, None, None)
