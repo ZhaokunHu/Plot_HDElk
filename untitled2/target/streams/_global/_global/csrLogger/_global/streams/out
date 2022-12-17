@@ -1,8 +1,4 @@
-[debug] downloaded https://repo1.maven.org/maven2/org/scala-lang/scala-library/2.12.4/scala-library-2.12.4.pom
-[debug] downloaded https://repo1.maven.org/maven2/com/typesafe/akka/akka-http-spray-json_2.12/10.0.11/akka-http-spray-json_2.12-10.0.11.pom
-[debug] downloaded https://repo1.maven.org/maven2/com/typesafe/akka/akka-stream_2.12/2.5.10/akka-stream_2.12-2.5.10.pom
-[debug] downloaded https://repo1.maven.org/maven2/com/typesafe/akka/akka-http_2.12/10.0.11/akka-http_2.12-10.0.11.pom
-[debug] downloaded https://repo1.maven.org/maven2/com/typesafe/akka/akka-http_2.12/10.0.11/akka-http_2.12-10.0.11.pom.sha1
-[debug] downloaded https://repo1.maven.org/maven2/org/scala-lang/scala-library/2.12.4/scala-library-2.12.4.pom.sha1
-[debug] downloaded https://repo1.maven.org/maven2/com/typesafe/akka/akka-stream_2.12/2.5.10/akka-stream_2.12-2.5.10.pom.sha1
-[debug] downloaded https://repo1.maven.org/maven2/com/typesafe/akka/akka-http-spray-json_2.12/10.0.11/akka-http-spray-json_2.12-10.0.11.pom.sha1
+[debug] downloaded https://repo1.maven.org/maven2/com/github/spinalhdl/spinalhdl-lib_2.12/1.7.2/spinalhdl-lib_2.12-1.7.2.pom
+[debug] downloaded https://repo1.maven.org/maven2/com/github/spinalhdl/spinalhdl-core_2.12/1.7.2/spinalhdl-core_2.12-1.7.2.pom
+[debug] downloaded https://repo1.maven.org/maven2/com/github/spinalhdl/spinalhdl-lib_2.12/1.7.2/spinalhdl-lib_2.12-1.7.2.pom.sha1
+[debug] downloaded https://repo1.maven.org/maven2/com/github/spinalhdl/spinalhdl-core_2.12/1.7.2/spinalhdl-core_2.12-1.7.2.pom.sha1

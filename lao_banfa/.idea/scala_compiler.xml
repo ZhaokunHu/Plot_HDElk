@@ -6,5 +6,10 @@
         <plugin path="C:\Users\Administrator\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\com\github\spinalhdl\spinalhdl-idsl-plugin_2.11\1.7.3a\spinalhdl-idsl-plugin_2.11-1.7.3a.jar" />
       </plugins>
     </profile>
+    <profile name="sbt 2" modules="lao_banfa">
+      <plugins>
+        <plugin path="C:\Users\dell\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\com\github\spinalhdl\spinalhdl-idsl-plugin_2.11\1.8.0b\spinalhdl-idsl-plugin_2.11-1.8.0b.jar" />
+      </plugins>
+    </profile>
   </component>
 </project>

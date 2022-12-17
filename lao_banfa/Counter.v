@@ -1,5 +1,6 @@
 // Generator : SpinalHDL v1.7.3a    git head : 04162b8322332003bd011fabf5de3e7522c45630
 // Component : Counter
+// Git hash  : 64cdcb8e778794d71adc2d2caf7885f8274bca36
 
 `timescale 1ns/1ps
 
