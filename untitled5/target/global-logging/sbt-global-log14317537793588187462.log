@@ -1,0 +1,13 @@
+[debug] > Exec(publishLocal, None, None)
+[debug] Evaluating tasks: publishLocal
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[info] Wrote C:\Users\Administrator\Desktop\spinalhdl_coding\untitled5\target\scala-2.11\untitled5_2.11-0.1.0-SNAPSHOT.pom
+[info] :: delivering :: untitled5#untitled5_2.11;0.1.0-SNAPSHOT :: 0.1.0-SNAPSHOT :: integration :: Fri Nov 25 20:36:12 HKT 2022
+[info] 	delivering ivy file to C:\Users\Administrator\Desktop\spinalhdl_coding\untitled5\target\scala-2.11\ivy-0.1.0-SNAPSHOT.xml
+[info] 	published untitled5_2.11 to C:\Users\Administrator\.ivy2\local\untitled5\untitled5_2.11\0.1.0-SNAPSHOT\poms\untitled5_2.11.pom
+[info] 	published untitled5_2.11 to C:\Users\Administrator\.ivy2\local\untitled5\untitled5_2.11\0.1.0-SNAPSHOT\jars\untitled5_2.11.jar
+[info] 	published untitled5_2.11 to C:\Users\Administrator\.ivy2\local\untitled5\untitled5_2.11\0.1.0-SNAPSHOT\srcs\untitled5_2.11-sources.jar
+[info] 	published untitled5_2.11 to C:\Users\Administrator\.ivy2\local\untitled5\untitled5_2.11\0.1.0-SNAPSHOT\docs\untitled5_2.11-javadoc.jar
+[info] 	published ivy to C:\Users\Administrator\.ivy2\local\untitled5\untitled5_2.11\0.1.0-SNAPSHOT\ivys\ivy.xml
+[success] Total time: 0 s, completed 2022年11月25日 下午8:36:12
+[debug] > Exec(idea-shell, None, None)
