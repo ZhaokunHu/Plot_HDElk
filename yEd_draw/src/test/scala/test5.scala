@@ -19,12 +19,12 @@ case class Counter(width: Int) extends Component {
 }
 object Top5{
   def main(args: Array[String]): Unit = {
-//    val rtl=SpinalVerilog(Counter(8))
+    val rtl=SpinalVerilog(Counter(8))
 //    val letread = new readsystem(rtl.toplevel)
 //    letread.beginread
 //    val letdraw = new draw(rtl.toplevel)
 //    letdraw.begindraw
-      val mmm=new yed
-      mmm.begindraw
+      val lettry=new yed(rtl.toplevel)
+      lettry.begindraw
   }
 }

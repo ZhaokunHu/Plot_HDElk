@@ -1,0 +1,14 @@
+@startuml
+left to right direction
+rectangle toplevel{
+()toplevel_io_clear
+()toplevel_io_value
+()toplevel_io_full
+()toplevel_counter_1
+()toplevel_clk
+()toplevel_reset
+}
+toplevel_counter_1-->toplevel_io_value
+toplevel_counter_1-->toplevel_io_full
+toplevel_io_clear-->toplevel_counter_1
+@enduml
