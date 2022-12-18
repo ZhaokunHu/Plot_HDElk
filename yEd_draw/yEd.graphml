@@ -14,7 +14,7 @@
   <key for="edge" id="d10" yfiles.type="edgegraphics"/>
   <graph edgedefault="directed" id="G">
     <data key="d0"/>
-<node id="n0" yfiles.foldertype="group">
+<node id="toplevel" yfiles.foldertype="group">
       <data key="d4" xml:space="preserve"/>
       <data key="d5"/>
       <data key="d6">
@@ -43,8 +43,8 @@
           </y:Realizers>
         </y:ProxyAutoBoundsNode>
       </data>
-      <graph edgedefault="directed" id="n0:">
-<node id="n0::n0">
+      <graph edgedefault="directed" id="ntoplevel:">
+<node id="toplevel::io_a">
           <data key="d5"/>
           <data key="d6">
             <y:ShapeNode>
@@ -56,7 +56,7 @@
             </y:ShapeNode>
           </data>
         </node>
-<node id="n0::n1">
+<node id="toplevel::io_b">
           <data key="d5"/>
           <data key="d6">
             <y:ShapeNode>

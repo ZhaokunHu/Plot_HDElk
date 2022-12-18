@@ -10,7 +10,7 @@ class MyTry extends Component {
 object MyTry {
   def main(args: Array[String]): Unit = {
     val rtl = SpinalVerilog(new MyTry)
-    val lettry = new yed(rtl.toplevel)
+    val lettry = new yEd(rtl.toplevel)
     lettry.begindraw
 //    val letread = new readsystem(rtl.toplevel)
 //    letread.beginread

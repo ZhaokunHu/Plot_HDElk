@@ -24,7 +24,7 @@ object Top5{
 //    letread.beginread
 //    val letdraw = new draw(rtl.toplevel)
 //    letdraw.begindraw
-      val lettry=new yed(rtl.toplevel)
+      val lettry=new yEd(rtl.toplevel)
       lettry.begindraw
   }
 }
