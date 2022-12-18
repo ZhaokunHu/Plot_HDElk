@@ -48,8 +48,9 @@ class draw (module: Module) {
       val fans = new DataAnalyzer(Op.head)
       val fanin = fans.getFanIn
       while (!fanin.isEmpty) {
-        if(fanin.head.getName()!=Op.head.getName())
+        if(fanin.head.getName()!=Op.head.getName() ) {
           pw.write(dealString(fanin.head.getComponent().getDisplayName())+"_"+fanin.head.getName()+"-->"+dealString(Op.head.getComponent().getDisplayName())+"_"+Op.head.getName()+"\n")
+        }
         fanin.remove(fanin.head)
       }
       Op.remove(Op.head)

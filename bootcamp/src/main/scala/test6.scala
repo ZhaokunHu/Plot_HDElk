@@ -46,10 +46,10 @@ class TopLevel extends Component{
 }
 object TopLevel {
   def main(args: Array[String]) {
-    SpinalVerilog(new TopLevel)
-    val letdo = new readsystem(new TopLevel)
+    val rtl=SpinalVerilog(new TopLevel)
+    val letdo = new readsystem(rtl.toplevel)
     letdo.beginread
-    val letdraw=new draw(new TopLevel)
+    val letdraw=new draw(rtl.toplevel)
     letdraw.begindraw
   }
 }

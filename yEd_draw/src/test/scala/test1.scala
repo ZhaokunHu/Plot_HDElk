@@ -1,4 +1,4 @@
-import dataanan._
+import huitu._
 import spinal.core._
 import spinal.lib._
 
@@ -46,10 +46,12 @@ class TopLevel extends Component{
 }
 object TopLevel {
   def main(args: Array[String]) {
-    SpinalVerilog(new TopLevel)
-    val letdo = new readsystem(new TopLevel)
-    letdo.beginread
-    val letdraw=new draw(new TopLevel)
-    letdraw.begindraw
+    val rtl=SpinalVerilog(new TopLevel)
+    val lettry = new yEd(rtl.toplevel)
+    lettry.begindraw
+//    val letdo = new readsystem(rtl.toplevel)
+//    letdo.beginread
+//    val letdraw=new draw(rtl.toplevel)
+//    letdraw.begindraw
   }
 }

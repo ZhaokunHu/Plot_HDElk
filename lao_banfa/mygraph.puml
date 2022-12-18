@@ -1,16 +1,13 @@
 @startuml
 package toplevel{
-()io_sources_0_r
-()io_sources_0_g
-()io_sources_0_b
-()io_sources_1_r
-()io_sources_1_g
-()io_sources_1_b
-()io_sources_2_r
-()io_sources_2_g
-()io_sources_2_b
-()io_result_r
-()io_result_g
-()io_result_b
+()io_aReset
+()io_clk100Mhz
+()io_result
 }
+package clkCtrl_pll{
+()clkIn
+()clkOut
+()isLocked
+}
+io_clk100Mhz-->clkIn
 @enduml

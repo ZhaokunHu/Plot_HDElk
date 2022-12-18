@@ -1,28 +1,34 @@
 @startuml
 left to right direction
 rectangle toplevel{
-()toplevel_io_idata_valid
-()toplevel_io_idata_ready
-()toplevel_io_idata_payload
-()toplevel_io_odata_valid
-()toplevel_io_odata_ready
-()toplevel_io_odata_payload
+()toplevel_io_aReset
+()toplevel_io_clk100Mhz
+()toplevel_io_result
+()toplevel_core_clk
+()toplevel_core_reset
+()toplevel__zz_1
+()toplevel_core_counter
 }
-rectangle myBusFifo_1{
-()myBusFifo_1_io_push_valid
-()myBusFifo_1_io_push_ready
-()myBusFifo_1_io_push_payload
-()myBusFifo_1_io_pop_valid
-()myBusFifo_1_io_pop_ready
-()myBusFifo_1_io_pop_payload
+rectangle clkCtrl_pll{
+()clkCtrl_pll_clkIn
+()clkCtrl_pll_clkOut
+()clkCtrl_pll_isLocked
 }
-myBusFifo_1_io_push_ready-->toplevel_io_idata_ready
-myBusFifo_1_io_pop_valid-->toplevel_io_odata_valid
-myBusFifo_1_io_pop_payload-->toplevel_io_odata_payload
-toplevel_io_idata_valid-->myBusFifo_1_io_push_valid
-myBusFifo_1_io_pop_ready-->myBusFifo_1_io_push_ready
-toplevel_io_idata_payload-->myBusFifo_1_io_push_payload
-myBusFifo_1_io_push_valid-->myBusFifo_1_io_pop_valid
-toplevel_io_odata_ready-->myBusFifo_1_io_pop_ready
-myBusFifo_1_io_push_payload-->myBusFifo_1_io_pop_payload
+rectangle bufferCC_1{
+()bufferCC_1_io_dataIn
+()bufferCC_1_io_dataOut
+()bufferCC_1_buffers_0
+()bufferCC_1_buffers_1
+()bufferCC_1_core_clk
+()bufferCC_1__zz_1
+}
+toplevel_core_counter-->toplevel_io_result
+clkCtrl_pll_clkOut-->toplevel_core_clk
+bufferCC_1_io_dataOut-->toplevel_core_reset
+toplevel_io_aReset-->toplevel__zz_1
+clkCtrl_pll_isLocked-->toplevel__zz_1
+toplevel_io_clk100Mhz-->clkCtrl_pll_clkIn
+bufferCC_1_buffers_1-->bufferCC_1_io_dataOut
+bufferCC_1_io_dataIn-->bufferCC_1_buffers_0
+bufferCC_1_buffers_0-->bufferCC_1_buffers_1
 @enduml

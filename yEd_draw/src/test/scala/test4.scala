@@ -1,15 +1,15 @@
 import spinal.core._
 import huitu._
-class MyTry extends Component {
+class top4 extends Component {
   val io = new Bundle {
     val a = in Bool()
     val b = out Bool()
   }
   io.b:=io.a
 }
-object MyTry {
+object top4 {
   def main(args: Array[String]): Unit = {
-    val rtl = SpinalVerilog(new MyTry)
+    val rtl = SpinalVerilog(new top4)
     val lettry = new yEd(rtl.toplevel)
     lettry.begindraw
 //    val letread = new readsystem(rtl.toplevel)
