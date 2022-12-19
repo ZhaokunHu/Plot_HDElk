@@ -1,8 +1,8 @@
-package huitu
+package plot
 
 import java.io.{File, PrintWriter}
 import spinal.core._
-class yEd (module: Module) {
+class Plot_yEd (module: Module) {
   val file = new File("yEd.graphml")
   val pw = new PrintWriter(file)
   val moduleanalyze = new ModuleAnalyzer(module)

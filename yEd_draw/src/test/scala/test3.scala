@@ -1,4 +1,4 @@
-import huitu._
+import plot._
 import spinal.core._
 import spinal.lib._
 
@@ -37,7 +37,7 @@ class MyBusFifo(payloadWidth: Int, depth: Int) extends Component {
   io.pop <> io.push
 }
 
-class Top extends Component {
+class Top3 extends Component {
   val io = new Bundle {
     val idata = slave(MyBus(8))
     val odata  = master(MyBus(8))
@@ -46,12 +46,12 @@ class Top extends Component {
 }
 object Top3{
   def main(args: Array[String]): Unit = {
-    val rtl=SpinalVerilog(new Top)
-    val drawyed=new yEd(rtl.toplevel)
+    val rtl=SpinalVerilog(new Top3)
+    val drawyed=new Plot_yEd(rtl.toplevel)
     drawyed.begindraw
-//    val letread = new readsystem(rtl.toplevel)
-//    letread.beginread
-//    val letdraw = new draw(rtl.toplevel)
-//    letdraw.begindraw
+    val letread = new ReadSystem(rtl.toplevel)
+    letread.beginread
+    val letdraw = new Plot_UML(rtl.toplevel)
+    letdraw.begindraw
   }
 }

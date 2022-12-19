@@ -1,4 +1,4 @@
-package huitu
+package plot
 
 import spinal.core._
 

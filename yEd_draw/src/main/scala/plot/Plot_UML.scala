@@ -1,10 +1,10 @@
-package huitu
+package plot
 import spinal.core._
 
 import java.io._
 import scala.collection.mutable.Set
 
-class draw (module: Module) {
+class Plot_UML(module: Module) {
   val file = new File("mygraph.puml")
   val pw = new PrintWriter(file)
   val anal=new ModuleAnalyzer(module)

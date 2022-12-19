@@ -1,4 +1,4 @@
-import huitu._
+import plot._
 import spinal.core._
 import spinal.lib._
 class AdderCell extends Component {
@@ -24,15 +24,14 @@ class Adder(width: Int) extends Component {
     cellArray(b).io.cin := cellArray(b-1).io.cout
   //Connect cout of cell(0) to cin of cell(1)
 }
-object Top2{
+object Top2 {
   def main(args: Array[String]): Unit = {
-    val rtl=SpinalVerilog(new Adder(8))
-    val lettry = new yEd(rtl.toplevel)
-    lettry.begindraw
-//    val letread = new readsystem(rtl.toplevel)
-//    letread.beginread
-//    //    val anal = new ModuleAnalyzer(new Adder(8))
-//    val letdraw = new draw(rtl.toplevel)
-//    letdraw.begindraw
+    val rtl = SpinalVerilog(new Adder(8))
+    val drawyed = new Plot_yEd(rtl.toplevel)
+    drawyed.begindraw
+    val letread = new ReadSystem(rtl.toplevel)
+    letread.beginread
+    val letdraw = new Plot_UML(rtl.toplevel)
+    letdraw.begindraw
   }
 }

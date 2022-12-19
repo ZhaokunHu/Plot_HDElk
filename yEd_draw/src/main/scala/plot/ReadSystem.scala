@@ -1,10 +1,10 @@
-package huitu
+package plot
 import spinal.core._
 
 import scala.collection.mutable
 import scala.language._
 
-class readsystem (module:Module) extends App {
+class ReadSystem(module:Module) extends App {
   def readfans(sets:mutable.LinkedHashSet[BaseType]): Unit ={
     while (!sets.isEmpty) {
       val fans = new DataAnalyzer(sets.head)

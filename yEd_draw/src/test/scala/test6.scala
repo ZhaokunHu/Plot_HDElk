@@ -1,4 +1,4 @@
-import huitu._
+import plot._
 import spinal.core._
 import spinal.lib._
 
@@ -27,7 +27,7 @@ class MYSub1(cd: ClockDomain) extends Component {
   io.a2 := area.tmp2
 }
 
-class Top00 extends Component {
+class Top6 extends Component {
   val io = new Bundle{
     val a = in UInt(8 bits)
     val b0 = out UInt(8 bits)
@@ -52,12 +52,12 @@ class Top00 extends Component {
 
 object Top6{
   def main(args: Array[String]): Unit = {
-    val rtl=SpinalVerilog(new Top00)
-    val letread = new readsystem(rtl.toplevel)
+    val rtl=SpinalVerilog(new Top6)
+    val drawyed = new Plot_yEd(rtl.toplevel)
+    drawyed.begindraw
+    val letread = new ReadSystem(rtl.toplevel)
     letread.beginread
-    val letdraw = new draw(rtl.toplevel)
+    val letdraw = new Plot_UML(rtl.toplevel)
     letdraw.begindraw
-    val lettry = new yEd(rtl.toplevel)
-    lettry.begindraw
   }
 }
