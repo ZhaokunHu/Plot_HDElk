@@ -1,15 +1,15 @@
 // Generator : SpinalHDL v1.8.0b    git head : 761a30e521263983ddf14de3592f7a9f38bf0589
-// Component : top4
-// Git hash  : c9998f03d07a31a5e92ff9ef47226a3ca5f7286c
+// Component : Top4
+// Git hash  : 9f81f1a2e6130f636f7046ebec462dcd996728f8
 
 `timescale 1ns/1ps
 
-module top4 (
-  input               io_a,
-  output              io_b
+module Top4 (
+  input      [7:0]    a,
+  output     [7:0]    b
 );
 
 
-  assign io_b = io_a;
+  assign b = (a + 8'h85);
 
 endmodule
