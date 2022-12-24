@@ -1,6 +1,7 @@
 import plot._
 import spinal.core._
 import spinal.lib._
+import tests.Deal_Wires
 
 
 case class MyBus(payloadWidth: Int) extends Bundle with IMasterSlave {
@@ -46,12 +47,14 @@ class Top3 extends Component {
 }
 object Top3{
   def main(args: Array[String]): Unit = {
-    val rtl=SpinalVerilog(new Top3)
-    val drawyed=new Plot_yEd(rtl.toplevel)
-    drawyed.begindraw
-    val letread = new ReadSystem(rtl.toplevel)
-    letread.beginread
-    val letdraw = new Plot_UML(rtl.toplevel)
-    letdraw.begindraw
+    val rtl = SpinalVerilog(new Top3)
+    val tryy=new Deal_Wires
+    tryy(rtl.toplevel)
+//    val drawyed = new Plot_yEd(rtl.toplevel)
+//    drawyed.begindraw
+//    val letread = new ReadSystem(rtl.toplevel)
+//    letread.beginread
+//    val letdraw = new Plot_UML(rtl.toplevel)
+//    letdraw.begindraw
   }
 }

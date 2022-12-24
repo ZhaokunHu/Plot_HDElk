@@ -1,4 +1,5 @@
 package plot
+import analyzer.{DataAnalyzer, ModuleAnalyzer}
 import spinal.core._
 
 import java.io._

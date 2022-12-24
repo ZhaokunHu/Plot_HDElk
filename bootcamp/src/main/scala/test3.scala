@@ -47,9 +47,21 @@ class Top extends Component {
 object Top3{
   def main(args: Array[String]): Unit = {
     val rtl=SpinalVerilog(new Top)
-    val letread = new readsystem(rtl.toplevel)
-    letread.beginread
-    val letdraw = new draw(rtl.toplevel)
-    letdraw.begindraw
+//    val letread = new readsystem(rtl.toplevel)
+//    letread.beginread
+//    val letdraw = new draw(rtl.toplevel)
+//    letdraw.begindraw
+    val datann=new ModuleAnalyzer(rtl.toplevel)
+    val cells=datann.getCells(_=>true)
+    val pins=datann.getPins(_=>true)
+    while(cells.nonEmpty){
+      println(cells.head.children)
+      cells.head.children.insert()
+      cells.remove(cells.head)
+    }
+    while(pins.nonEmpty){
+      println(pins.head.getComponent().children)
+      pins.remove(pins.head)
+    }
   }
 }

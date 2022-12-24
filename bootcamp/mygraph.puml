@@ -1,14 +1,28 @@
 @startuml
 left to right direction
 rectangle toplevel{
-()toplevel_io_clear
-()toplevel_io_value
-()toplevel_io_full
-()toplevel_counter_1
-()toplevel_clk
-()toplevel_reset
+()toplevel_io_idata_valid
+()toplevel_io_idata_ready
+()toplevel_io_idata_payload
+()toplevel_io_odata_valid
+()toplevel_io_odata_ready
+()toplevel_io_odata_payload
 }
-toplevel_counter_1-->toplevel_io_value
-toplevel_counter_1-->toplevel_io_full
-toplevel_io_clear-->toplevel_counter_1
+rectangle myBusFifo_1{
+()myBusFifo_1_io_push_valid
+()myBusFifo_1_io_push_ready
+()myBusFifo_1_io_push_payload
+()myBusFifo_1_io_pop_valid
+()myBusFifo_1_io_pop_ready
+()myBusFifo_1_io_pop_payload
+}
+myBusFifo_1_io_push_ready-->toplevel_io_idata_ready
+myBusFifo_1_io_pop_valid-->toplevel_io_odata_valid
+myBusFifo_1_io_pop_payload-->toplevel_io_odata_payload
+toplevel_io_idata_valid-->myBusFifo_1_io_push_valid
+myBusFifo_1_io_pop_ready-->myBusFifo_1_io_push_ready
+toplevel_io_idata_payload-->myBusFifo_1_io_push_payload
+myBusFifo_1_io_push_valid-->myBusFifo_1_io_pop_valid
+toplevel_io_odata_ready-->myBusFifo_1_io_pop_ready
+myBusFifo_1_io_push_payload-->myBusFifo_1_io_pop_payload
 @enduml

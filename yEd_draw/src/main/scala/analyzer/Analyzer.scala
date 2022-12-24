@@ -1,4 +1,4 @@
-package plot
+package analyzer
 
 import spinal.core._
 

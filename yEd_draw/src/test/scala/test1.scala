@@ -1,6 +1,7 @@
-import plot.{Plot_UML, Plot_yEd, ReadSystem}
+import plot._
 import spinal.core._
 import spinal.lib._
+import tests.Deal_Wires
 
 case class RGB(channelWidth : Int) extends Bundle{
   val red   = UInt(channelWidth bit)
@@ -19,11 +20,13 @@ class Top1 extends Component{
 object Top1 {
   def main(args: Array[String]): Unit = {
     val rtl = SpinalVerilog(new Top1)
+//    val tryy = new Deal_Wires
+//    tryy(rtl.toplevel)
     val drawyed = new Plot_yEd(rtl.toplevel)
     drawyed.begindraw
-    val letread = new ReadSystem(rtl.toplevel)
-    letread.beginread
-    val letdraw = new Plot_UML(rtl.toplevel)
-    letdraw.begindraw
+//    val letread = new ReadSystem(rtl.toplevel)
+//    letread.beginread
+//    val letdraw = new Plot_UML(rtl.toplevel)
+//    letdraw.begindraw
   }
 }
