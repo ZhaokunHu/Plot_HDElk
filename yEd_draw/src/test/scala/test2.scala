@@ -29,8 +29,8 @@ object Top2 {
     val rtl = SpinalVerilog(new Adder(8))
 //    val test=new Deal_Wires
 //    test(rtl.toplevel)
-//    val drawyed = new Plot_yEd(rtl.toplevel)
-//    drawyed.begindraw
+    val drawyed = new Plot_yEd(rtl.toplevel)
+    drawyed.begindraw
     val letread = new ReadSystem(rtl.toplevel)
     letread.beginread
     val letdraw = new Plot_UML(rtl.toplevel)
