@@ -1,7 +1,6 @@
 import plot._
 import spinal.core._
 import spinal.lib._
-import tests.Deal_Wires
 
 case class RGB(channelWidth : Int) extends Bundle{
   val red   = UInt(channelWidth bit)

@@ -102,8 +102,8 @@ class Plot_yEd(module: Module) {
             thisedge.target = spiltfanoutname(0) + "payload" + "::" + spiltfanoutname(1)
           }
           else thisedge.target = fanoutgroup + "::" + fanoutname
+          edges.add(thisedge)
         }
-        edges.add(thisedge)
         thisfanouts.remove(thisfanouts.head)
       }
       nodes.add(thisnode)
