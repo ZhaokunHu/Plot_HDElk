@@ -1,6 +1,8 @@
 import plot._
 import spinal.core._
 import spinal.lib._
+import tests.Plot_ELK
+
 
 case class RGB(channelWidth : Int) extends Bundle{
   val red   = UInt(channelWidth bit)
@@ -21,8 +23,10 @@ object Top1 {
     val rtl = SpinalVerilog(new Top1)
 //    val tryy = new Deal_Wires
 //    tryy(rtl.toplevel)
-    val drawyed = new Plot_yEd(rtl.toplevel)
-    drawyed.begindraw
+//    val drawyed = new Plot_yEd(rtl.toplevel)
+//    drawyed.begindraw
+    val drawELK=new Plot_ELK(rtl.toplevel)
+    drawELK.begindraw
 //    val letread = new ReadSystem(rtl.toplevel)
 //    letread.beginread
 //    val letdraw = new Plot_UML(rtl.toplevel)

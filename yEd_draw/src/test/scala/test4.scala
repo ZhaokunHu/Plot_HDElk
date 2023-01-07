@@ -2,6 +2,7 @@ import plot.{Plot_UML, Plot_yEd, ReadSystem}
 import spinal.core._
 import spinal.lib._
 import spinal.lib.Stream._
+import tests.Plot_ELK
 
 case class FilterConfig(iqWidth: Int,
                         tapNumbers: Int = 33,
@@ -38,11 +39,13 @@ object Top4 {
   def main(args: Array[String]): Unit = {
     val fc=FilterConfig(8)
     val rtl = SpinalVerilog(new Filter(fc))
-    val drawyed = new Plot_yEd(rtl.toplevel)
-    drawyed.begindraw
-    val letread = new ReadSystem(rtl.toplevel)
-    letread.beginread
-    val letdraw = new Plot_UML(rtl.toplevel)
-    letdraw.begindraw
+    val drawELK = new Plot_ELK(rtl.toplevel)
+    drawELK.begindraw
+//    val drawyed = new Plot_yEd(rtl.toplevel)
+//    drawyed.begindraw
+//    val letread = new ReadSystem(rtl.toplevel)
+//    letread.beginread
+//    val letdraw = new Plot_UML(rtl.toplevel)
+//    letdraw.begindraw
   }
 }

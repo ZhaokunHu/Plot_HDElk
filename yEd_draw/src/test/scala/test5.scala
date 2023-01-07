@@ -1,6 +1,7 @@
 import plot._
 import spinal.core._
 import spinal.lib._
+import tests.Plot_ELK
 class Pll extends Component{
   val io = new Bundle {
     val clkIn = in Bool()
@@ -40,11 +41,13 @@ class InternalClockWithPllExample extends Component {
 object Top5 {
   def main(args: Array[String]): Unit = {
     val rtl = SpinalVerilog(new InternalClockWithPllExample)
-    val drawyed = new Plot_yEd(rtl.toplevel)
-    drawyed.begindraw
-    val letread = new ReadSystem(rtl.toplevel)
-    letread.beginread
-    val letdraw = new Plot_UML(rtl.toplevel)
-    letdraw.begindraw
+//    val drawyed = new Plot_yEd(rtl.toplevel)
+//    drawyed.begindraw
+//    val letread = new ReadSystem(rtl.toplevel)
+//    letread.beginread
+//    val letdraw = new Plot_UML(rtl.toplevel)
+//    letdraw.begindraw
+    val drawELK = new Plot_ELK(rtl.toplevel)
+    drawELK.begindraw
   }
 }

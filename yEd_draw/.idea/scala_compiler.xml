@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ScalaCompilerConfiguration">
-    <profile name="sbt 1" modules="yEd_draw,yed_draw">
+    <profile name="sbt 1" modules="yEd_draw">
       <plugins>
         <plugin path="C:\Users\dell\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\com\github\spinalhdl\spinalhdl-idsl-plugin_2.11\1.8.0b\spinalhdl-idsl-plugin_2.11-1.8.0b.jar" />
+      </plugins>
+    </profile>
+    <profile name="sbt 2" modules="yed_draw">
+      <plugins>
+        <plugin path="C:\Users\aj302\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\com\github\spinalhdl\spinalhdl-idsl-plugin_2.11\1.8.0b\spinalhdl-idsl-plugin_2.11-1.8.0b.jar" />
       </plugins>
     </profile>
   </component>
