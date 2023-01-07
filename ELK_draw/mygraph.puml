@@ -1,0 +1,22 @@
+@startuml
+left to right direction
+rectangle toplevel{
+()toplevel_io_clk100M
+()toplevel_io_aReset
+()toplevel_io_result
+()toplevel_myClockName_clk
+()toplevel_myClockName_reset
+()toplevel_myArea_myReg
+}
+rectangle pll_1{
+()pll_1_io_clkIn
+()pll_1_io_clkOut
+()pll_1_io_reset
+}
+toplevel_myArea_myReg-->toplevel_io_result
+pll_1_io_clkOut-->toplevel_myClockName_clk
+toplevel_io_aReset-->toplevel_myClockName_reset
+pll_1_io_reset-->toplevel_myClockName_reset
+toplevel_io_clk100M-->pll_1_io_clkIn
+pll_1_io_clkIn-->pll_1_io_clkOut
+@enduml
