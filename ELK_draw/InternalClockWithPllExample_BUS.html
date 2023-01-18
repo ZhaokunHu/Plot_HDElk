@@ -1,0 +1,37 @@
+<div id="simple_diagram"></div>
+
+<script src="/js/elk.bundled.js"></script>
+<script src="/js/svg.min.js"></script>
+<script src="/js/hdelk.js"></script>
+
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"toplevel",
+inPorts: ["io_aReset","io_clk100M",],
+outPorts: ["io_result",],
+children: [
+{id:"pll_1",
+inPorts: ["io_clkIn",],
+outPorts: ["io_clkOut","io_reset",],
+},
+{id:"myArea_myReg",
+},
+{id:"myClockName_clk",
+},
+{id:"myClockName_reset",
+},
+],
+edges:[
+{ source:"myArea_myReg", target:"toplevel.io_result",bus: 0 },
+{ source:"toplevel.io_aReset", target:"myClockName_reset",bus: 0 },
+{ source:"toplevel.io_clk100M", target:"pll_1.io_clkIn",bus: 0 },
+{ source:"pll_1.io_clkOut", target:"myClockName_clk",bus: 0 },
+{ source:"pll_1.io_reset", target:"myClockName_reset",bus: 0 },
+]
+},
+],
+}
+hdelk.layout( mygraph, "simple_diagram" );
+</script>

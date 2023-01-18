@@ -1,0 +1,57 @@
+<div id="simple_diagram"></div>
+
+<script src="/js/elk.bundled.js"></script>
+<script src="/js/svg.min.js"></script>
+<script src="/js/hdelk.js"></script>
+
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"toplevel",
+children: [
+{id:"cellArray_5",
+inPorts: ["io_cin",],
+outPorts: ["io_cout",],
+},
+{id:"cellArray_1",
+inPorts: ["io_cin",],
+outPorts: ["io_cout",],
+},
+{id:"cellArray_3",
+inPorts: ["io_cin",],
+outPorts: ["io_cout",],
+},
+{id:"cellArray_4",
+inPorts: ["io_cin",],
+outPorts: ["io_cout",],
+},
+{id:"cellArray_7",
+inPorts: ["io_cin",],
+},
+{id:"cellArray_0",
+outPorts: ["io_cout",],
+},
+{id:"cellArray_6",
+inPorts: ["io_cin",],
+outPorts: ["io_cout",],
+},
+{id:"cellArray_2",
+inPorts: ["io_cin",],
+outPorts: ["io_cout",],
+},
+],
+edges:[
+{ source:"cellArray_0.io_cout", target:"cellArray_1.io_cin" },
+{ source:"cellArray_4.io_cout", target:"cellArray_5.io_cin" },
+{ source:"cellArray_5.io_cout", target:"cellArray_6.io_cin" },
+{ source:"cellArray_2.io_cout", target:"cellArray_3.io_cin" },
+{ source:"cellArray_3.io_cout", target:"cellArray_4.io_cin" },
+{ source:"cellArray_1.io_cout", target:"cellArray_2.io_cin" },
+{ source:"cellArray_6.io_cout", target:"cellArray_7.io_cin" },
+]
+},
+],
+}
+hdelk.layout( mygraph, "simple_diagram" );
+</script>
