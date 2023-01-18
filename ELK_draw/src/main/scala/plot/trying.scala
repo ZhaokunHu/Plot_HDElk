@@ -1,5 +1,0 @@
-package plot
-
-class trying {
-
-}

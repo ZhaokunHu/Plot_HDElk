@@ -1,4 +1,4 @@
-package plot
+package Old_plot
 import analyzer.{DataAnalyzer, ModuleAnalyzer}
 import spinal.core._
 
@@ -43,7 +43,7 @@ class Plot_UML(module: Module) {
     val anal = new ModuleAnalyzer(module)
     pw.write("@startuml\nleft to right direction\n")
     writepackage
-    val Op =anal.getNets(_=>true)
+    val Op =anal.getPins(_=>true)
     while (!Op.isEmpty) {
       val fans = new DataAnalyzer(Op.head)
       val fanin = fans.getFanIn

@@ -2,8 +2,8 @@ package analyzer
 
 import spinal.core._
 
-import scala.collection.mutable
 import scala.language._
+import scala.collection.mutable
 
 /** Module topology analyzer. It provides some methods that return the input or output pins,
  * all sub-modules or sub-blackboxes, all clocks inside, and filter the returned
@@ -11,8 +11,11 @@ import scala.language._
  * @param module the module being analyzed
  */
 class ModuleAnalyzer(module: Module) {
+  def foreach(value: Any): Unit = ???
+
 
   /** Get all input ports of the module
+   *
    * @return set of base type
    */
   def getInputs: mutable.LinkedHashSet[BaseType] =
@@ -160,6 +163,7 @@ class ModuleAnalyzer(module: Module) {
 }
 
 object ModuleAnalyzer {
+
   /** Implicitly convert Module/Component into ModuleAnalyzer */
   implicit def toAnalyzer(module: Module): ModuleAnalyzer = new ModuleAnalyzer(module)
 
@@ -171,10 +175,12 @@ object ModuleAnalyzer {
 
 
 
-
+import spinal.core._
 import spinal.core.internals._
 
+import scala.collection.immutable.ListSet
 import scala.language.implicitConversions
+import scala.collection.mutable
 
 /** Base type data analyzer. It provides some utilities that help designer analyze the
  * circuit at runtime.
@@ -190,28 +196,29 @@ class DataAnalyzer(data: BaseType) {
 
     def traceBaseTypeFromExpression(e: Expression): mutable.LinkedHashSet[BaseType] = {
       val ret = mutable.LinkedHashSet.newBuilder[BaseType]
-      e.foreachDrivingExpression{
-        case bt: BaseType=> ret += bt
-        case e=> ret ++= traceBaseTypeFromExpression(e)
+      e.foreachDrivingExpression {
+        case bt: BaseType => ret += bt
+        case e            => ret ++= traceBaseTypeFromExpression(e)
       }
       ret.result()
     }
 
-
-    data.foreachStatements {st=>
+    data.foreachStatements { st =>
       if (!(st.isInstanceOf[InitAssignmentStatement] || st.isInstanceOf[InitialAssignmentStatement])) {
-        st.foreachDrivingExpression{ e =>
+        st.foreachDrivingExpression { e =>
           e match {
-            case bt: BaseType=> ret += bt
-            case e=> ret ++= traceBaseTypeFromExpression(e)
+            case bt: BaseType => ret += bt
+            case e            => ret ++= traceBaseTypeFromExpression(e)
           }
         }
-        st.walkParentTreeStatementsUntilRootScope{tree=> tree.walkDrivingExpressions{ e =>
-          e match {
-            case bt: BaseType=> ret += bt
-            case e=> ret ++= traceBaseTypeFromExpression(e)
+        st.walkParentTreeStatementsUntilRootScope { tree =>
+          tree.walkDrivingExpressions { e =>
+            e match {
+              case bt: BaseType => ret += bt
+              case e            => ret ++= traceBaseTypeFromExpression(e)
+            }
           }
-        }}
+        }
       }
     }
     ret.result()
@@ -254,6 +261,7 @@ class DataAnalyzer(data: BaseType) {
 }
 
 object DataAnalyzer {
+
   /** Implicitly convert the BaseType into DataAnalyzer */
   implicit def toAnalyzer(data: BaseType): DataAnalyzer = new DataAnalyzer(data)
 }

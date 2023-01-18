@@ -1,7 +1,6 @@
-package tests
+package NewPlot
 
 import analyzer.{DataAnalyzer, ModuleAnalyzer}
-import plot.{Edge, Group, Node}
 import spinal.core._
 
 import java.io.{File, PrintWriter}
@@ -20,8 +19,10 @@ class Node {
 
 
 
-class Plot_ELK(module: Module) {
-  val file = new File("ELK.html")
+class Plot_ELK(rtl:SpinalReport[Component]) {
+  val module=rtl.toplevel
+  val fileName=rtl.toplevelName+".html"
+  val file = new File(fileName)
   val pw = new PrintWriter(file)
   val edges:Set[Edge]=Set()
   val topnode=new Node

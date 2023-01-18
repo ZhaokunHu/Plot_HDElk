@@ -1,62 +1,196 @@
-<div id="simple_diagram"></div>
+<div id="diagram"></div>
+<a id="save" onclick="saveHDElkSvg()" href="javascript:void(0);">save</a>
 
-<script src="/js/elk.bundled.js"></script>
-<script src="/js/svg.min.js"></script>
-<script src="/js/hdelk.js"></script>
+<script src="js/elk.bundled.js"></script>
+<script src="js/svg.min.js"></script>
+<script src="js/hdelk.js"></script>
+<script src="js/FileSaver.js"></script>
 
 <script type="text/javascript">
+    var svgId = "diagram";
+    var dataStyle = 2;
+    var cmdStyle = 1;
+    var outClkStyle = 4;
 
-var mygraph = {
- color:"#F7F7F7",
- id:"123",
+    window.onload = function () {
+        var a = document.getElementById("save");
+        a.onclick = function () {
+            saveHDElkSvg();
+            return false;
+        }
+    }
+
+    const getCurrentFile = () => {
+        let url = window.location.href;
+        let objs = url.split("/");
+        return (objs[objs.length - 1]);
+    }
+
+    var saveHDElkSvg = function () {
+        var snippetElement = document.getElementById(svgId);
+        var snippetText = snippetElement.innerHTML;
+        var blob = new Blob([snippetText], { type: "text/plain;charset=utf-8" });
+        var filename = getCurrentFile()
+        var nosuffix = filename.split(".")
+        saveAs(blob, nosuffix[0] + ".svg");
+    }
+
+    var mygraph = {
         children: [
-            { id: "input", port:1 },
-            { id: "node_one", ports: ["in", {id:"p1",label:"Loop"},"p2"] },
-            { id: "n2", label: "n_2", type:"output", ports: ["p1", "p2", {id:"p3",label:"Long Label"},"p4"] },
-            { id: "n3", type:"pipe",  ports: ["p1","p2", "p3"], parameters:[ "Param1", "Param2", "Param3"] },
-            { id: "n4", type:"pipeA", highlight:0, ports: ["p1","p2"]  },
-            { id: "n5", type:"pipeB", highlight:0, ports: ["p1","p2","p3"]  },
-            { id: "n6",label:"asdasda", highlight:0, ports: ["p1","p2","p3","p4"]  },
-            { id: "n7",
-                highlight:1,
-                inPorts: ["p1", "pIn"], outPorts:["p2"],
+            {
+                id: "Axi4AWGChannelWithCmdRam",
+                inPorts: ["control", "cmd", "trigger"],
+                outPorts: ["data", "output"],
                 children: [
-                    { id: "pIn", label:"asd", port:1, inPorts: ["pIn"], outPorts:["Data","Valid","Ready"] },
-                    { id: "c1", highlight:5, type:"compA", inPorts: ["Data", "Valid", "Ready"], outPorts:[{id:"p1",label:"Loop"},"p2","p3"] },
-                    { id: "c2", highlight:3, type:"compB", ports: ["p1","p2","p3"] },
-                    { id: "c3", highlight:4, type:"compC", ports: ["p1","p2","p3","p4"] },
-                    { id: "c4", highlight:2, type:"compD", ports: ["p1","p2"] }
+                    {
+                        id: "busCtrl",
+                        type: "AxiLite4SlaveFactory",
+                        inPorts: ["control"],
+                        outPorts: ["start"],
+                    },
+                    {
+                        id: "channel",
+                        type: "AWGChannel",
+                        inPorts: ["cmdIn", "dataIn", "trigger", "start"],
+                        outPorts: ["cmdAddr", "dataAddr", "cmdReset", "output"],
+                        highlight: 1,
+                        children: [
+                            {
+                                id: "controller",
+                                type: "Controller",
+                                inPorts: ["start", "cmdIn"],
+                                outPorts: ["cmdAddr", "dataBlockAddr", "outCtrl", "cmdMemReset"],
+                                highlight: 1,
+                            },
+                            {
+                                id: "dma",
+                                type: "AddressExtender",
+                                inPorts: ["input"],
+                                outPorts: ["output"],
+                                highlight: dataStyle,
+                            },
+                            {
+                                id: "output",
+                                type: "OutputCtrl",
+                                inPorts: ["command", "input", "trigger"],
+                                outPorts: ["output"],
+                                highlight: 1,
+                            }
+                        ],
+                        edges: [
+                            ["channel.start", "controller.start"],
+                            ["channel.cmdIn", "controller.cmdIn", bus = 1],
+                            ["controller.cmdAddr", "channel.cmdAddr", bus = 1],
+                            ["controller.cmdMemReset", "channel.cmdReset"],
+                            {
+                                sources: ["controller.dataBlockAddr"],
+                                targets: ["dma.input"],
+                                highlight: dataStyle, bus: 1
+                            },
+                            {
+                                sources: ["controller.outCtrl"],
+                                targets: ["output.command"],
+                                highlight: 1
+                            },
+                            {
+                                sources: ["dma.output"],
+                                targets: ["channel.dataAddr"],
+                                highlight: dataStyle, bus: 1
+                            },
+                            {
+                                sources: ["channel.dataIn"],
+                                targets: ["output.input"],
+                                highlight: dataStyle, bus: 1
+                            },
+                            {
+                                sources: ["output.output"],
+                                targets: ["channel.output"],
+                                highlight: outClkStyle, bus: 1
+                            },
+                            {
+                                sources: ["channel.trigger"],
+                                targets: ["output.trigger"],
+                                highlight: outClkStyle
+                            },
+                        ]
+                    },
+                    {
+                        id: "cmdBridge",
+                        type: "Mem2Axi4Bridge",
+                        inPorts: ["addr"],
+                        outPorts: ["Axi4Bus", "data"],
+                    },
+                    {
+                        id: "dataBridge",
+                        type: "Mem2Axi4Bridge",
+                        inPorts: ["addr"],
+                        outPorts: ["Axi4Bus", "data"],
+                        highlight: dataStyle,
+                    },
+                    {
+                        id: "ram",
+                        type: "Axi4SharedOnChipRam",
+                        inPorts: ["Axi4Write", "Axi4Read", "reset"],
+                        // highlight: 1,
+                    },
+                    {
+                        id: "extender",
+                        type: "StreamTransactionExtender",
+                        inPorts: ["input"],
+                        outPorts: ["output"],
+                        highlight: outClkStyle,
+                    },
+
                 ],
                 edges: [
-                    { sources:["c1.p2"], targets:["c2.p1"], bus:1, highlight:5 },
-                    { source:"n7.p1", target:"c1.p1" },
-                    { route:[ "c2.p2", "c4.p1" ], bus:1, highlight:3 },
-                    { route:[ "c4.p2", "n7.p2" ], bus:1, highlight:2, label:"result" },
-                    { route:["c1.p3","c3.p3"], highlight:5, label:"to yellow"  },
-                    { route:[ "c3.p4", "c2.p3" ], bus:1, highlight:4 },
-                    { route:[ "c3.p1", "c3.p2"], highlight:4 },
-                    [ "pIn.Valid", "c1.Valid", "valid" ],
-                    [ "pIn.Data", "c1.Data", "data" ],
-                    //[ "pIn.Ready", "c1.Ready", "ready" ],
-                    [ "c1.Ready", "pIn.Ready", "ready" ],
-                    [ "n7.pIn", "pIn.pIn", "pIn"  ]
+                    ["Axi4AWGChannelWithCmdRam.control", "busCtrl.control", bus = 1],
+                    ["busCtrl.start", "channel.start"],
+
+                    {
+                        sources: ["channel.dataAddr"],
+                        targets: ["dataBridge.addr"],
+                        highlight: dataStyle, bus: 1
+                    },
+                    ["channel.cmdReset", "ram.reset"],
+                    {
+                        sources: ["dataBridge.data"],
+                        targets: ["channel.dataIn"],
+                        reverse: 1, bus: 1, highlight: dataStyle
+                    },
+                    ["channel.cmdAddr", "cmdBridge.addr", bus = 1],
+                    {
+                        sources: ["cmdBridge.data"],
+                        targets: ["channel.cmdIn"],
+                        reverse: 1, bus: 1
+                    },
+
+                    ["cmdBridge.Axi4Bus", "ram.Axi4Read", bus = 1],
+                    {
+                        sources: ["dataBridge.Axi4Bus"],
+                        targets: ["Axi4AWGChannelWithCmdRam.data"],
+                        bus: 1, highlight: dataStyle
+                    },
+                    ["Axi4AWGChannelWithCmdRam.cmd", "ram.Axi4Write", bus = 1],
+
+                    {
+                        sources: ["Axi4AWGChannelWithCmdRam.trigger"],
+                        targets: ["channel.trigger"],
+                        highlight: outClkStyle
+                    },
+                    {
+                        sources: ["channel.output"],
+                        targets: ["extender.input"],
+                        highlight: outClkStyle, bus: 1
+                    },
+                    {
+                        sources: ["extender.output"],
+                        targets: ["Axi4AWGChannelWithCmdRam.output"],
+                        highlight: outClkStyle, bus: 0
+                    },
                 ]
-            }
+            },
         ],
-        edges: [
-            ["input","node_one.in"],
-            {source:"node_one.p1", target:"n2.p1", bus:1, label:"long bus" },
-            {source:"node_one.p2", target:"n3.p1" },
-            {route:["n3.p2", "n4.p1"], highlight:0, label:"optional" },
-            {route:["n4.p2", "n5.p1"], highlight:0 },
-            {route:["n5.p2", "n6.p1"], highlight:0 },
-            {route:["n5.p3", "n6.p3"], bus:1, highlight:0 },
-            {route:["n6.p2", "n2.p2" ], highlight:0 },
-            {route:["n6.p4", "n2.p4" ], bus:1, highlight:0},
-            ["n3.p2", "n7.p1" ],
-            ["n7.p2", "n2.p3" ],
-            ["n3.p3", "n7.pIn" ]
-        ]
- }
-hdelk.layout( mygraph, "simple_diagram" );
+    }
+
+    hdelk.layout(mygraph, svgId);
 </script>
