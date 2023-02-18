@@ -15,8 +15,8 @@ class Node {
   var labelname = ""
   var inports: Set[String] = Set()
   var outports: Set[String] = Set()
-  var children: Set[Node] = Set()
-  var edges: Set[Edge] = Set()
+  var children: Set[Simple_ELK.Node] = Set()
+
 }
 
 class JudgeType {
@@ -32,10 +32,10 @@ class Plot_ELK_BUS(rtl: SpinalReport[Component]) {
   val fileName = rtl.toplevelName + "_BUS.html"
   val file = new File(fileName)
   val pw = new PrintWriter(file)
-  val edges: Set[Edge] = Set()
+  val edges: Set[Simple_ELK.Edge] = Set()
   val judgement: Set[JudgeType] = Set()
-  val allDeleted: Set[DeletedSignal] = Set()
-  val topnode = new Node
+  val allDeleted: Set[Simple_ELK.DeletedSignal] = Set()
+  val topnode = new Simple_ELK.Node
   topnode.labelname = "toplevel"
 
   def dealwires = {
@@ -56,7 +56,7 @@ class Plot_ELK_BUS(rtl: SpinalReport[Component]) {
             val firstSplit = othernameSplit.split("_")(1)
             if (firstSplit == "payload" || firstSplit == "ready") {
               if (othersnet.getName().contains("_payload")) {
-                val newdelete = new DeletedSignal
+                val newdelete = new Simple_ELK.DeletedSignal
                 newdelete.signalname = othersnet.getName()
                 newdelete.familyname = familyName
                 allDeleted.add(newdelete)
@@ -64,7 +64,7 @@ class Plot_ELK_BUS(rtl: SpinalReport[Component]) {
               }
               else if (othersnet.getName().contains("_ready")) {
                 flowOrstream = 1
-                val newdelete = new DeletedSignal
+                val newdelete = new Simple_ELK.DeletedSignal
                 newdelete.signalname = othersnet.getName()
                 newdelete.familyname = familyName
                 allDeleted.add(newdelete)
@@ -93,20 +93,20 @@ class Plot_ELK_BUS(rtl: SpinalReport[Component]) {
         if (allinputs.contains(net)) topnode.inports.add(thisname)
         else if (alloutputs.contains(net)) topnode.outports.add(thisname)
         else {
-          val newnode = new Node
+          val newnode = new Simple_ELK.Node
           newnode.labelname = thisname
           topnode.children.add(newnode)
         }
       }
       else {
         var iscontained = 0
-        val newnode = new Node
+        val newnode = new Simple_ELK.Node
         newnode.labelname = thisname
         for (node <- topnode.children) {
           if (node.labelname == thisgroupname) iscontained = 1
         }
         if (iscontained == 0) {
-          val newtopnode = new Node
+          val newtopnode = new Simple_ELK.Node
           newtopnode.labelname = net.getComponent().getName()
           topnode.children.add(newtopnode)
         }
@@ -132,7 +132,7 @@ class Plot_ELK_BUS(rtl: SpinalReport[Component]) {
       val fanouts = dataana.getFanOut
       for (fanout <- fanouts) {
         var fanoutname = fanout.getName()
-        val newedge = new Edge
+        val newedge = new Simple_ELK.Edge
         if (allnets.contains(fanout)) {
           var sourceisBus, targetisBus = 0
           for (judge <- judgement) {
@@ -173,7 +173,7 @@ class Plot_ELK_BUS(rtl: SpinalReport[Component]) {
     }
   }
 
-  def drawnodes(thisnode: Node): Unit = {
+  def drawnodes(thisnode: Simple_ELK.Node): Unit = {
     pw.write("{id:\"" + thisnode.labelname + "\",\n")
     if (thisnode.inports.nonEmpty) {
       pw.write("inPorts: [")

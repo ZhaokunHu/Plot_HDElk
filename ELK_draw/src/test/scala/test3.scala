@@ -1,7 +1,7 @@
 import NewPlot.Plot_ELK
+import Simple_ELK.Plot_Simple_ELK
 import spinal.core._
 import spinal.lib._
-import tests.{Plot_ELK_BUS}
 
 
 case class MyBus(payloadWidth: Int) extends Bundle with IMasterSlave {
@@ -50,14 +50,13 @@ object Top3{
     val rtl = SpinalVerilog(new Top3)
 //    val drawyed = new Plot_yEd(rtl.toplevel)
 //    drawyed.begindraw
-//    val letread = new ReadSystem(rtl.toplevel)
+//    val letread = new ReadSystem(SpinalVerilog(new Top3))
 //    letread.beginread
 //    val letdraw = new Plot_UML(rtl.toplevel)
 //    letdraw.begindraw
-//      val drawELK = new Plot_ELK(rtl.toplevel)
-//      drawELK.begindraw
-     val drawELKBUS=new Plot_ELK_BUS(SpinalVerilog(new Top3))
+      val drawELK = new Plot_ELK(SpinalVerilog(new Top3))
+      drawELK.begindraw
+     val drawELKBUS=new Plot_Simple_ELK(SpinalVerilog(new Top3))
      drawELKBUS.begindraw
-
   }
 }

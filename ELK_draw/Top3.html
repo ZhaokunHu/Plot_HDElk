@@ -1,0 +1,32 @@
+<div id="simple_diagram"></div>
+
+<script src="/js/elk.bundled.js"></script>
+<script src="/js/svg.min.js"></script>
+<script src="/js/hdelk.js"></script>
+
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"toplevel",
+inPorts: ["io_idata_payload","io_odata_ready","io_idata_valid",],
+outPorts: ["io_odata_valid","io_idata_ready","io_odata_payload",],
+children: [
+{id:"myBusFifo_1",
+inPorts: ["io_pop_ready","io_push_payload","io_push_valid",],
+outPorts: ["io_push_ready","io_pop_valid","io_pop_payload",],
+},
+],
+edges:[
+{ source:"myBusFifo_1.io_pop_payload", target:"toplevel.io_odata_payload" },
+{ source:"toplevel.io_idata_payload", target:"myBusFifo_1.io_push_payload" },
+{ source:"toplevel.io_idata_valid", target:"myBusFifo_1.io_push_valid" },
+{ source:"myBusFifo_1.io_pop_valid", target:"toplevel.io_odata_valid" },
+{ source:"toplevel.io_odata_ready", target:"myBusFifo_1.io_pop_ready" },
+{ source:"myBusFifo_1.io_push_ready", target:"toplevel.io_idata_ready" },
+]
+},
+],
+}
+hdelk.layout( mygraph, "simple_diagram" );
+</script>

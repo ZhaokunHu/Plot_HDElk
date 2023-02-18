@@ -1,10 +1,8 @@
 import NewPlot.Plot_ELK
 import Old_plot._
+import Simple_ELK.Plot_Simple_ELK
 import spinal.core._
 import spinal.lib._
-import analyzer.DataAnalyzer
-import analyzer.ModuleAnalyzer
-import tests.Plot_ELK_BUS
 
 
 case class RGB(channelWidth : Int) extends Bundle{
@@ -25,10 +23,10 @@ object Top1 {
   def main(args: Array[String]): Unit = {
     val drawELK = new Plot_ELK(SpinalVerilog(new Top1))
     drawELK.begindraw
-    val drawELKBUS=new Plot_ELK_BUS(SpinalVerilog(new Top1))
+    val drawELKBUS=new Plot_Simple_ELK(SpinalVerilog(new Top1))
     drawELKBUS.begindraw
-//    val letread = new ReadSystem(rtl.toplevel)
-//    letread.beginread
+    val letread = new ReadSystem(SpinalVerilog(new Top1))
+    letread.beginread
   }
 }
 //    {

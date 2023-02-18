@@ -1,8 +1,8 @@
 import NewPlot.Plot_ELK
 import Old_plot._
+import Simple_ELK.Plot_Simple_ELK
 import spinal.core._
 import spinal.lib._
-import tests.Plot_ELK_BUS
 
 
 class MYSub0(cd: ClockDomain) extends Component {
@@ -57,7 +57,7 @@ object Top6{
     val rtl=SpinalVerilog(new Top6)
     val drawELK = new Plot_ELK(SpinalVerilog(new Top6))
     drawELK.begindraw
-    val drawELKBUS = new Plot_ELK_BUS(SpinalVerilog(new Top6))
+    val drawELKBUS = new Plot_Simple_ELK(SpinalVerilog(new Top6))
     drawELKBUS.begindraw
 //    val drawyed = new Plot_yEd(rtl.toplevel)
 //    drawyed.begindraw

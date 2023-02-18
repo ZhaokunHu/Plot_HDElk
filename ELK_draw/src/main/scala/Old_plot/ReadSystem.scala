@@ -1,31 +1,26 @@
 package Old_plot
-import analyzer.DataAnalyzer
 import analyzer.ModuleAnalyzer
 import spinal.core._
 
-import scala.collection.mutable
-
-class ReadSystem(module: Module) extends App {
-  def readfans(sets:mutable.LinkedHashSet[BaseType]): Unit ={
-    while (!sets.isEmpty) {
-      val fans = new DataAnalyzer(sets.head)
-      println(sets.head + ":\n")
-      if(fans.getFanIn.nonEmpty){
-        val fanin = fans.getFanIn.head.getPartialName()
-        println("    扇入：" + fanin+ "\n")
-      }
-      if(fans.getFanOut.nonEmpty){
-        val fanout = fans.getFanOut.head.getPartialName()
-        println("    扇出：" + fanout + "\n")
-      }
-      sets.remove(sets.head)
-    }
-  }
+class ReadSystem(rtl: SpinalReport[Component]) extends App {
+//  def readfans(sets:mutable.LinkedHashSet[BaseType]): Unit ={
+//    while (!sets.isEmpty) {
+//      val fans = new DataAnalyzer(sets.head)
+//      println(sets.head + ":\n")
+//      if(fans.getFanIn.nonEmpty){
+//        val fanin = fans.getFanIn.head.getPartialName()
+//        println("    扇入：" + fanin+ "\n")
+//      }
+//      if(fans.getFanOut.nonEmpty){
+//        val fanout = fans.getFanOut.head.getPartialName()
+//        println("    扇出：" + fanout + "\n")
+//      }
+//      sets.remove(sets.head)
+//    }
+//  }
   def beginread: Unit = {
+    val module=rtl.toplevel
     val anal=new ModuleAnalyzer(module)
-//    println(module.getGroupedIO(true))
-//    val mm=module.getGroupedIO(true).toSet.head
-//    println(mm.getComponent())
     val Ip = anal.getInputs
     println("输入:"+Ip+"\n")
     val Rg = anal.getRegisters
@@ -40,7 +35,6 @@ class ReadSystem(module: Module) extends App {
     println("Libcells：" + LibCe + "\n")
     val Ne=anal.getNets(_=>true)
     println("wires："+Ne+"\n")
-    readfans(Ne)
     val Pi = anal.getPins(_ => true)
     println("Pins：" + Pi + "\n")
 //    readfans(Pi)

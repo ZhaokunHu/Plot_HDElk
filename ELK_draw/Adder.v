@@ -1,6 +1,6 @@
-// Generator : SpinalHDL v1.8.0b    git head : 761a30e521263983ddf14de3592f7a9f38bf0589
+// Generator : SpinalHDL v1.7.3a    git head : 04162b8322332003bd011fabf5de3e7522c45630
 // Component : Adder
-// Git hash  : b3d092e2a77afece643bdbb96baf0aa7eb870de9
+// Git hash  : a3a041d179f53aa73567ee240cfe5d81ab0bdb89
 
 `timescale 1ns/1ps
 
@@ -41,56 +41,56 @@ module Adder (
   wire                cellArray_7_io_sum;
   wire                cellArray_7_io_cout;
 
-  AdderCell_7 cellArray_0 (
+  AdderCell cellArray_0 (
     .io_a    (cellArray_0_io_a   ), //i
     .io_b    (cellArray_0_io_b   ), //i
     .io_cin  (cellArray_0_io_cin ), //i
     .io_sum  (cellArray_0_io_sum ), //o
     .io_cout (cellArray_0_io_cout)  //o
   );
-  AdderCell_7 cellArray_1 (
+  AdderCell cellArray_1 (
     .io_a    (cellArray_1_io_a   ), //i
     .io_b    (cellArray_1_io_b   ), //i
     .io_cin  (cellArray_0_io_cout), //i
     .io_sum  (cellArray_1_io_sum ), //o
     .io_cout (cellArray_1_io_cout)  //o
   );
-  AdderCell_7 cellArray_2 (
+  AdderCell cellArray_2 (
     .io_a    (cellArray_2_io_a   ), //i
     .io_b    (cellArray_2_io_b   ), //i
     .io_cin  (cellArray_1_io_cout), //i
     .io_sum  (cellArray_2_io_sum ), //o
     .io_cout (cellArray_2_io_cout)  //o
   );
-  AdderCell_7 cellArray_3 (
+  AdderCell cellArray_3 (
     .io_a    (cellArray_3_io_a   ), //i
     .io_b    (cellArray_3_io_b   ), //i
     .io_cin  (cellArray_2_io_cout), //i
     .io_sum  (cellArray_3_io_sum ), //o
     .io_cout (cellArray_3_io_cout)  //o
   );
-  AdderCell_7 cellArray_4 (
+  AdderCell cellArray_4 (
     .io_a    (cellArray_4_io_a   ), //i
     .io_b    (cellArray_4_io_b   ), //i
     .io_cin  (cellArray_3_io_cout), //i
     .io_sum  (cellArray_4_io_sum ), //o
     .io_cout (cellArray_4_io_cout)  //o
   );
-  AdderCell_7 cellArray_5 (
+  AdderCell cellArray_5 (
     .io_a    (cellArray_5_io_a   ), //i
     .io_b    (cellArray_5_io_b   ), //i
     .io_cin  (cellArray_4_io_cout), //i
     .io_sum  (cellArray_5_io_sum ), //o
     .io_cout (cellArray_5_io_cout)  //o
   );
-  AdderCell_7 cellArray_6 (
+  AdderCell cellArray_6 (
     .io_a    (cellArray_6_io_a   ), //i
     .io_b    (cellArray_6_io_b   ), //i
     .io_cin  (cellArray_5_io_cout), //i
     .io_sum  (cellArray_6_io_sum ), //o
     .io_cout (cellArray_6_io_cout)  //o
   );
-  AdderCell_7 cellArray_7 (
+  AdderCell cellArray_7 (
     .io_a    (cellArray_7_io_a   ), //i
     .io_b    (cellArray_7_io_b   ), //i
     .io_cin  (cellArray_6_io_cout), //i
@@ -100,21 +100,21 @@ module Adder (
 
 endmodule
 
-//AdderCell_7 replaced by AdderCell_7
+//AdderCell replaced by AdderCell
 
-//AdderCell_7 replaced by AdderCell_7
+//AdderCell replaced by AdderCell
 
-//AdderCell_7 replaced by AdderCell_7
+//AdderCell replaced by AdderCell
 
-//AdderCell_7 replaced by AdderCell_7
+//AdderCell replaced by AdderCell
 
-//AdderCell_7 replaced by AdderCell_7
+//AdderCell replaced by AdderCell
 
-//AdderCell_7 replaced by AdderCell_7
+//AdderCell replaced by AdderCell
 
-//AdderCell_7 replaced by AdderCell_7
+//AdderCell replaced by AdderCell
 
-module AdderCell_7 (
+module AdderCell (
   input               io_a,
   input               io_b,
   input               io_cin,

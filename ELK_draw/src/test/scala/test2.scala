@@ -1,8 +1,8 @@
 import NewPlot.Plot_ELK
 import Old_plot._
+import Simple_ELK.Plot_Simple_ELK
 import spinal.core._
 import spinal.lib._
-import tests.Plot_ELK_BUS
 class AdderCell extends Component {
   //Declaring all in/out in an io Bundle is probably a good practice
   val io = new Bundle {
@@ -31,7 +31,7 @@ object Top2 {
     val rtl = SpinalVerilog(new Adder(8))
     val drawELK = new Plot_ELK(SpinalVerilog(new Adder(8)))
     drawELK.begindraw
-    val drawELKBUS = new Plot_ELK_BUS(SpinalVerilog(new Adder(8)))
+    val drawELKBUS = new Plot_Simple_ELK(SpinalVerilog(new Adder(8)))
     drawELKBUS.begindraw
 //    val letread = new ReadSystem(rtl.toplevel)
 //    letread.beginread
