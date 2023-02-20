@@ -3,14 +3,14 @@ package Simple_ELK
 import analyzer.{DataAnalyzer, ModuleAnalyzer}
 import spinal.core.{Component, SpinalReport}
 
-import java.io.{File, PrintWriter}
+import java.io.{File, FileWriter}
 import scala.collection.mutable.Set
 
 class Plot_Inner_Module(rtl: SpinalReport[Component]) {
   val module = rtl.toplevel
-  val fileName = rtl.toplevelName + "_Inner.html"
+  val fileName = rtl.toplevelName + "_All.html"
   val file = new File(fileName)
-  val pw = new PrintWriter(file)
+  val pw = new FileWriter(file,true)
   val Nodes:Set[Node]=Set()
   def dealInner: Unit ={
     val moduleanalyze = new ModuleAnalyzer(module)
@@ -70,7 +70,7 @@ class Plot_Inner_Module(rtl: SpinalReport[Component]) {
 
   def drawinnerNode: Unit ={
     for(thisnode<-Nodes){
-      pw.write("<div id=\""+thisnode.labelname+"\"></div>\n")
+      pw.write("<h3>"+thisnode.labelname+"</h3>\n<div id=\""+thisnode.labelname+"\"></div>\n")
       pw.write("<script type=\"text/javascript\">\n\nvar mygraph = {\nchildren:[\n")
       pw.write("{id:\"" + thisnode.labelname + "\",\n")
       if (thisnode.inports.nonEmpty) {
@@ -100,7 +100,7 @@ class Plot_Inner_Module(rtl: SpinalReport[Component]) {
   }
 
   def begindraww = {
-    pw.write("<script src=\"/js/elk.bundled.js\"></script>\n<script src=\"/js/svg.min.js\"></script>\n<script src=\"/js/hdelk.js\"></script>\n\n")
+//    pw.write("<script src=\"/js/elk.bundled.js\"></script>\n<script src=\"/js/svg.min.js\"></script>\n<script src=\"/js/hdelk.js\"></script>\n\n")
     dealInner
     drawinnerNode
     pw.close()

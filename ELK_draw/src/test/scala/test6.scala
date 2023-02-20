@@ -1,6 +1,5 @@
-import NewPlot.Plot_ELK
 import Old_plot._
-import Simple_ELK.{Plot_Inner_Module, Plot_Simple_ELK}
+import Plot_All.Plot_All
 import spinal.core._
 import spinal.lib._
 
@@ -54,13 +53,12 @@ class Top6 extends Component {
 
 object Top6{
   def main(args: Array[String]): Unit = {
-    val rtl=SpinalVerilog(new Top6)
-    val drawELK = new Plot_ELK(SpinalVerilog(new Top6))
-    drawELK.begindraw
-    val drawELKBUS = new Plot_Simple_ELK(SpinalVerilog(new Top6))
-    drawELKBUS.begindraw
-    val drawInner=new Plot_Inner_Module(SpinalVerilog(new Top6))
-    drawInner.begindraww
+    val Plott = new Plot_All(SpinalVerilog(new Top6))
+    Plott.plot_All
+//    val drawELKBUS = new Plot_Simple_ELK(SpinalVerilog(new Top6))
+//    drawELKBUS.begindraw
+//    val drawInner=new Plot_Inner_Module(SpinalVerilog(new Top6))
+//    drawInner.begindraww
 //    val drawyed = new Plot_yEd(rtl.toplevel)
 //    drawyed.begindraw
 //    val letread = new ReadSystem(rtl.toplevel)

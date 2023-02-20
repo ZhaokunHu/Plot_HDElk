@@ -3,7 +3,7 @@ package Simple_ELK
 import analyzer.{DataAnalyzer, ModuleAnalyzer}
 import spinal.core._
 
-import java.io.{File, PrintWriter}
+import java.io.{File, FileWriter}
 import scala.collection.mutable.Set
 
 class Edge {
@@ -28,9 +28,9 @@ class DeletedSignal {
 
 class Plot_Simple_ELK(rtl: SpinalReport[Component]) {
   val module = rtl.toplevel
-  val fileName = rtl.toplevelName + "_Simple.html"
+  val fileName = rtl.toplevelName + "_All.html"
   val file = new File(fileName)
-  val pw = new PrintWriter(file)
+  val pw = new FileWriter(file,true)
   val judegconnects:Set[Judgeconnect]=Set()
   val edges: Set[Edge] = Set()
   val topnode = new Node
@@ -107,9 +107,10 @@ class Plot_Simple_ELK(rtl: SpinalReport[Component]) {
         }
       }
     }
+    if (register.outcounter == 1 && register.incounter == 1)
+      topnode.children.remove(register)
   }
-  if(register.outcounter==1 && register.incounter==1)
-    topnode.children.remove(register)
+
   def drawnodes(thisnode: Node): Unit = {
     pw.write("{id:\"" + thisnode.labelname + "\",\n")
     if (thisnode.inports.nonEmpty) {
@@ -140,11 +141,11 @@ class Plot_Simple_ELK(rtl: SpinalReport[Component]) {
   }
 
   def begindraw = {
-    pw.write("<div id=\"simple_diagram\"></div>\n\n<script src=\"/js/elk.bundled.js\"></script>\n<script src=\"/js/svg.min.js\"></script>\n<script src=\"/js/hdelk.js\"></script>\n\n<script type=\"text/javascript\">\n\nvar mygraph = {\nchildren:[\n")
+    pw.write("<h3>Toplevel_Simple</h3>\n<div id=\"Toplevel_Simple\"></div>\n<script type=\"text/javascript\">\n\nvar mygraph = {\nchildren:[\n")
     dealwires
     drawnodes(topnode)
     pw.write("],\n")
-    pw.write("}\nhdelk.layout( mygraph, \"simple_diagram\" );\n</script>")
+    pw.write("}\nhdelk.layout( mygraph, \"Toplevel_Simple\" );\n</script>")
     pw.close()
   }
 

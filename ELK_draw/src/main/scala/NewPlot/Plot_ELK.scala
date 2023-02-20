@@ -3,7 +3,7 @@ package NewPlot
 import analyzer.{DataAnalyzer, ModuleAnalyzer}
 import spinal.core._
 
-import java.io.{File, PrintWriter}
+import java.io.{File, FileWriter}
 import scala.collection.mutable.Set
 class Edge {
   var source, target = ""
@@ -21,9 +21,9 @@ class Node {
 
 class Plot_ELK(rtl:SpinalReport[Component]) {
   val module=rtl.toplevel
-  val fileName=rtl.toplevelName+".html"
+  val fileName = rtl.toplevelName + "_All.html"
   val file = new File(fileName)
-  val pw = new PrintWriter(file)
+  val pw = new FileWriter(file, true)
   val edges:Set[Edge]=Set()
   val topnode=new Node
   topnode.labelname="toplevel"
@@ -124,11 +124,11 @@ class Plot_ELK(rtl:SpinalReport[Component]) {
     pw.write("]\n")
   }
   def begindraw={
-    pw.write("<div id=\"simple_diagram\"></div>\n\n<script src=\"/js/elk.bundled.js\"></script>\n<script src=\"/js/svg.min.js\"></script>\n<script src=\"/js/hdelk.js\"></script>\n\n<script type=\"text/javascript\">\n\nvar mygraph = {\nchildren:[\n")
+    pw.write("<h3>Toplevel_All</h3>\n<div id=\"Toplevel_All\"></div>\n<script type=\"text/javascript\">\n\nvar mygraph = {\nchildren:[\n")
     dealwires
     drawnodes(topnode)
     pw.write("],\n")
-    pw.write("}\nhdelk.layout( mygraph, \"simple_diagram\" );\n</script>")
+    pw.write("}\nhdelk.layout( mygraph, \"Toplevel_All\" );\n</script>")
     pw.close()
   }
 }
