@@ -1,0 +1,84 @@
+<div id="simple_diagram"></div>
+
+<script src="/js/elk.bundled.js"></script>
+<script src="/js/svg.min.js"></script>
+<script src="/js/hdelk.js"></script>
+
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"toplevel",
+inPorts: ["source_valid","source_payload_green","clk","reset","source_payload_red","sink_ready","source_payload_blue",],
+outPorts: ["sink_payload_green","sink_payload_red","sink_valid","source_ready","sink_payload_blue",],
+children: [
+{id:"source_thrown_m2sPipe_payload_blue",
+},
+{id:"source_thrown_rData_red",
+},
+{id:"source_thrown_rValid",
+},
+{id:"when_Stream_l438",
+},
+{id:"source_thrown_m2sPipe_valid",
+},
+{id:"source_thrown_m2sPipe_payload_green",
+},
+{id:"source_thrown_m2sPipe_payload_red",
+},
+{id:"source_thrown_rData_green",
+},
+{id:"source_thrown_valid",
+},
+{id:"source_thrown_ready",
+},
+{id:"source_thrown_m2sPipe_ready",
+},
+{id:"source_thrown_payload_blue",
+},
+{id:"when_Stream_l368",
+},
+{id:"source_thrown_rData_blue",
+},
+{id:"source_thrown_payload_red",
+},
+{id:"source_thrown_payload_green",
+},
+],
+edges:[
+{ source:"toplevel.source_payload_blue", target:"when_Stream_l438" },
+{ source:"when_Stream_l368", target:"source_thrown_ready" },
+{ source:"source_thrown_m2sPipe_payload_green", target:"toplevel.sink_payload_green" },
+{ source:"source_thrown_valid", target:"source_thrown_rValid" },
+{ source:"source_thrown_payload_blue", target:"source_thrown_rData_blue" },
+{ source:"source_thrown_m2sPipe_valid", target:"when_Stream_l368" },
+{ source:"when_Stream_l438", target:"source_thrown_valid" },
+{ source:"toplevel.source_payload_green", target:"when_Stream_l438" },
+{ source:"source_thrown_ready", target:"source_thrown_rData_blue" },
+{ source:"source_thrown_m2sPipe_valid", target:"toplevel.sink_valid" },
+{ source:"toplevel.source_payload_red", target:"source_thrown_payload_red" },
+{ source:"source_thrown_rData_green", target:"source_thrown_m2sPipe_payload_green" },
+{ source:"source_thrown_m2sPipe_ready", target:"source_thrown_ready" },
+{ source:"toplevel.source_valid", target:"source_thrown_valid" },
+{ source:"source_thrown_ready", target:"source_thrown_rValid" },
+{ source:"source_thrown_m2sPipe_payload_blue", target:"toplevel.sink_payload_blue" },
+{ source:"source_thrown_rData_red", target:"source_thrown_m2sPipe_payload_red" },
+{ source:"source_thrown_rData_blue", target:"source_thrown_m2sPipe_payload_blue" },
+{ source:"source_thrown_payload_green", target:"source_thrown_rData_green" },
+{ source:"toplevel.source_payload_red", target:"when_Stream_l438" },
+{ source:"source_thrown_ready", target:"toplevel.source_ready" },
+{ source:"toplevel.source_payload_green", target:"source_thrown_payload_green" },
+{ source:"toplevel.sink_ready", target:"source_thrown_m2sPipe_ready" },
+{ source:"when_Stream_l438", target:"toplevel.source_ready" },
+{ source:"source_thrown_m2sPipe_payload_red", target:"toplevel.sink_payload_red" },
+{ source:"source_thrown_ready", target:"source_thrown_rData_green" },
+{ source:"source_thrown_payload_red", target:"source_thrown_rData_red" },
+{ source:"toplevel.source_payload_blue", target:"source_thrown_payload_blue" },
+{ source:"source_thrown_rValid", target:"source_thrown_m2sPipe_valid" },
+{ source:"source_thrown_ready", target:"source_thrown_rData_red" },
+]
+},
+],
+}
+hdelk.layout( mygraph, "simple_diagram" );
+</script>

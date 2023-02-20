@@ -16,6 +16,7 @@ class Node {
   var inports: Set[String] = Set()
   var outports: Set[String] = Set()
   var children: Set[Node] = Set()
+  var Edges:Set[Edge]=Set()
   var incounter,outcounter=1
 }
 class Judgeconnect{
@@ -30,7 +31,6 @@ class Plot_Simple_ELK(rtl: SpinalReport[Component]) {
   val fileName = rtl.toplevelName + "_Simple.html"
   val file = new File(fileName)
   val pw = new PrintWriter(file)
-  val judegeBus:Set[String]=Set()
   val judegconnects:Set[Judgeconnect]=Set()
   val edges: Set[Edge] = Set()
   val topnode = new Node
@@ -110,7 +110,7 @@ class Plot_Simple_ELK(rtl: SpinalReport[Component]) {
   }
   if(register.outcounter==1 && register.incounter==1)
     topnode.children.remove(register)
-  def drawnodes(thisnode: Simple_ELK.Node): Unit = {
+  def drawnodes(thisnode: Node): Unit = {
     pw.write("{id:\"" + thisnode.labelname + "\",\n")
     if (thisnode.inports.nonEmpty) {
       pw.write("inPorts: [")

@@ -1,6 +1,6 @@
 import NewPlot.Plot_ELK
 import Old_plot._
-import Simple_ELK.Plot_Simple_ELK
+import Simple_ELK.{Plot_Inner_Module, Plot_Simple_ELK}
 import spinal.core._
 import spinal.lib._
 
@@ -59,6 +59,8 @@ object Top6{
     drawELK.begindraw
     val drawELKBUS = new Plot_Simple_ELK(SpinalVerilog(new Top6))
     drawELKBUS.begindraw
+    val drawInner=new Plot_Inner_Module(SpinalVerilog(new Top6))
+    drawInner.begindraww
 //    val drawyed = new Plot_yEd(rtl.toplevel)
 //    drawyed.begindraw
 //    val letread = new ReadSystem(rtl.toplevel)
