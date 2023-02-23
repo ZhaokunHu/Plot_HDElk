@@ -1,57 +1,81 @@
-<div id="simple_diagram"></div>
-
-<script src="/js/elk.bundled.js"></script>
-<script src="/js/svg.min.js"></script>
-<script src="/js/hdelk.js"></script>
-<h3></h3>
-<script type="text/javascript">
-
-var mygraph = {
-children:[
-{id:"toplevel",
-children: [
-{id:"cellArray_1",
-inPorts: ["io_cin",],
-outPorts: ["io_cout",],
-},
-{id:"cellArray_5",
-inPorts: ["io_cin",],
-outPorts: ["io_cout",],
-},
-{id:"cellArray_4",
-inPorts: ["io_cin",],
-outPorts: ["io_cout",],
-},
-{id:"cellArray_6",
-inPorts: ["io_cin",],
-outPorts: ["io_cout",],
-},
-{id:"cellArray_7",
-inPorts: ["io_cin",],
-},
-{id:"cellArray_0",
-outPorts: ["io_cout",],
-},
-{id:"cellArray_3",
-inPorts: ["io_cin",],
-outPorts: ["io_cout",],
-},
-{id:"cellArray_2",
-inPorts: ["io_cin",],
-outPorts: ["io_cout",],
-},
-],
-edges:[
-{ source:"cellArray_2.io_cout", target:"cellArray_3.io_cin" },
-{ source:"cellArray_4.io_cout", target:"cellArray_5.io_cin" },
-{ source:"cellArray_0.io_cout", target:"cellArray_1.io_cin" },
-{ source:"cellArray_5.io_cout", target:"cellArray_6.io_cin" },
-{ source:"cellArray_3.io_cout", target:"cellArray_4.io_cin" },
-{ source:"cellArray_6.io_cout", target:"cellArray_7.io_cin" },
-{ source:"cellArray_1.io_cout", target:"cellArray_2.io_cin" },
-]
-},
-],
-}
-hdelk.layout( mygraph, "simple_diagram" );
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+</head>
+<style>
+    .control {
+      width: 600px;
+      height: 300px;
+      margin: 100px auto;
+    }
+    .demo {
+      width: 100px;
+      height: 80px;
+    }
+    #bgyellow:checked ~ .demo {
+      background-color: rgb(247, 250, 49);
+    }
+    #bgblue:checked ~ .demo {
+      background-color: rgb(52, 143, 218);
+    }
+    #bggreen:checked ~ .demo {
+      background-color: rgb(92, 250, 184);
+    }
+    label {
+    /* 本身是行元素设置为行块元素 */
+      display: inline-block;
+      width: 100px;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      font-family: "宋体";
+      box-shadow: 0px 0px 0px #424242;
+      transition: 0.5s;
+      border-radius: 10px;
+      margin: 20px;
+    }
+    label:hover {
+      box-shadow: 0px 0px 10px #424242;
+    }
+  </style>
+<body>
+<h3>xuanze</h3>
+<div class="control">
+    <form action="" method="POST">
+        <h4>选择你喜欢的颜色</h4>
+        <label for="bgyellow">
+            选择为黄色
+        </label>
+        <label for="bgblue">
+            选择为蓝色
+        </label>
+        <label for="bggreen">
+            选择为绿色
+        </label>
+        <input
+                type="radio"
+                value="黄色"
+                name="gender"
+                id="bgyellow"
+                hidden
+        />
+        <input
+                type="radio"
+                value="蓝色"
+                name="gender"
+                id="bgblue"
+                hidden
+        />
+        <input type="radio" value="绿色" name="gender" id="bggreen" hidden />
+        <div class="demo"></div>
+    </form>
+</div>
+</body>
+</html>
+————————————————
+版权声明：本文为CSDN博主「可可鸭~」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_43547255/article/details/121273648

@@ -141,7 +141,7 @@ class Plot_Simple_ELK(rtl: SpinalReport[Component]) {
   }
 
   def begindraw = {
-    pw.write("<h3>Toplevel_Simple</h3>\n<div id=\"Toplevel_Simple\"></div>\n<script type=\"text/javascript\">\n\nvar mygraph = {\nchildren:[\n")
+    pw.write("<div id=\"Toplevel_Simple\"></div>\n<h3>Toplevel_Simple</h3><br><br>\n<script type=\"text/javascript\">\n\nvar mygraph = {\nchildren:[\n")
     dealwires
     drawnodes(topnode)
     pw.write("],\n")

@@ -70,7 +70,7 @@ class Plot_Inner_Module(rtl: SpinalReport[Component]) {
 
   def drawinnerNode: Unit ={
     for(thisnode<-Nodes){
-      pw.write("<h3>"+thisnode.labelname+"</h3>\n<div id=\""+thisnode.labelname+"\"></div>\n")
+      pw.write("<div id=\""+thisnode.labelname+"\"></div>\n<h3>"+thisnode.labelname+"</h3><br><br>\n")
       pw.write("<script type=\"text/javascript\">\n\nvar mygraph = {\nchildren:[\n")
       pw.write("{id:\"" + thisnode.labelname + "\",\n")
       if (thisnode.inports.nonEmpty) {
