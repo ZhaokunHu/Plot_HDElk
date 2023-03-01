@@ -58,19 +58,13 @@ class Plot_ELK(rtl:SpinalReport[Component]) {
         for(node<-topnode.children){
           if(node.labelname==thisgroupname){
             val dataanalyze=new DataAnalyzer(net)
-            val fanins=dataanalyze.getFanIn
             val fanouts=dataanalyze.getFanOut
-            for(fanin<-fanins){
-              if(fanin.getComponent().getName()!=thisgroupname) {
-                node.inports.add(net.getName())
-              }
+            if(net.isInput) {
+              node.inports.add(net.getName())
             }
-            for(fanout<-fanouts){
-              if(fanout.getComponent().getName()!=thisgroupname) {
-                node.outports.add(net.getName())
-              }
+            if (net.isOutput) {
+              node.outports.add(net.getName())
             }
-
           }
         }
       }

@@ -24,17 +24,8 @@ class Plot_Inner_Module(rtl: SpinalReport[Component]) {
       for(net<-innerNets){
         val dataAna=new DataAnalyzer(net)
         var isfanin,isfanout=false
-        val fanins=dataAna.getFanIn
         val fanouts=dataAna.getFanOut
-//        for(fanin<-fanins){
-//          if(fanin.getComponent().getName()!=cell.getName())
-//            isfanin=true
-//        }
         isfanin=net.isInput
-//        for(fanout<-fanouts){
-//          if(fanout.getComponent().getName()!=cell.getName())
-//            isfanout=true
-//        }
         isfanout=net.isOutput
         var thisname=net.getName()
         if(isfanin) {
@@ -52,18 +43,43 @@ class Plot_Inner_Module(rtl: SpinalReport[Component]) {
         }
         for(fanout<-fanouts){
           if(fanout.getComponent().getName()==thisfamilyname){
-            val nextfanouts=new DataAnalyzer(fanout).getFanOut
-            var nextisfanout=false
-            for(nextfanout<-nextfanouts)
-              if(nextfanout.getComponent().getName()!=thisfamilyname)
-                nextisfanout=true
             var targetname = fanout.getName()
-            if (nextisfanout)  targetname=thisfamilyname+"."+targetname
-            val newEdge = new Edge
-            newEdge.isBus = 0
-            newEdge.source = thisname
-            newEdge.target=targetname
-            thisNode.Edges.add(newEdge)
+            if (fanout.isInput||fanout.isOutput)  targetname=thisfamilyname+"."+targetname
+            if((net.isInput||net.isOutput)&&(fanout.isInput||fanout.isOutput)){
+              val newNode = new Node
+              newNode.labelname = fanout.getName()
+              var isContained=false
+              for(children<-thisNode.children){
+                if(children.labelname==fanout.getName())
+                  isContained=true
+              }
+              if(isContained){
+                val addEdge1= new Edge
+                addEdge1.isBus = 0
+                addEdge1.source = thisname
+                addEdge1.target = fanout.getName()
+                thisNode.Edges.add(addEdge1)
+              }
+              else {
+                thisNode.children.add(newNode)
+                val addEdge1, addEdge2 = new Edge
+                addEdge1.isBus = 0
+                addEdge2.isBus = 0
+                addEdge1.source = thisname
+                addEdge1.target = fanout.getName()
+                addEdge2.source = fanout.getName()
+                addEdge2.target = targetname
+                thisNode.Edges.add(addEdge1)
+                thisNode.Edges.add(addEdge2)
+              }
+            }
+            else{
+              val newEdge = new Edge
+              newEdge.isBus = 0
+              newEdge.source = thisname
+              newEdge.target = targetname
+              thisNode.Edges.add(newEdge)
+            }
           }
         }
       }
