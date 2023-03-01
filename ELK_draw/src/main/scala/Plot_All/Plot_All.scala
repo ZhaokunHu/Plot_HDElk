@@ -1,6 +1,7 @@
 package Plot_All
 
 import NewPlot.Plot_ELK
+import Plot_GroupIO.PlotGroupedIO
 import Simple_ELK.{Plot_Inner_Module, Plot_Simple_ELK}
 import analyzer.ModuleAnalyzer
 import spinal.core.{Component, SpinalReport}
@@ -14,7 +15,7 @@ class Plot_All(rtl: SpinalReport[Component]) {
       val file = new File(fileName)
       val pw = new FileWriter(file)
       pw.write("<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"UTF-8\" />\n    <title>rtl连接图</title>\n</head>\n")
-      pw.write("<script src=\"/js/elk.bundled.js\"></script>\n<script src=\"/js/svg.min.js\"></script>\n<script src=\"/js/hdelk.js\"></script>\n\n<h4>选择你想看的图像</h4>\n<a href=\"#Toplevel_Simple\"><button>Toplevel_Simple</button></a>&nbsp;\n<a href=\"#Toplevel_All\"><button>Toplevel_All</button></a>&nbsp;\n")
+      pw.write("<script src=\"/js/elk.bundled.js\"></script>\n<script src=\"/js/svg.min.js\"></script>\n<script src=\"/js/hdelk.js\"></script>\n\n<h4>选择你想看的图像</h4>\n<a href=\"#Toplevel_Simple\"><button>Toplevel_Simple</button></a>&nbsp;\n<a href=\"#Toplevel_All\"><button>Toplevel_All</button></a>&nbsp;\n<a href=\"#Toplevel_GroupedIO\"><button>Toplevel_GroupedIO</button></a>&nbsp;\n")
       val moduleanalyze = new ModuleAnalyzer(module)
       val allInnerCells = moduleanalyze.getCells(_.getName() != "toplevel")
       for (cell <- allInnerCells) {
@@ -24,6 +25,7 @@ class Plot_All(rtl: SpinalReport[Component]) {
       pw.close()
       new Plot_Simple_ELK(rtl).begindraw
       new Plot_ELK(rtl).begindraw
+      new PlotGroupedIO(rtl).begindraw
       new Plot_Inner_Module(rtl).begindraww
       val pa = new FileWriter(file, true)
       pa.write("</html>")

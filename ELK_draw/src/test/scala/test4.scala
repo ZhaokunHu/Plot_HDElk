@@ -1,5 +1,5 @@
-import NewPlot.Plot_ELK
-import Simple_ELK.Plot_Simple_ELK
+import Old_plot.ReadSystem
+import Plot_All.Plot_All
 import spinal.core._
 import spinal.lib.Stream._
 import spinal.lib._
@@ -39,10 +39,10 @@ object Top4 {
   def main(args: Array[String]): Unit = {
     val fc=FilterConfig(8)
     val rtl = SpinalVerilog(new Filter(fc))
-    val drawELKBUS = new Plot_Simple_ELK(SpinalVerilog(new Filter(fc)))
-    drawELKBUS.begindraw
-    val drawELK = new Plot_ELK(SpinalVerilog(new Filter(fc)))
-    drawELK.begindraw
+    val drawELK = new Plot_All(SpinalVerilog(new Filter(fc)))
+    drawELK.plot_All
+    val letread = new ReadSystem(SpinalVerilog(new Filter(fc)))
+    letread.beginread
 //    val drawyed = new Plot_yEd(rtl.toplevel)
 //    drawyed.begindraw
 //    val letread = new ReadSystem(rtl.toplevel)

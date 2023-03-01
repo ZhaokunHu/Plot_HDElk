@@ -14,20 +14,22 @@ class Node {
   var children: Set[Node] = Set()
   var incounter,outcounter=1
 }
+class Edge {
+  var source, target = ""
+  var isBus = 1
+}
 object trySet{
   def main(args: Array[String]): Unit = {
-    val topnode = new Node
-    topnode.labelname = "toplevel"
-    val register = new Node
-    register.labelname = "register"
-    topnode.children.add(register)
-    register.outcounter+=1
-    println(topnode.children.head.outcounter)
-//    val a="asd_dd"
-//    val b="asd"
-//    println(a==b)
-//    val mm=new trySet
-//    println(mm.ss.size)
-//    println(mm.ss.head)
+    val edges: Set[Edge] = Set()
+    val edgee1=new Edge
+    edgee1.source="aa"
+    edgee1.target="bb"
+    edges.add(edgee1)
+    edges.add(edgee1)
+    val edgee2=new Edge
+    edgee2.source="aa"
+    edgee2.target="cc"
+    edges.add(edgee2)
+    println(edges.size)
   }
 }

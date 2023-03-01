@@ -1,6 +1,5 @@
-import NewPlot.Plot_ELK
 import Old_plot._
-import Simple_ELK.Plot_Simple_ELK
+import Plot_All.Plot_All
 import spinal.core._
 import spinal.lib._
 
@@ -21,10 +20,8 @@ class Top1 extends Component{
 
 object Top1 {
   def main(args: Array[String]): Unit = {
-    val drawELK = new Plot_ELK(SpinalVerilog(new Top1))
-    drawELK.begindraw
-    val drawELKBUS=new Plot_Simple_ELK(SpinalVerilog(new Top1))
-    drawELKBUS.begindraw
+    val drawELK = new Plot_All(SpinalVerilog(new Top1))
+    drawELK.plot_All
     val letread = new ReadSystem(SpinalVerilog(new Top1))
     letread.beginread
   }

@@ -17,6 +17,7 @@ class Plot_Inner_Module(rtl: SpinalReport[Component]) {
     val allInnerCells=moduleanalyze.getCells(_.getName()!="toplevel")
     for(cell<-allInnerCells){
       val thisfamilyname=cell.getName()
+      val innerInOuts=moduleanalyze.getPins(pin=>pin.getComponent().getName()==thisfamilyname)
       val thisNode=new Node
       thisNode.labelname=thisfamilyname
       val innerNets=moduleanalyze.getNets(_.getComponent().getName()==thisfamilyname)
@@ -25,14 +26,16 @@ class Plot_Inner_Module(rtl: SpinalReport[Component]) {
         var isfanin,isfanout=false
         val fanins=dataAna.getFanIn
         val fanouts=dataAna.getFanOut
-        for(fanin<-fanins){
-          if(fanin.getComponent().getName()!=cell.getName())
-            isfanin=true
-        }
-        for(fanout<-fanouts){
-          if(fanout.getComponent().getName()!=cell.getName())
-            isfanout=true
-        }
+//        for(fanin<-fanins){
+//          if(fanin.getComponent().getName()!=cell.getName())
+//            isfanin=true
+//        }
+        isfanin=net.isInput
+//        for(fanout<-fanouts){
+//          if(fanout.getComponent().getName()!=cell.getName())
+//            isfanout=true
+//        }
+        isfanout=net.isOutput
         var thisname=net.getName()
         if(isfanin) {
           thisNode.inports.add(thisname)

@@ -1,6 +1,5 @@
-import NewPlot.Plot_ELK
 import Old_plot._
-import Simple_ELK.Plot_Simple_ELK
+import Plot_All.Plot_All
 import spinal.core._
 import spinal.lib._
 class AdderCell extends Component {
@@ -28,13 +27,10 @@ class Adder(width: Int) extends Component {
 }
 object Top2 {
   def main(args: Array[String]): Unit = {
-    val rtl = SpinalVerilog(new Adder(8))
-    val drawELK = new Plot_ELK(SpinalVerilog(new Adder(8)))
-    drawELK.begindraw
-    val drawELKBUS = new Plot_Simple_ELK(SpinalVerilog(new Adder(8)))
-    drawELKBUS.begindraw
-//    val letread = new ReadSystem(rtl.toplevel)
-//    letread.beginread
+    val plot=new Plot_All(SpinalVerilog(new Adder(5)))
+    plot.plot_All
+    val letread = new ReadSystem(SpinalVerilog(new Adder(5)))
+    letread.beginread
 //    val test=new Deal_Wires
 //    test(rtl.toplevel)
 //    val drawyed = new Plot_yEd(rtl.toplevel)

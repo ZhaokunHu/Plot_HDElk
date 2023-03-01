@@ -1,9 +1,7 @@
+import Plot_All.Plot_All
 import analyzer.DataAnalyzer.toAnalyzer
-import analyzer.{DataAnalyzer, ModuleAnalyzer}
+import analyzer.ModuleAnalyzer
 import spinal.core._
-
-import scala.collection.mutable
-import analyzer.{DataAnalyzer, ModuleAnalyzer}
 
 case class TestModule() extends Module {
   val io = new Bundle {
@@ -19,7 +17,7 @@ case class TestModule() extends Module {
   io.b := (a2, a1, a0).asBits
 }
 
-object Top9{
+object Top99{
   def main(args: Array[String]): Unit = {
     val rtl = SpinalVerilog(TestModule())
     val allSignals=new ModuleAnalyzer(rtl.toplevel).getNets(_=>true)
@@ -31,4 +29,7 @@ object Top9{
     }
     println(rtl.toplevel.getGroupedIO(true))
   }
+
+  val Plott = new Plot_All(SpinalVerilog(TestModule()))
+  Plott.plot_All
 }

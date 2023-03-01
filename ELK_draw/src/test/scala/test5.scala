@@ -1,6 +1,5 @@
-import NewPlot.Plot_ELK
 import Old_plot._
-import Simple_ELK.Plot_Simple_ELK
+import Plot_All.Plot_All
 import spinal.core._
 import spinal.lib._
 class Pll extends Component{
@@ -48,9 +47,11 @@ object Top5 {
 //    letread.beginread
 //    val letdraw = new Plot_UML(rtl.toplevel)
 //    letdraw.begindraw
-    val drawELK = new Plot_ELK(SpinalVerilog(new InternalClockWithPllExample))
-    drawELK.begindraw
-    val drawELKBUS = new Plot_Simple_ELK(SpinalVerilog(new InternalClockWithPllExample))
-    drawELKBUS.begindraw
+//    val drawELK = new Plot_ELK(SpinalVerilog(new InternalClockWithPllExample))
+//    drawELK.begindraw
+//    val drawELKBUS = new Plot_Simple_ELK(SpinalVerilog(new InternalClockWithPllExample))
+//    drawELKBUS.begindraw
+val drawELK = new Plot_All(SpinalVerilog(new InternalClockWithPllExample))
+    drawELK.plot_All
   }
 }

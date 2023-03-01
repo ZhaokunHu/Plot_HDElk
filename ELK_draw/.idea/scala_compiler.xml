@@ -13,7 +13,7 @@
     </profile>
     <profile name="sbt 3" modules="elk_draw">
       <plugins>
-        <plugin path="C:\Users\Administrator\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\com\github\spinalhdl\spinalhdl-idsl-plugin_2.11\1.7.3a\spinalhdl-idsl-plugin_2.11-1.7.3a.jar" />
+        <plugin path="C:\Users\Administrator\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\com\github\spinalhdl\spinalhdl-idsl-plugin_2.11\1.8.0\spinalhdl-idsl-plugin_2.11-1.8.0.jar" />
       </plugins>
     </profile>
   </component>

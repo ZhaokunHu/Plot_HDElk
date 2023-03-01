@@ -14,7 +14,6 @@ class Node {
   var inports:Set[String]=Set()
   var outports:Set[String]=Set()
   var children: Set[Node] = Set()
-  var edges:Set[Edge]=Set()
 }
 
 
@@ -82,12 +81,12 @@ class Plot_ELK(rtl:SpinalReport[Component]) {
         newedge.source=net.getName()
         if(thisgroupname!="toplevel")
           newedge.source=thisgroupname+"."+newedge.source
-        else if(allinputs.contains(net))
+        else if(allinputs.contains(net)||alloutputs.contains(net))
           newedge.source="toplevel."+newedge.source
         newedge.target=fanout.getName()
         if(fanout.getComponent().getName()!="toplevel")
           newedge.target=fanout.getComponent().getName()+"."+newedge.target
-        else if (alloutputs.contains(fanout))
+        else if (alloutputs.contains(fanout)||allinputs.contains(fanout))
           newedge.target = "toplevel." + newedge.target
         if(newedge.target!=newedge.source)
           if(thisgroupname=="toplevel" || thisgroupname!=fanout.getComponent().getName())

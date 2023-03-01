@@ -55,13 +55,14 @@ object Top6{
   def main(args: Array[String]): Unit = {
     val Plott = new Plot_All(SpinalVerilog(new Top6))
     Plott.plot_All
+    val rtl=SpinalVerilog(new Top6)
 //    val drawELKBUS = new Plot_Simple_ELK(SpinalVerilog(new Top6))
 //    drawELKBUS.begindraw
 //    val drawInner=new Plot_Inner_Module(SpinalVerilog(new Top6))
 //    drawInner.begindraww
 //    val drawyed = new Plot_yEd(rtl.toplevel)
 //    drawyed.begindraw
-//    val letread = new ReadSystem(rtl.toplevel)
+//    val letread = new ReadSystem(SpinalVerilog(new Top6))
 //    letread.beginread
 //    val letdraw = new Plot_UML(rtl.toplevel)
 //    letdraw.begindraw

@@ -1,5 +1,5 @@
-import NewPlot.Plot_ELK
-import Simple_ELK.Plot_Simple_ELK
+import Old_plot.ReadSystem
+import Plot_All.Plot_All
 import spinal.core._
 import spinal.lib._
 
@@ -47,16 +47,20 @@ class Top3 extends Component {
 }
 object Top3{
   def main(args: Array[String]): Unit = {
-    val rtl = SpinalVerilog(new Top3)
-//    val drawyed = new Plot_yEd(rtl.toplevel)
-//    drawyed.begindraw
-//    val letread = new ReadSystem(SpinalVerilog(new Top3))
-//    letread.beginread
-//    val letdraw = new Plot_UML(rtl.toplevel)
-//    letdraw.begindraw
-      val drawELK = new Plot_ELK(SpinalVerilog(new Top3))
-      drawELK.begindraw
-     val drawELKBUS=new Plot_Simple_ELK(SpinalVerilog(new Top3))
-     drawELKBUS.begindraw
+//    val rtl = SpinalVerilog(new Top3)
+////    val drawyed = new Plot_yEd(rtl.toplevel)
+////    drawyed.begindraw
+////    val letread = new ReadSystem(SpinalVerilog(new Top3))
+////    letread.beginread
+////    val letdraw = new Plot_UML(rtl.toplevel)
+////    letdraw.begindraw
+//      val drawELK = new Plot_ELK(SpinalVerilog(new Top3))
+//      drawELK.begindraw
+//     val drawELKBUS=new Plot_Simple_ELK(SpinalVerilog(new Top3))
+//     drawELKBUS.begindraw
+val drawELK = new Plot_All(SpinalVerilog(new Top3))
+    drawELK.plot_All
+    val letread = new ReadSystem(SpinalVerilog(new Top3))
+    letread.beginread
   }
 }
