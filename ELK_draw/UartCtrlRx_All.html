@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>rtl连接图</title>
+</head>
+<script src="/js/elk.bundled.js"></script>
+<script src="/js/svg.min.js"></script>
+<script src="/js/hdelk.js"></script>
+
+<h4>选择你想看的图像</h4>
+<a href="#Toplevel_Simple"><button>Toplevel_Simple</button></a>&nbsp;
+<a href="#Toplevel_All"><button>Toplevel_All</button></a>&nbsp;
+<a href="#Toplevel_GroupedIO"><button>Toplevel_GroupedIO</button></a>&nbsp;
+<br><br><br><br><div id="Toplevel_Simple"></div>
+<h3>Toplevel_Simple</h3><br><br>
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"toplevel",
+inPorts: ["input1",],
+outPorts: ["output1",],
+children: [
+{id:"register",
+inPorts: ["datain1",],
+outPorts: ["dataout1",],
+},
+],
+edges:[
+{ source:"register.dataout1", target:"toplevel.output1",bus: 1 },
+{ source:"toplevel.input1", target:"register.datain1",bus: 1 },
+]
+},
+],
+}
+hdelk.layout( mygraph, "Toplevel_Simple" );
+</script><div id="Toplevel_All"></div>
+<h3>Toplevel_All</h3><br><br>
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"toplevel",
+inPorts: ["io_rxd","io_samplingTick","clk","reset",],
+outPorts: ["io_read_payload","io_read_valid",],
+children: [
+{id:"sampler_samples_2",
+},
+{id:"_zz_sampler_samples_0_1",
+},
+{id:"stateMachine_state",
+},
+{id:"stateMachine_buffer",
+},
+{id:"bitCounter_value",
+},
+{id:"sampler_tick",
+},
+{id:"when_statemashine2_l50",
+},
+{id:"bitTimer_recenter",
+},
+{id:"_zz_sampler_samples_1",
+},
+{id:"sampler_samples_4",
+},
+{id:"_zz_sampler_samples_2",
+},
+{id:"sampler_samples_3",
+},
+{id:"when_statemashine2_l83",
+},
+{id:"_zz_sampler_samples_0",
+},
+{id:"_zz_sampler_samples_4",
+},
+{id:"bitTimer_counter",
+},
+{id:"sampler_samples_1",
+},
+{id:"when_statemashine2_l97",
+},
+{id:"bitTimer_tick",
+},
+{id:"_zz_sampler_samples_3",
+},
+{id:"bitCounter_clear",
+},
+{id:"sampler_samples_0",
+},
+{id:"sampler_value",
+},
+],
+edges:[
+{ source:"_zz_sampler_samples_1", target:"_zz_sampler_samples_2" },
+{ source:"stateMachine_state", target:"bitTimer_recenter" },
+{ source:"stateMachine_state", target:"toplevel.io_read_valid" },
+{ source:"toplevel.io_samplingTick", target:"_zz_sampler_samples_0_1" },
+{ source:"toplevel.io_samplingTick", target:"_zz_sampler_samples_1" },
+{ source:"sampler_samples_1", target:"sampler_value" },
+{ source:"_zz_sampler_samples_2", target:"sampler_samples_2" },
+{ source:"_zz_sampler_samples_1", target:"sampler_samples_1" },
+{ source:"bitTimer_tick", target:"bitCounter_value" },
+{ source:"sampler_tick", target:"bitTimer_counter" },
+{ source:"stateMachine_buffer", target:"toplevel.io_read_payload" },
+{ source:"toplevel.io_samplingTick", target:"_zz_sampler_samples_4" },
+{ source:"sampler_samples_2", target:"sampler_value" },
+{ source:"sampler_tick", target:"when_statemashine2_l83" },
+{ source:"when_statemashine2_l50", target:"bitTimer_tick" },
+{ source:"bitCounter_value", target:"stateMachine_buffer" },
+{ source:"sampler_samples_0", target:"sampler_value" },
+{ source:"sampler_tick", target:"bitTimer_tick" },
+{ source:"bitTimer_tick", target:"stateMachine_buffer" },
+{ source:"bitTimer_counter", target:"when_statemashine2_l50" },
+{ source:"when_statemashine2_l83", target:"stateMachine_state" },
+{ source:"sampler_value", target:"stateMachine_buffer" },
+{ source:"_zz_sampler_samples_0_1", target:"sampler_samples_0" },
+{ source:"_zz_sampler_samples_0", target:"_zz_sampler_samples_0_1" },
+{ source:"toplevel.io_samplingTick", target:"sampler_tick" },
+{ source:"bitCounter_value", target:"when_statemashine2_l97" },
+{ source:"bitTimer_tick", target:"stateMachine_state" },
+{ source:"toplevel.io_samplingTick", target:"_zz_sampler_samples_2" },
+{ source:"bitTimer_tick", target:"bitCounter_clear" },
+{ source:"_zz_sampler_samples_4", target:"sampler_samples_4" },
+{ source:"toplevel.io_samplingTick", target:"_zz_sampler_samples_3" },
+{ source:"_zz_sampler_samples_2", target:"_zz_sampler_samples_3" },
+{ source:"_zz_sampler_samples_0_1", target:"_zz_sampler_samples_1" },
+{ source:"bitCounter_clear", target:"bitCounter_value" },
+{ source:"when_statemashine2_l97", target:"stateMachine_state" },
+{ source:"when_statemashine2_l83", target:"bitTimer_recenter" },
+{ source:"toplevel.io_rxd", target:"_zz_sampler_samples_0" },
+{ source:"sampler_samples_3", target:"sampler_value" },
+{ source:"stateMachine_state", target:"stateMachine_buffer" },
+{ source:"toplevel.io_samplingTick", target:"_zz_sampler_samples_0" },
+{ source:"stateMachine_state", target:"bitCounter_clear" },
+{ source:"sampler_samples_4", target:"sampler_value" },
+{ source:"bitTimer_tick", target:"toplevel.io_read_valid" },
+{ source:"sampler_value", target:"when_statemashine2_l83" },
+{ source:"_zz_sampler_samples_3", target:"_zz_sampler_samples_4" },
+{ source:"bitTimer_recenter", target:"bitTimer_counter" },
+{ source:"_zz_sampler_samples_3", target:"sampler_samples_3" },
+]
+},
+],
+}
+hdelk.layout( mygraph, "Toplevel_All" );
+</script><div id="Toplevel_GroupedIO"></div>
+<h3>Toplevel_GroupedIO</h3><br><br>
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"UartCtrlRx",
+inPorts: ["io_rxd","io_samplingTick","clk","reset",],
+outPorts: ["io_read",],
+children: [
+{id:"_zz_sampler_samples_1",
+},
+{id:"bitCounter_value",
+},
+{id:"_zz_sampler_samples_0",
+},
+{id:"sampler_value",
+},
+{id:"_zz_sampler_samples_3",
+},
+{id:"bitTimer_counter",
+},
+{id:"stateMachine_state",
+},
+{id:"_zz_sampler_samples_2",
+},
+{id:"systemRegister",
+},
+{id:"sampler_tick",
+},
+{id:"stateMachine_buffer",
+},
+{id:"_zz_sampler_samples_4",
+},
+{id:"_zz_sampler_samples_0_1",
+},
+],
+edges:[
+{ source:"bitTimer_counter", target:"systemRegister",bus: 0 },
+{ source:"systemRegister", target:"systemRegister",bus: 0 },
+{ source:"_zz_sampler_samples_1", target:"systemRegister",bus: 0 },
+{ source:"UartCtrlRx.io_samplingTick", target:"_zz_sampler_samples_3",bus: 0 },
+{ source:"stateMachine_state", target:"UartCtrlRx.io_read",bus: 0 },
+{ source:"UartCtrlRx.io_rxd", target:"_zz_sampler_samples_0",bus: 0 },
+{ source:"UartCtrlRx.io_samplingTick", target:"_zz_sampler_samples_2",bus: 0 },
+{ source:"_zz_sampler_samples_0_1", target:"_zz_sampler_samples_1",bus: 0 },
+{ source:"systemRegister", target:"sampler_value",bus: 0 },
+{ source:"_zz_sampler_samples_3", target:"systemRegister",bus: 0 },
+{ source:"sampler_tick", target:"systemRegister",bus: 0 },
+{ source:"systemRegister", target:"UartCtrlRx.io_read",bus: 0 },
+{ source:"_zz_sampler_samples_0_1", target:"systemRegister",bus: 0 },
+{ source:"UartCtrlRx.io_samplingTick", target:"_zz_sampler_samples_1",bus: 0 },
+{ source:"systemRegister", target:"bitTimer_counter",bus: 0 },
+{ source:"_zz_sampler_samples_4", target:"systemRegister",bus: 0 },
+{ source:"UartCtrlRx.io_samplingTick", target:"sampler_tick",bus: 0 },
+{ source:"sampler_value", target:"stateMachine_buffer",bus: 0 },
+{ source:"sampler_tick", target:"bitTimer_counter",bus: 0 },
+{ source:"systemRegister", target:"stateMachine_buffer",bus: 0 },
+{ source:"bitTimer_counter", target:"bitTimer_counter",bus: 0 },
+{ source:"stateMachine_state", target:"stateMachine_buffer",bus: 0 },
+{ source:"systemRegister", target:"stateMachine_state",bus: 0 },
+{ source:"UartCtrlRx.io_samplingTick", target:"_zz_sampler_samples_0_1",bus: 0 },
+{ source:"bitCounter_value", target:"systemRegister",bus: 0 },
+{ source:"stateMachine_buffer", target:"UartCtrlRx.io_read",bus: 0 },
+{ source:"stateMachine_state", target:"stateMachine_state",bus: 0 },
+{ source:"_zz_sampler_samples_2", target:"_zz_sampler_samples_3",bus: 0 },
+{ source:"bitCounter_value", target:"stateMachine_buffer",bus: 0 },
+{ source:"_zz_sampler_samples_0", target:"_zz_sampler_samples_0_1",bus: 0 },
+{ source:"bitCounter_value", target:"bitCounter_value",bus: 0 },
+{ source:"systemRegister", target:"bitCounter_value",bus: 0 },
+{ source:"_zz_sampler_samples_1", target:"_zz_sampler_samples_2",bus: 0 },
+{ source:"UartCtrlRx.io_samplingTick", target:"_zz_sampler_samples_4",bus: 0 },
+{ source:"UartCtrlRx.io_samplingTick", target:"_zz_sampler_samples_0",bus: 0 },
+{ source:"_zz_sampler_samples_3", target:"_zz_sampler_samples_4",bus: 0 },
+{ source:"_zz_sampler_samples_2", target:"systemRegister",bus: 0 },
+{ source:"sampler_value", target:"systemRegister",bus: 0 },
+{ source:"stateMachine_state", target:"systemRegister",bus: 0 },
+]
+},
+],
+}
+hdelk.layout( mygraph, "Toplevel_GroupedIO" );
+</script></html>

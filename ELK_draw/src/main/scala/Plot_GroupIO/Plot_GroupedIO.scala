@@ -23,12 +23,13 @@ class PlotGroupedIO(rtl: SpinalReport[Component]) {
   val module = rtl.toplevel
   val fileName = rtl.toplevelName + "_All.html"
   val file = new File(fileName)
-  val edges:Set[Edge]=Set()
+  val edges: Set[Edge] = Set()
   val pw = new FileWriter(file, true)
-  val topNode=new Node
-  def DealAllSignal: Unit ={
+  val topNode = new Node
+
+  def DealAllSignal: Unit = {
     topNode.labelname = rtl.toplevelName
-    val toplevelIO=module.getGroupedIO(true)
+    val toplevelIO = module.getGroupedIO(true)
     for (inOutPort <- toplevelIO) {
       val thisName = inOutPort.getName()
       if (inOutPort.flatten.head.isInput) topNode.inports.add(thisName)
@@ -45,60 +46,86 @@ class PlotGroupedIO(rtl: SpinalReport[Component]) {
       }
       topNode.children.add(newNode)
     }
-    val moduleAnalyze=new ModuleAnalyzer(module)
+
+
+    val moduleAnalyze = new ModuleAnalyzer(module)
     val allInOuts = moduleAnalyze.getInputs ++ moduleAnalyze.getOutputs
-    val allRegisters=moduleAnalyze.getNets(net=>net.getComponent().getName()=="toplevel" && !allInOuts.contains(net))
-    for(toplevelRegister<-allRegisters){
-      val newNode=new Node
-      newNode.labelname=toplevelRegister.getName()
+    val allRegisters = moduleAnalyze.getRegisters
+    val systemRegisters = moduleAnalyze.getNets(net => net.getComponent().getName() == "toplevel" && !allInOuts.contains(net) && !allRegisters.contains(net))
+    for (toplevelRegister <- allRegisters) {
+      val newNode = new Node
+      newNode.labelname = toplevelRegister.getName()
       topNode.children.add(newNode)
     }
-    val allNets = allRegisters ++ moduleAnalyze.getPins(_ => true)
-    for(net<-allNets){
-      var sourceName=""
-      var inIsBus,outIsBus=0
-      if(allInOuts.contains(net)) {
-        for(inOutPort<-toplevelIO){
-          if(inOutPort.flatten.contains(net)) {
-            sourceName=topNode.labelname+"."+inOutPort.getName()
-            if(inOutPort.flatten.size>1) inIsBus=1
+    val systemRegister = new Node
+    systemRegister.labelname = "systemRegister"
+    var needSR = false
+    val allNets = allRegisters ++ moduleAnalyze.getPins(_ => true) ++ systemRegisters
+    for (net <- allNets) {
+      var sourceName = ""
+      var inIsBus = 0
+      var netIsOutput=false
+      for (inOutPort <- toplevelIO)
+        if (inOutPort.flatten.contains(net) && inOutPort.flatten.head.isOutput)
+          netIsOutput = true
+      if (allInOuts.contains(net)) {
+        for (inOutPort <- toplevelIO) {
+          if (inOutPort.flatten.contains(net)) {
+            sourceName = topNode.labelname + "." + inOutPort.getName()
+            if (inOutPort.flatten.size > 1) inIsBus = 1
           }
         }
       }
-      else if(allRegisters.contains(net)){
-        sourceName=net.getName()
+      else if (allRegisters.contains(net)) {
+        sourceName = net.getName()
       }
-      else{
-        for(innerModule<-innerModules){
-          if(innerModule.getName()==net.getComponent().getName()){
-            val innerInOuts=innerModule.getGroupedIO(true)
-            for(innerInOut<-innerInOuts){
-              if(innerInOut.flatten.contains(net)){
-                sourceName=innerModule.getName()+"."+innerInOut.getName()
-                if(innerInOut.flatten.size>1) inIsBus=1
+      else if (systemRegisters.contains(net)) {
+        needSR = true
+        sourceName = "systemRegister"
+      }
+      else {
+        for (innerModule <- innerModules) {
+          if (innerModule.getName() == net.getComponent().getName()) {
+            val innerInOuts = innerModule.getGroupedIO(true)
+            for (innerInOut <- innerInOuts) {
+              if (innerInOut.flatten.contains(net)) {
+                sourceName = innerModule.getName() + "." + innerInOut.getName()
+                if (innerInOut.flatten.size > 1) inIsBus = 1
               }
             }
           }
         }
       }
-      val dataAnalyze=new DataAnalyzer(net)
-      val fanOuts=dataAnalyze.getFanOut
-      for(fanOut<-fanOuts){
-        if(allNets.contains(fanOut) && !(net.getComponent().getName()!="toplevel" && fanOut.getComponent()==net.getComponent())){
-          val newEdge=new Edge
-          newEdge.source=sourceName
+
+
+
+      val dataAnalyze = new DataAnalyzer(net)
+      val fanOuts = dataAnalyze.getFanOut
+      for (fanOut <- fanOuts) {
+        var fanoutIsInput = false
+        for (inOutPort <- toplevelIO)
+          if (inOutPort.flatten.contains(fanOut) && inOutPort.flatten.head.isInput)
+            fanoutIsInput = true
+        var outIsBus = 0
+        val newEdge = new Edge
+        if (systemRegisters.contains(fanOut)) {
+          needSR = true
+          newEdge.target = "systemRegister"
+        }
+        else if (allRegisters.contains(fanOut)) {
+          newEdge.target = fanOut.getName()
+        }
+        else if (!(net.getComponent().getName() != "toplevel" && fanOut.getComponent() == net.getComponent())) {
+          newEdge.source = sourceName
           if (allInOuts.contains(fanOut)) {
             for (inOutPort <- toplevelIO) {
               if (inOutPort.flatten.contains(fanOut)) {
-                newEdge.target=topNode.labelname+"."+inOutPort.getName()
+                newEdge.target = topNode.labelname + "." + inOutPort.getName()
                 if (inOutPort.flatten.size > 1) outIsBus = 1
               }
             }
           }
-          else if(allRegisters.contains(fanOut)){
-            newEdge.target=fanOut.getName()
-          }
-          else{
+          else {
             for (innerModule <- innerModules) {
               if (innerModule.getName() == fanOut.getComponent().getName()) {
                 val innerInOuts = innerModule.getGroupedIO(true)
@@ -111,18 +138,21 @@ class PlotGroupedIO(rtl: SpinalReport[Component]) {
               }
             }
           }
-          newEdge.isBus=inIsBus & outIsBus
-          var isContined=false
-          for(thisEdge<-edges){
-            if(thisEdge.source==newEdge.source&&thisEdge.target==newEdge.target&&thisEdge.isBus==newEdge.isBus)
-              isContined=true
-          }
-          if(!isContined)
-            edges.add(newEdge)
         }
+        newEdge.source = sourceName
+        newEdge.isBus = inIsBus & outIsBus
+        var isContined = false
+        for (thisEdge <- edges) {
+          if (thisEdge.source == newEdge.source && thisEdge.target == newEdge.target)
+            isContined = true
+        }
+        if (!netIsOutput && !fanoutIsInput && !isContined && newEdge.source != "" && newEdge.target != "")
+          edges.add(newEdge)
       }
     }
+    if (needSR) topNode.children.add(systemRegister)
   }
+
 
   def drawNodes(thisNode: Node): Unit = {
     pw.write("{id:\"" + thisNode.labelname + "\",\n")
