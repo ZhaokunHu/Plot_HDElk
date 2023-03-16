@@ -2,6 +2,7 @@ package trying
 
 import spinal.core._
 
+import scala.collection.mutable
 import scala.collection.mutable.Set
 class trySet {
    val ss:Set[String]=Set("a","b","c","d")
@@ -20,16 +21,10 @@ class Edge {
 }
 object trySet{
   def main(args: Array[String]): Unit = {
-    val edges: Set[Edge] = Set()
-    val edgee1=new Edge
-    edgee1.source="aa"
-    edgee1.target="bb"
-    edges.add(edgee1)
-    edges.add(edgee1)
-    val edgee2=new Edge
-    edgee2.source="aa"
-    edgee2.target="cc"
-    edges.add(edgee2)
-    println(edges.size)
+    val map3 = new mutable.HashMap[String, String];
+    map3.put("name", "jike")
+    map3.put("city", "hangzhou")
+    map3.put("city", "hangzho")
+    println(map3.size)
   }
 }

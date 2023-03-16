@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>rtl连接图</title>
+</head>
+<script src="/js/elk.bundled.js"></script>
+<script src="/js/svg.min.js"></script>
+<script src="/js/hdelk.js"></script>
+
+<h4>选择你想看的图像</h4>
+<a href="#Toplevel_Simple"><button>Toplevel_Simple</button></a>&nbsp;
+<a href="#Toplevel_All"><button>Toplevel_All</button></a>&nbsp;
+<a href="#Toplevel_GroupedIO"><button>Toplevel_GroupedIO</button></a>&nbsp;
+<br><br><br><br><div id="Toplevel_Simple"></div>
+<h3>Toplevel_Simple</h3><br><br>
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"toplevel",
+inPorts: ["input1",],
+outPorts: ["output1",],
+children: [
+{id:"register",
+inPorts: ["datain1",],
+outPorts: ["dataout1",],
+},
+],
+edges:[
+{ source:"register.dataout1", target:"toplevel.output1",bus: 1 },
+{ source:"toplevel.input1", target:"register.datain1",bus: 1 },
+]
+},
+],
+}
+hdelk.layout( mygraph, "Toplevel_Simple" );
+</script><div id="Toplevel_All"></div>
+<h3>Toplevel_All</h3><br><br>
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"toplevel",
+inPorts: ["io_rsp_ready","clk","io_cmd_payload_y","reset","io_cmd_valid","io_cmd_payload_x",],
+outPorts: ["io_rsp_payload_iteration","io_cmd_ready","io_rsp_valid",],
+children: [
+{id:"y",
+},
+{id:"iteration",
+},
+{id:"xy",
+},
+{id:"x",
+},
+{id:"when_test13_l48",
+},
+{id:"xx",
+},
+{id:"yy",
+},
+],
+edges:[
+{ source:"yy", target:"when_test13_l48" },
+{ source:"x", target:"xx" },
+{ source:"iteration", target:"toplevel.io_rsp_payload_iteration" },
+{ source:"when_test13_l48", target:"toplevel.io_cmd_ready" },
+{ source:"toplevel.io_cmd_valid", target:"x" },
+{ source:"toplevel.io_rsp_ready", target:"y" },
+{ source:"toplevel.io_cmd_valid", target:"iteration" },
+{ source:"toplevel.io_cmd_valid", target:"toplevel.io_rsp_valid" },
+{ source:"when_test13_l48", target:"iteration" },
+{ source:"y", target:"yy" },
+{ source:"when_test13_l48", target:"x" },
+{ source:"yy", target:"x" },
+{ source:"when_test13_l48", target:"y" },
+{ source:"toplevel.io_rsp_ready", target:"toplevel.io_cmd_ready" },
+{ source:"iteration", target:"when_test13_l48" },
+{ source:"toplevel.io_cmd_payload_y", target:"y" },
+{ source:"xx", target:"x" },
+{ source:"toplevel.io_cmd_valid", target:"y" },
+{ source:"toplevel.io_rsp_ready", target:"x" },
+{ source:"y", target:"xy" },
+{ source:"toplevel.io_cmd_valid", target:"toplevel.io_cmd_ready" },
+{ source:"when_test13_l48", target:"toplevel.io_rsp_valid" },
+{ source:"toplevel.io_rsp_ready", target:"iteration" },
+{ source:"x", target:"xy" },
+{ source:"toplevel.io_cmd_payload_x", target:"x" },
+{ source:"xy", target:"y" },
+{ source:"xx", target:"when_test13_l48" },
+]
+},
+],
+}
+hdelk.layout( mygraph, "Toplevel_All" );
+</script><div id="Toplevel_GroupedIO"></div>
+<h3>Toplevel_GroupedIO</h3><br><br>
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"PixelSolver",
+inPorts: ["io_cmd","clk","io_cmd_payload_y","reset","io_cmd_payload_x",],
+outPorts: ["io_rsp",],
+children: [
+{id:"systemRegister",
+},
+{id:"iteration",
+},
+{id:"x",
+},
+{id:"y",
+},
+],
+edges:[
+{ source:"x", target:"systemRegister",bus: 0 },
+{ source:"systemRegister", target:"x",bus: 0 },
+{ source:"PixelSolver.io_cmd_payload_y", target:"y",bus: 0 },
+{ source:"y", target:"systemRegister",bus: 0 },
+{ source:"iteration", target:"systemRegister",bus: 0 },
+{ source:"iteration", target:"PixelSolver.io_rsp",bus: 0 },
+{ source:"PixelSolver.io_cmd", target:"PixelSolver.io_rsp",bus: 1 },
+{ source:"PixelSolver.io_cmd", target:"x",bus: 0 },
+{ source:"systemRegister", target:"iteration",bus: 0 },
+{ source:"PixelSolver.io_cmd", target:"iteration",bus: 0 },
+{ source:"PixelSolver.io_cmd_payload_x", target:"x",bus: 0 },
+{ source:"systemRegister", target:"PixelSolver.io_rsp",bus: 0 },
+{ source:"iteration", target:"iteration",bus: 0 },
+{ source:"systemRegister", target:"y",bus: 0 },
+{ source:"systemRegister", target:"systemRegister",bus: 0 },
+{ source:"PixelSolver.io_cmd", target:"y",bus: 0 },
+]
+},
+],
+}
+hdelk.layout( mygraph, "Toplevel_GroupedIO" );
+</script></html>

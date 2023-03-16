@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>rtl连接图</title>
+</head>
+<script src="/js/elk.bundled.js"></script>
+<script src="/js/svg.min.js"></script>
+<script src="/js/hdelk.js"></script>
+
+<h4>选择你想看的图像</h4>
+<a href="#Toplevel_Simple"><button>Toplevel_Simple</button></a>&nbsp;
+<a href="#Toplevel_All"><button>Toplevel_All</button></a>&nbsp;
+<a href="#Toplevel_GroupedIO"><button>Toplevel_GroupedIO</button></a>&nbsp;
+<br><br><br><br><div id="Toplevel_Simple"></div>
+<h3>Toplevel_Simple</h3><br><br>
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"toplevel",
+inPorts: ["input1",],
+outPorts: ["output1",],
+children: [
+{id:"register",
+inPorts: ["datain1",],
+outPorts: ["dataout1",],
+},
+],
+edges:[
+{ source:"toplevel.input1", target:"register.datain1",bus: 1 },
+{ source:"register.dataout1", target:"toplevel.output1",bus: 1 },
+]
+},
+],
+}
+hdelk.layout( mygraph, "Toplevel_Simple" );
+</script><div id="Toplevel_All"></div>
+<h3>Toplevel_All</h3><br><br>
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"toplevel",
+inPorts: ["clk","reset","io_clear","io_tick","io_limit",],
+outPorts: ["io_value","io_full",],
+children: [
+{id:"counter",
+},
+{id:"when_test13_l18",
+},
+],
+edges:[
+{ source:"toplevel.io_tick", target:"when_test13_l18" },
+{ source:"counter", target:"toplevel.io_full" },
+{ source:"toplevel.io_limit", target:"toplevel.io_full" },
+{ source:"toplevel.io_clear", target:"counter" },
+{ source:"toplevel.io_full", target:"when_test13_l18" },
+{ source:"counter", target:"toplevel.io_value" },
+{ source:"when_test13_l18", target:"counter" },
+]
+},
+],
+}
+hdelk.layout( mygraph, "Toplevel_All" );
+</script><div id="Toplevel_GroupedIO"></div>
+<h3>Toplevel_GroupedIO</h3><br><br>
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"Timer",
+inPorts: ["clk","reset","io_clear","io_tick","io_limit",],
+outPorts: ["io_value","io_full",],
+children: [
+{id:"systemRegister",
+},
+{id:"counter",
+},
+],
+edges:[
+{ source:"Timer.io_tick", target:"systemRegister",bus: 0 },
+{ source:"Timer.io_limit", target:"Timer.io_full",bus: 0 },
+{ source:"systemRegister", target:"counter",bus: 0 },
+{ source:"Timer.io_clear", target:"counter",bus: 0 },
+{ source:"counter", target:"counter",bus: 0 },
+{ source:"counter", target:"Timer.io_full",bus: 0 },
+{ source:"counter", target:"Timer.io_value",bus: 0 },
+]
+},
+],
+}
+hdelk.layout( mygraph, "Toplevel_GroupedIO" );
+</script></html>

@@ -27,18 +27,17 @@ class Adder(width: Int) extends Component {
 }
 object Top2 {
   def main(args: Array[String]): Unit = {
-    val plot=new Plot_All(SpinalVerilog(new Adder(5)))
+    val rtl=SpinalVerilog(new Adder(3))
+    val plot=new Plot_All(SpinalVerilog(new Adder(3)))
     plot.plot_All
-    val letread = new ReadSystem(SpinalVerilog(new Adder(5)))
+    val letread = new ReadSystem(SpinalVerilog(new Adder(3)))
     letread.beginread
 //    val test=new Deal_Wires
-//    test(rtl.toplevel)
-//    val drawyed = new Plot_yEd(rtl.toplevel)
-//    drawyed.begindraw
+//    test(rtl.toplevel) /
 //    val letread = new ReadSystem(rtl.toplevel)
 //    letread.beginread
-//    val letdraw = new Plot_UML(rtl.toplevel)
-//    letdraw.begindraw
+    val letdraw = new Plot_UML(rtl.toplevel)
+    letdraw.begindraw
 
   }
 }

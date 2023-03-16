@@ -4,17 +4,17 @@ import spinal.core._
 import spinal.lib._
 
 
-case class RGB(channelWidth : Int) extends Bundle{
-  val red   = UInt(channelWidth bit)
+case class RGB(channelWidth: Int) extends Bundle {
+  val red = UInt(channelWidth bit)
   val green = UInt(channelWidth bit)
-  val blue  = UInt(channelWidth bit)
+  val blue = UInt(channelWidth bit)
 
-  def isBlack : Bool = red === 0 && green === 0 && blue === 0
+  def isBlack: Bool = red === 0 && green === 0 && blue === 0
 }
 
-class Top1 extends Component{
-  val source = slave Stream(RGB(8))
-  val sink   = master Stream(RGB(8))
+class Top1 extends Component {
+  val source = slave Stream (RGB(8))
+  val sink = master Stream (RGB(8))
   sink <-< source.throwWhen(source.payload.isBlack)
 }
 
@@ -22,8 +22,8 @@ object Top1 {
   def main(args: Array[String]): Unit = {
     val drawELK = new Plot_All(SpinalVerilog(new Top1))
     drawELK.plot_All
-    val letread = new ReadSystem(SpinalVerilog(new Top1))
-    letread.beginread
+//    val letread = new ReadSystem(SpinalVerilog(new Top1))
+//    letread.beginread
   }
 }
 //    {

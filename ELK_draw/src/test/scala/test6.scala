@@ -18,6 +18,11 @@ class MYSub1(cd: ClockDomain) extends Component {
     val ao = out UInt(8 bits)
     val a2 = out UInt(8 bits)
   }
+
+  val cd3=ClockDomain.external("bp")
+  val u_sub3=cd3(new MYSub0(cd3))
+  u_sub3.io.ai:=io.ai
+
   io.ao := RegNext(io.ai) init(0)
   val cd2 = ClockDomain.external("adc")
   //alow another clockDomain not confict to default clockdomain
@@ -62,13 +67,13 @@ object Top6{
 //    drawInner.begindraww
 //    val drawyed = new Plot_yEd(rtl.toplevel)
 //    drawyed.begindraw
-//    val letread = new ReadSystem(SpinalVerilog(new Top6))
-//    letread.beginread
+    val letread = new ReadSystem(SpinalVerilog(new Top6))
+    letread.beginread
 //    val letdraw = new Plot_UML(rtl.toplevel)
 //    letdraw.begindraw
 //    val drawELK = new Plot_ELK(rtl.toplevel)
 //    drawELK.begindraw
-//    val letread = new ReadSystem(new Top6)
+//    val letread = new ReadSystem(SpinalVerilog(new Top6))
 //    letread.beginread
   }
 }

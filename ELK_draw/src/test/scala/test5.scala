@@ -43,8 +43,8 @@ object Top5 {
     val rtl = SpinalVerilog(new InternalClockWithPllExample)
 //    val drawyed = new Plot_yEd(rtl.toplevel)
 //    drawyed.begindraw
-//    val letread = new ReadSystem(rtl.toplevel)
-//    letread.beginread
+    val letread = new ReadSystem(SpinalVerilog(new InternalClockWithPllExample))
+    letread.beginread
 //    val letdraw = new Plot_UML(rtl.toplevel)
 //    letdraw.begindraw
 //    val drawELK = new Plot_ELK(SpinalVerilog(new InternalClockWithPllExample))

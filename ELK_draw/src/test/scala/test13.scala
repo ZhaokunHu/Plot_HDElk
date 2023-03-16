@@ -147,9 +147,11 @@ case class UdpApp(helloMessage : String,helloPort : Int = 37984) extends Compone
   }
 }
 
-object Top7{
-  def main(args: Array[String]): Unit = {
-    val Plott = new Plot_All(SpinalVerilog(UdpApp("hello")))
+
+object TimerMain{
+  def main(args: Array[String]) {
+
+    val Plott = new Plot_All(SpinalConfig(targetDirectory = "rtl").generateVhdl(UdpApp("012345")))
     Plott.plot_All
   }
 }
