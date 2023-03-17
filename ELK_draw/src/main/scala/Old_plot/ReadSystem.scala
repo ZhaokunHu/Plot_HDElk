@@ -7,13 +7,7 @@ class ReadSystem(rtl: SpinalReport[Component]) extends App {
 
   def beginread: Unit = {
     val module=rtl.toplevel
-    val groupIO=module.getGroupedIO(true)
-    for(sss<-groupIO){
-    println(sss)
-      println(sss.getClass.getSimpleName)
-    println(sss.flatten)
-  }
-
+    val innermodule=module.children
 //    println(mmIO)
 //  }
 //    println(s"GroupIO"+groupIO+"\n")
@@ -33,12 +27,14 @@ class ReadSystem(rtl: SpinalReport[Component]) extends App {
 //    println("输出："+Op+"\n")
 //    val Cl=anal.getClocks
 //    println("时钟："+Cl+"\n")
-    val Ce=anal.getCells(_=>true)
-    println("cells："+Ce+"\n")
+//    val Ce=anal.getCells(_=>true)
+//    println("cells："+Ce+"\n")
 //    val LibCe = anal.getCells(_ => true)
 //    println("Libcells：" + LibCe + "\n")
     val Ne=anal.getNets(_=>true)
-    println("wires："+Ne+"\n")
+    for(wire<-Ne){
+      println(wire+":"+(wire.isInput||wire.isOutput))
+    }
 //    val Pi = anal.getPins(_ => true)
 //    println("Pins：" + Pi + "\n")
 //  val allNets=anal.getRegisters++anal.getPins(_=>true)

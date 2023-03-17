@@ -1,4 +1,3 @@
-import Old_plot.ReadSystem
 import Plot_All.Plot_All
 import spinal.core._
 import spinal.lib.Stream._
@@ -41,8 +40,8 @@ object Top4 {
     val rtl = SpinalVerilog(new Filter(fc))
     val drawELK = new Plot_All(SpinalVerilog(new Filter(fc)))
     drawELK.plot_All
-    val letread = new ReadSystem(SpinalVerilog(new Filter(fc)))
-    letread.beginread
+//    val letread = new ReadSystem(SpinalVerilog(new Filter(fc)))
+//    letread.beginread
 //    val drawyed = new Plot_yEd(rtl.toplevel)
 //    drawyed.begindraw
 //    val letread = new ReadSystem(rtl.toplevel)

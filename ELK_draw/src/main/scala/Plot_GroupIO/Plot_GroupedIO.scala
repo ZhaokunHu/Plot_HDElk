@@ -6,7 +6,7 @@ import spinal.core.Component
 import java.io.{File, FileWriter}
 import scala.collection.mutable
 import scala.collection.mutable.Set
-
+import scala.util.control._
 class Edge {
   var source, target,label = ""
   var isBus,highlight = 0
@@ -72,7 +72,8 @@ class PlotGroupedIO(module:Component,toplevelName:String,moduleName:String) {
 
     val allInOuts = moduleAnalyze.getInputs ++ moduleAnalyze.getOutputs
     val allRegisters = moduleAnalyze.getRegisters
-    val systemRegisters = moduleAnalyze.getNets(net => net.getComponent().getName() == module.getName ()&& !allInOuts.contains(net) && !allRegisters.contains(net))
+    println(allRegisters)
+    val systemRegisters = moduleAnalyze.getNets(net => net.getComponent().getName() == module.getName()&& !allInOuts.contains(net) && !allRegisters.contains(net))
     //区分系统寄存器
 
 
@@ -92,6 +93,7 @@ class PlotGroupedIO(module:Component,toplevelName:String,moduleName:String) {
 
 
     val allNets = allRegisters ++ moduleAnalyze.getPins(_ => true) ++ systemRegisters
+
     for (net <- allNets) {
       var sourceName = ""
       var inIsBus = 0
@@ -137,7 +139,30 @@ class PlotGroupedIO(module:Component,toplevelName:String,moduleName:String) {
 
       val dataAnalyze = new DataAnalyzer(net)
       val fanOuts = dataAnalyze.getFanOut
-      if(sourceName=="myArea_myReg")  println(fanOuts)
+//      println(net+":  "+net.parent+":"+allGroupedIO.contains(net.parent))
+//      if(sourceName=="myArea_myReg")  println(fanOuts)
+      val loop = new Breaks
+      loop.breakable{
+        for (fanOut <- fanOuts) {
+          if (net.getComponent().getName() == module.getName() && fanOut.getComponent().getName() == module.getName() && net.isInput && fanOut.isOutput) {
+            val newNode = new Node
+            val newEdge = new Edge
+            for (inOutPort <- toplevelIO) {
+              if (inOutPort.flatten.contains(net)){
+                newNode.labelname=inOutPort.getName()
+                if(inOutPort.flatten.size>1)  newEdge.isBus=1
+              }
+            }
+            topNode.children.add(newNode)
+            newEdge.source = sourceName
+            newEdge.target = newNode.labelname
+            edges.add(newEdge)
+            sourceName = newNode.labelname
+            loop.break()
+          }
+        }
+      }
+//处理输入直连到输出的连接
       for (fanOut <- fanOuts) {
 
         val newEdge = new Edge

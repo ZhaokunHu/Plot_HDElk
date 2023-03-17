@@ -30,8 +30,8 @@ object Top2 {
     val rtl=SpinalVerilog(new Adder(3))
     val plot=new Plot_All(SpinalVerilog(new Adder(3)))
     plot.plot_All
-    val letread = new ReadSystem(SpinalVerilog(new Adder(3)))
-    letread.beginread
+//    val letread = new ReadSystem(SpinalVerilog(new Adder(3)))
+//    letread.beginread
 //    val test=new Deal_Wires
 //    test(rtl.toplevel) /
 //    val letread = new ReadSystem(rtl.toplevel)

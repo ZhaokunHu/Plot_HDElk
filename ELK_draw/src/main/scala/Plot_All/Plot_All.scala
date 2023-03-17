@@ -1,7 +1,7 @@
 package Plot_All
 
 import NewPlot.Plot_ELK
-import Plot_GroupIO.PlotGroupedIO
+import Plot_GroupIO.newGroupedIO
 import Simple_ELK.Plot_Simple_ELK
 import analyzer.ModuleAnalyzer
 import spinal.core.{Component, SpinalReport}
@@ -25,9 +25,12 @@ class Plot_All(rtl: SpinalReport[Component]) {
       pw.close()
       new Plot_Simple_ELK(rtl).begindraw
       new Plot_ELK(rtl).begindraw
-      new PlotGroupedIO(module,rtl.toplevelName,rtl.toplevelName).begindraw
+//      new PlotGroupedIO(module,rtl.toplevelName,rtl.toplevelName).begindraw
+//      for(inner<-module.children)
+//        new PlotGroupedIO(inner,rtl.toplevelName,inner.getName()).begindraw
+      new newGroupedIO(module, rtl.toplevelName, rtl.toplevelName).begindraw
       for(inner<-module.children)
-        new PlotGroupedIO(inner,rtl.toplevelName,inner.getName()).begindraw
+        new newGroupedIO(inner,rtl.toplevelName,inner.getName()).begindraw
 //      new Plot_Inner_Module(rtl).begindraww
       val pa = new FileWriter(file, true)
       pa.write("</html>")

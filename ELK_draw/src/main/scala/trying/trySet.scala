@@ -26,5 +26,6 @@ object trySet{
     map3.put("city", "hangzhou")
     map3.put("city", "hangzho")
     println(map3.size)
+    println(map3.contains(null))
   }
 }

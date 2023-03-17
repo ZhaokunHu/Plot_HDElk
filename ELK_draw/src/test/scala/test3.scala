@@ -1,4 +1,3 @@
-import Old_plot.ReadSystem
 import Plot_All.Plot_All
 import spinal.core._
 import spinal.lib._
@@ -60,7 +59,7 @@ object Top3{
 //     drawELKBUS.begindraw
 val drawELK = new Plot_All(SpinalVerilog(new Top3))
     drawELK.plot_All
-    val letread = new ReadSystem(SpinalVerilog(new Top3))
-    letread.beginread
+//    val letread = new ReadSystem(SpinalVerilog(new Top3))
+//    letread.beginread
   }
 }
