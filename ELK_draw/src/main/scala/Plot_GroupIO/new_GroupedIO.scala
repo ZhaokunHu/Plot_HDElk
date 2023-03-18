@@ -311,11 +311,20 @@ class newGroupedIO(module:Component,toplevelName:String,moduleName:String) {
       pw.write("]\n")
     }
 
+    def drawKeys={
+      pw.write("{id:\"ClockKeys\",\nchildren:[\n")
+      for(element<-clkMap){
+        pw.write("{id:\""+element._1+"\",highlight:"+element._2+"},\n")
+      }
+      pw.write("]\n}\n")
+    }
     def begindraw = {
 
       pw.write("<div id=\"" + topNode.labelname + "\"></div>\n<h3>" + topNode.labelname + "</h3><br><br>\n<script type=\"text/javascript\">\n\nvar mygraph = {\nchildren:[\n")
       DealAllSignal
       drawNodes(topNode)
+      if(clkMap.size>0)
+        drawKeys
       pw.write("],\n}\nhdelk.layout( mygraph, \"" + topNode.labelname + "\" );\n</script>")
       pw.close()
     }
