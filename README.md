@@ -1,9 +1,9 @@
 #Plot_Elk
 
-All the useful codes are stored in package Plot_Elk,and now this project is not finished yet.
+All the useful codes are stored in package Elk_draw,and now this project is not finished yet.
 to use this,you need:
 --SpinalHDL environment
---add the Plot_Elk function
+--add the codes in Elk_draw to your project
 when you finish a SpinalHDL coding,add the following code to main(_ represent Component)
 
      val drawELK = new Plot_All(SpinalVerilog(new _))
