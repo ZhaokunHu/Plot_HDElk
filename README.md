@@ -1,14 +1,13 @@
-#Plot_yEd
+#Plot_Elk
 
+All the useful codes are stored in package Plot_Elk,and now this project is not finished yet.
 to use this,you need:
 --SpinalHDL environment
---yEd Graph Editor
+--add the Plot_Elk function
+when you finish a SpinalHDL coding,add the following code to main(_ represent Component)
 
-when you finish a SpinalHDL coding,add the following code to main
-
-    val rtl = SpinalVerilog(new _)
-    val drawyed = new Plot_yEd(rtl.toplevel)
-    drawyed.begindraw
+     val drawELK = new Plot_All(SpinalVerilog(new _))
+     drawELK.plot_All
     
-these code will create a file names _.graphml,use yEd Graph Editor to open it
-don't forget to choose an auto layout way 
+these code will create a file names _.html,use browser to open it.
+
