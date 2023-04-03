@@ -1,6 +1,6 @@
-// Generator : SpinalHDL v1.8.0    git head : 4e3563a282582b41f4eaafc503787757251d23ea
+// Generator : SpinalHDL v1.8.0b    git head : 761a30e521263983ddf14de3592f7a9f38bf0589
 // Component : MemorySumming
-// Git hash  : 88613335ef5deb11dabc4cce72b85cc1a5a9b29f
+// Git hash  : f8f0ae76d9c5c6fb4e79db4156207e5eea57fab2
 
 `timescale 1ns/1ps
 
@@ -39,45 +39,45 @@ module MemorySumming (
     .io_rd_addr (sumArea_counter[7:0]), //i
     .io_rd_data (ram_io_rd_data[15:0])  //o
   );
-  assign when_test12_l64 = (! sumArea_active); // @[BaseType.scala 299:24]
-  assign when_test12_l69 = (sumArea_counter == 8'hff); // @[BaseType.scala 305:24]
+  assign when_test12_l64 = (! sumArea_active);
+  assign when_test12_l69 = (sumArea_counter == 8'hff);
   always @(*) begin
-    io_sum_done = 1'b0; // @[test12.scala 82:17]
+    io_sum_done = 1'b0;
     if(when_test12_l83) begin
-      io_sum_done = 1'b1; // @[test12.scala 84:19]
+      io_sum_done = 1'b1;
     end
   end
 
-  assign when_test12_l83 = ((! sumArea_readDataValid) && sumArea_readDataValid_regNext); // @[BaseType.scala 305:24]
-  assign io_sum_value = sumArea_sum; // @[test12.scala 88:16]
+  assign when_test12_l83 = ((! sumArea_readDataValid) && sumArea_readDataValid_regNext);
+  assign io_sum_value = sumArea_sum;
   always @(posedge io_sum_clk or posedge io_sum_reset) begin
     if(io_sum_reset) begin
-      sumArea_active <= 1'b0; // @[Data.scala 400:33]
-      sumArea_readDataValid <= 1'b0; // @[Data.scala 400:33]
-      sumArea_readDataValid_regNext <= 1'b0; // @[Data.scala 400:33]
+      sumArea_active <= 1'b0;
+      sumArea_readDataValid <= 1'b0;
+      sumArea_readDataValid_regNext <= 1'b0;
     end else begin
       if(when_test12_l64) begin
-        sumArea_active <= io_sum_start; // @[test12.scala 65:14]
+        sumArea_active <= io_sum_start;
       end else begin
         if(when_test12_l69) begin
-          sumArea_active <= 1'b0; // @[test12.scala 70:16]
+          sumArea_active <= 1'b0;
         end
       end
-      sumArea_readDataValid <= sumArea_active; // @[Reg.scala 39:30]
-      sumArea_readDataValid_regNext <= sumArea_readDataValid; // @[Reg.scala 39:30]
+      sumArea_readDataValid <= sumArea_active;
+      sumArea_readDataValid_regNext <= sumArea_readDataValid;
     end
   end
 
   always @(posedge io_sum_clk) begin
     if(when_test12_l64) begin
-      sumArea_counter <= 8'h0; // @[test12.scala 66:15]
+      sumArea_counter <= 8'h0;
     end else begin
-      sumArea_counter <= (sumArea_counter + 8'h01); // @[test12.scala 68:15]
+      sumArea_counter <= (sumArea_counter + 8'h01);
     end
     if(sumArea_readDataValid) begin
-      sumArea_sum <= (sumArea_sum + ram_io_rd_data); // @[test12.scala 77:11]
+      sumArea_sum <= (sumArea_sum + ram_io_rd_data);
     end else begin
-      sumArea_sum <= 16'h0; // @[test12.scala 79:11]
+      sumArea_sum <= 16'h0;
     end
   end
 

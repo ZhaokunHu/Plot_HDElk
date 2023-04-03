@@ -13,11 +13,11 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="sbt: com.github.oshi:oshi-core:5.2.0:jar" level="project" />
     <orderEntry type="library" name="sbt: com.github.scopt:scopt_2.11:3.7.1:jar" level="project" />
-    <orderEntry type="library" name="sbt: com.github.spinalhdl:spinalhdl-core_2.11:1.8.0:jar" level="project" />
-    <orderEntry type="library" name="sbt: com.github.spinalhdl:spinalhdl-idsl-payload_2.11:1.8.0:jar" level="project" />
-    <orderEntry type="library" name="sbt: com.github.spinalhdl:spinalhdl-idsl-plugin_2.11:1.8.0:jar" level="project" />
-    <orderEntry type="library" name="sbt: com.github.spinalhdl:spinalhdl-lib_2.11:1.8.0:jar" level="project" />
-    <orderEntry type="library" name="sbt: com.github.spinalhdl:spinalhdl-sim_2.11:1.8.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.github.spinalhdl:spinalhdl-core_2.11:1.8.0b:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.github.spinalhdl:spinalhdl-idsl-payload_2.11:1.8.0b:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.github.spinalhdl:spinalhdl-idsl-plugin_2.11:1.8.0b:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.github.spinalhdl:spinalhdl-lib_2.11:1.8.0b:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.github.spinalhdl:spinalhdl-sim_2.11:1.8.0b:jar" level="project" />
     <orderEntry type="library" name="sbt: com.lihaoyi:sourcecode_2.11:0.2.7:jar" level="project" />
     <orderEntry type="library" name="sbt: commons-io:commons-io:2.4:jar" level="project" />
     <orderEntry type="library" name="sbt: net.java.dev.jna:jna-platform:5.5.0:jar" level="project" />

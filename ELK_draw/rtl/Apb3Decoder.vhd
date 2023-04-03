@@ -1,6 +1,6 @@
--- Generator : SpinalHDL v1.8.0    git head : 4e3563a282582b41f4eaafc503787757251d23ea
+-- Generator : SpinalHDL v1.8.0b    git head : 761a30e521263983ddf14de3592f7a9f38bf0589
 -- Component : Apb3Decoder
--- Git hash  : 88613335ef5deb11dabc4cce72b85cc1a5a9b29f
+-- Git hash  : f8f0ae76d9c5c6fb4e79db4156207e5eea57fab2
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -486,35 +486,35 @@ begin
     end case;
   end process;
 
-  io_outputs_0_PADDR <= io_input_PADDR; --@[test11.scala 23:20]
-  io_outputs_0_PENABLE <= io_input_PENABLE; --@[test11.scala 24:20]
-  io_outputs_0_PWRITE <= io_input_PWRITE; --@[test11.scala 25:20]
-  io_outputs_0_PWDATA <= io_input_PWDATA; --@[test11.scala 26:20]
-  io_outputs_1_PADDR <= io_input_PADDR; --@[test11.scala 23:20]
-  io_outputs_1_PENABLE <= io_input_PENABLE; --@[test11.scala 24:20]
-  io_outputs_1_PWRITE <= io_input_PWRITE; --@[test11.scala 25:20]
-  io_outputs_1_PWDATA <= io_input_PWDATA; --@[test11.scala 26:20]
-  io_outputs_2_PADDR <= io_input_PADDR; --@[test11.scala 23:20]
-  io_outputs_2_PENABLE <= io_input_PENABLE; --@[test11.scala 24:20]
-  io_outputs_2_PWRITE <= io_input_PWRITE; --@[test11.scala 25:20]
-  io_outputs_2_PWDATA <= io_input_PWDATA; --@[test11.scala 26:20]
-  io_outputs_3_PADDR <= io_input_PADDR; --@[test11.scala 23:20]
-  io_outputs_3_PENABLE <= io_input_PENABLE; --@[test11.scala 24:20]
-  io_outputs_3_PWRITE <= io_input_PWRITE; --@[test11.scala 25:20]
-  io_outputs_3_PWDATA <= io_input_PWDATA; --@[test11.scala 26:20]
-  mappingHits_0 <= (pkg_toStdLogic(pkg_unsigned("0000000000000000") <= io_input_PADDR) and pkg_toStdLogic(io_input_PADDR < pkg_unsigned("0001000000000000"))); --@[BaseType.scala 305:24]
-  mappingHits_1 <= (pkg_toStdLogic(pkg_unsigned("0001000000000000") <= io_input_PADDR) and pkg_toStdLogic(io_input_PADDR < pkg_unsigned("0010000000000000"))); --@[BaseType.scala 305:24]
-  mappingHits_2 <= (pkg_toStdLogic(pkg_unsigned("0100000000000000") <= io_input_PADDR) and pkg_toStdLogic(io_input_PADDR < pkg_unsigned("0110000000000000"))); --@[BaseType.scala 305:24]
-  mappingHits_3 <= (pkg_toStdLogic(pkg_unsigned("0110000000000000") <= io_input_PADDR) and pkg_toStdLogic(io_input_PADDR < pkg_unsigned("1001000000000000"))); --@[BaseType.scala 305:24]
-  zz_mappingHitsIndex <= (mappingHits_1 or mappingHits_3); --@[BaseType.scala 305:24]
-  zz_mappingHitsIndex_1 <= (mappingHits_2 or mappingHits_3); --@[BaseType.scala 305:24]
-  mappingHitsIndex <= unsigned(pkg_cat(pkg_toStdLogicVector(zz_mappingHitsIndex_1),pkg_toStdLogicVector(zz_mappingHitsIndex))); --@[BaseType.scala 318:22]
-  io_outputs_0_PSEL(0) <= (mappingHits_0 and pkg_extract(io_input_PSEL,0)); --@[test11.scala 34:28]
-  io_outputs_1_PSEL(0) <= (mappingHits_1 and pkg_extract(io_input_PSEL,0)); --@[test11.scala 34:28]
-  io_outputs_2_PSEL(0) <= (mappingHits_2 and pkg_extract(io_input_PSEL,0)); --@[test11.scala 34:28]
-  io_outputs_3_PSEL(0) <= (mappingHits_3 and pkg_extract(io_input_PSEL,0)); --@[test11.scala 34:28]
-  io_input_PREADY <= zz_io_input_PREADY; --@[test11.scala 37:19]
-  io_input_PRDATA <= zz_io_input_PRDATA; --@[test11.scala 38:19]
-  io_input_PSLVERROR <= zz_io_input_PSLVERROR; --@[test11.scala 39:50]
+  io_outputs_0_PADDR <= io_input_PADDR;
+  io_outputs_0_PENABLE <= io_input_PENABLE;
+  io_outputs_0_PWRITE <= io_input_PWRITE;
+  io_outputs_0_PWDATA <= io_input_PWDATA;
+  io_outputs_1_PADDR <= io_input_PADDR;
+  io_outputs_1_PENABLE <= io_input_PENABLE;
+  io_outputs_1_PWRITE <= io_input_PWRITE;
+  io_outputs_1_PWDATA <= io_input_PWDATA;
+  io_outputs_2_PADDR <= io_input_PADDR;
+  io_outputs_2_PENABLE <= io_input_PENABLE;
+  io_outputs_2_PWRITE <= io_input_PWRITE;
+  io_outputs_2_PWDATA <= io_input_PWDATA;
+  io_outputs_3_PADDR <= io_input_PADDR;
+  io_outputs_3_PENABLE <= io_input_PENABLE;
+  io_outputs_3_PWRITE <= io_input_PWRITE;
+  io_outputs_3_PWDATA <= io_input_PWDATA;
+  mappingHits_0 <= (pkg_toStdLogic(pkg_unsigned("0000000000000000") <= io_input_PADDR) and pkg_toStdLogic(io_input_PADDR < pkg_unsigned("0001000000000000")));
+  mappingHits_1 <= (pkg_toStdLogic(pkg_unsigned("0001000000000000") <= io_input_PADDR) and pkg_toStdLogic(io_input_PADDR < pkg_unsigned("0010000000000000")));
+  mappingHits_2 <= (pkg_toStdLogic(pkg_unsigned("0100000000000000") <= io_input_PADDR) and pkg_toStdLogic(io_input_PADDR < pkg_unsigned("0110000000000000")));
+  mappingHits_3 <= (pkg_toStdLogic(pkg_unsigned("0110000000000000") <= io_input_PADDR) and pkg_toStdLogic(io_input_PADDR < pkg_unsigned("1001000000000000")));
+  zz_mappingHitsIndex <= (mappingHits_1 or mappingHits_3);
+  zz_mappingHitsIndex_1 <= (mappingHits_2 or mappingHits_3);
+  mappingHitsIndex <= unsigned(pkg_cat(pkg_toStdLogicVector(zz_mappingHitsIndex_1),pkg_toStdLogicVector(zz_mappingHitsIndex)));
+  io_outputs_0_PSEL(0) <= (mappingHits_0 and pkg_extract(io_input_PSEL,0));
+  io_outputs_1_PSEL(0) <= (mappingHits_1 and pkg_extract(io_input_PSEL,0));
+  io_outputs_2_PSEL(0) <= (mappingHits_2 and pkg_extract(io_input_PSEL,0));
+  io_outputs_3_PSEL(0) <= (mappingHits_3 and pkg_extract(io_input_PSEL,0));
+  io_input_PREADY <= zz_io_input_PREADY;
+  io_input_PRDATA <= zz_io_input_PRDATA;
+  io_input_PSLVERROR <= zz_io_input_PSLVERROR;
 end arch;
 

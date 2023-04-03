@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ScalaSbtSettings">
+    <option name="customLauncherPath" value="C:\Users\Administrator\Desktop\spinal_environment\sbt\bin\sbt-launch.jar" />
+    <option name="customVMEnabled" value="true" />
+    <option name="customVMPath" value="C:\Users\Administrator\Desktop\spinal_environment\jdk17.05" />
     <option name="linkedExternalProjectsSettings">
       <SbtProjectSettings>
-        <option name="converterVersion" value="1" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="modules">
-          <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/project" />
-          </set>
-        </option>
-        <option name="sbtVersion" value="1.8.0" />
       </SbtProjectSettings>
     </option>
+    <option name="vmParameters" value="-Dsbt.boot.directory=path/.sbt/boot -Dsbt.global.base=path/.sbt -Dsbt.ivy.home=path/.ivy2 -Dsbt.coursier.home=path/coursier -Dsbt.override.build.repos=true" />
   </component>
 </project>

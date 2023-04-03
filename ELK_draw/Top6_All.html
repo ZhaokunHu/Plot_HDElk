@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>rtl连接图</title>
+</head>
+<script src="/js/elk.bundled.js"></script>
+<script src="/js/svg.min.js"></script>
+<script src="/js/hdelk.js"></script>
+
+<h4>选择你想看的图像</h4>
+<a href="#Top6"><button>Top6</button></a>&nbsp;
+<a href="#u_sub0"><button>u_sub0</button></a>&nbsp;
+<a href="#u_sub1"><button>u_sub1</button></a>&nbsp;
+<br><br><br><br><div id="Top6"></div>
+<h3>Top6</h3><br><br>
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"Top6",
+highlight:6,
+inPorts: ["io_a","adc_clk","adc_reset","clk","reset","cp_clk","cp_reset","ap_clk","ap_reset",],
+outPorts: ["io_b1","io_b2","io_b0",],
+children: [
+{id:"u_sub0",
+highlight:3,
+inPorts: ["cp_clk","cp_reset","io_ai",],
+outPorts: ["io_ao",],
+},
+{id:"u_sub1",
+highlight:1,
+inPorts: ["adc_clk","adc_reset","io_ai","ap_clk","ap_reset",],
+outPorts: ["io_a2","io_ao",],
+},
+{id:"tmp",
+highlight:2,
+},
+],
+edges:[
+{ source:"Top6.io_a", target:"u_sub1.io_ai",bus: 0, },
+{ source:"Top6.cp_clk", target:"u_sub0.cp_clk",bus: 1,label:"Bool",highlight:3 },
+{ source:"Top6.adc_reset", target:"u_sub1.adc_reset",bus: 1,label:"Bool", },
+{ source:"u_sub0.io_ao", target:"Top6.io_b0",bus: 0, },
+{ source:"Top6.adc_clk", target:"u_sub1.adc_clk",bus: 1,label:"Bool",highlight:5 },
+{ source:"u_sub1.io_ao", target:"Top6.io_b1",bus: 0, },
+{ source:"Top6.ap_reset", target:"u_sub1.ap_reset",bus: 1,label:"Bool", },
+{ source:"Top6.ap_clk", target:"u_sub1.ap_clk",bus: 1,label:"Bool",highlight:4 },
+{ source:"Top6.cp_reset", target:"u_sub0.cp_reset",bus: 1,label:"Bool", },
+{ source:"Top6.io_a", target:"u_sub0.io_ai",bus: 0, },
+{ source:"Top6.io_a", target:"tmp",bus: 0, },
+{ source:"u_sub1.io_a2", target:"Top6.io_b2",bus: 0, },
+]
+},
+{id:"ClockKeys",
+children:[
+{id:"clk",highlight:2},
+{id:"ap_clk",highlight:4},
+{id:"adc_clk",highlight:5},
+{id:"cp_clk",highlight:3},
+]
+}
+],
+}
+hdelk.layout( mygraph, "Top6" );
+</script><div id="u_sub0"></div>
+<h3>u_sub0</h3><br><br>
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"u_sub0",
+highlight:2,
+inPorts: ["cp_clk","cp_reset","io_ai",],
+outPorts: ["io_ao",],
+children: [
+{id:"io_ai_regNext",
+highlight:2,
+},
+],
+edges:[
+{ source:"io_ai_regNext", target:"u_sub0.io_ao",bus: 0, },
+{ source:"u_sub0.io_ai", target:"io_ai_regNext",bus: 0, },
+]
+},
+{id:"ClockKeys",
+children:[
+{id:"cp_clk",highlight:2},
+]
+}
+],
+}
+hdelk.layout( mygraph, "u_sub0" );
+</script><div id="u_sub1"></div>
+<h3>u_sub1</h3><br><br>
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"u_sub1",
+highlight:6,
+inPorts: ["adc_clk","adc_reset","io_ai","ap_clk","ap_reset",],
+outPorts: ["io_a2","io_ao",],
+children: [
+{id:"area",
+highlight:3,
+},
+{id:"io_ai_regNext",
+highlight:2,
+},
+{id:"io_ai_regNext_1",
+highlight:3,
+},
+],
+edges:[
+{ source:"area", target:"area",bus: 0, },
+{ source:"u_sub1.io_ai", target:"area",bus: 0, },
+{ source:"u_sub1.io_ai", target:"io_ai_regNext_1",bus: 0, },
+{ source:"u_sub1.io_ai", target:"io_ai_regNext",bus: 0, },
+{ source:"io_ai_regNext", target:"u_sub1.io_ao",bus: 0, },
+{ source:"io_ai_regNext_1", target:"area",bus: 0, },
+{ source:"area", target:"u_sub1.io_a2",bus: 0, },
+]
+},
+{id:"ClockKeys",
+children:[
+{id:"ap_clk",highlight:2},
+{id:"adc_clk",highlight:3},
+]
+}
+],
+}
+hdelk.layout( mygraph, "u_sub1" );
+</script></html>

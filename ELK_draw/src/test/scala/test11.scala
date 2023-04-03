@@ -1,3 +1,4 @@
+import Old_plot.ReadSystem
 import Plot_All.Plot_All
 import spinal.core._
 import spinal.lib._
@@ -54,7 +55,18 @@ object Top111 {
       )
     )))
     Plott.plot_All
-//    val letread = new ReadSystem(SpinalVerilog(Apb3Decoder(apbccc,mapp)))
-//    letread.beginread
+    val letread = new ReadSystem(SpinalConfig(targetDirectory = "rtl").generateVhdl(new Apb3Decoder(
+      apbConfig = Apb3Config(
+        addressWidth = 16,
+        dataWidth = 32
+      ),
+      outputsMapping = List(
+        Mapping(base = 0x0000, range = 0x1000),
+        Mapping(base = 0x1000, range = 0x1000),
+        Mapping(base = 0x4000, range = 0x2000),
+        Mapping(base = 0x6000, range = 0x3000)
+      )
+    )))
+    letread.beginread
   }
 }

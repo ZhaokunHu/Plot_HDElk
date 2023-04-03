@@ -1,3 +1,4 @@
+import Old_plot.ReadSystem
 import Plot_All.Plot_All
 import spinal.core._
 import spinal.lib._
@@ -150,7 +151,7 @@ case class UdpApp(helloMessage : String,helloPort : Int = 37984) extends Compone
 
 object TimerMain{
   def main(args: Array[String]) {
-
+    val letRead=new ReadSystem(SpinalConfig(targetDirectory = "rtl").generateVhdl(UdpApp("012345"))).beginread
     val Plott = new Plot_All(SpinalConfig(targetDirectory = "rtl").generateVhdl(UdpApp("012345")))
     Plott.plot_All
   }

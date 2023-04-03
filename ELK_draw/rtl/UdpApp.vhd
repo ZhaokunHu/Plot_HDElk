@@ -1,6 +1,6 @@
--- Generator : SpinalHDL v1.8.0    git head : 4e3563a282582b41f4eaafc503787757251d23ea
+-- Generator : SpinalHDL v1.8.0b    git head : 761a30e521263983ddf14de3592f7a9f38bf0589
 -- Component : UdpApp
--- Git hash  : 88613335ef5deb11dabc4cce72b85cc1a5a9b29f
+-- Git hash  : f8f0ae76d9c5c6fb4e79db4156207e5eea57fab2
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -535,7 +535,7 @@ architecture arch of UdpApp is
   signal zz_io_tx_data_payload_fragment : std_logic_vector(7 downto 0);
 
   signal flushRx_active : std_logic;
-  signal when_test13_l53 : std_logic;
+  signal when_statemachine3_l54 : std_logic;
   signal fsm_wantExit : std_logic;
   signal fsm_wantStart : std_logic;
   signal fsm_wantKill : std_logic;
@@ -553,7 +553,7 @@ architecture arch of UdpApp is
   signal when_StateMachine_l253 : std_logic;
   signal fsm_stateReg : fsm_enumDef;
   signal fsm_stateNext : fsm_enumDef;
-  signal when_test13_l65 : std_logic;
+  signal when_statemachine3_l66 : std_logic;
   signal when_State_l179 : std_logic;
   signal when_StateMachine_l253_1 : std_logic;
 begin
@@ -576,95 +576,95 @@ begin
     end case;
   end process;
 
-  process(flushRx_active,when_test13_l53)
+  process(flushRx_active,when_statemachine3_l54)
   begin
-    io_rx_cmd_ready <= pkg_toStdLogic(false); --@[test13.scala 32:19]
+    io_rx_cmd_ready <= pkg_toStdLogic(false);
     if flushRx_active = '1' then
-      if when_test13_l53 = '1' then
-        io_rx_cmd_ready <= pkg_toStdLogic(true); --@[test13.scala 54:25]
+      if when_statemachine3_l54 = '1' then
+        io_rx_cmd_ready <= pkg_toStdLogic(true);
       end if;
     end if;
   end process;
 
   process(flushRx_active)
   begin
-    io_rx_data_ready <= pkg_toStdLogic(false); --@[test13.scala 33:20]
+    io_rx_data_ready <= pkg_toStdLogic(false);
     if flushRx_active = '1' then
-      io_rx_data_ready <= pkg_toStdLogic(true); --@[test13.scala 52:24]
+      io_rx_data_ready <= pkg_toStdLogic(true);
     end if;
   end process;
 
   process(fsm_discoveringRspTx_fsms_0_stateReg)
   begin
-    io_tx_cmd_valid <= pkg_toStdLogic(false); --@[test13.scala 35:19]
+    io_tx_cmd_valid <= pkg_toStdLogic(false);
     case fsm_discoveringRspTx_fsms_0_stateReg is
       when pkg_enum.sendCmd =>
-        io_tx_cmd_valid <= pkg_toStdLogic(true); --@[test13.scala 111:25]
+        io_tx_cmd_valid <= pkg_toStdLogic(true);
       when others =>
     end case;
   end process;
 
-  io_tx_cmd_payload_ip <= io_rx_cmd_payload_ip; --@[test13.scala 36:16]
-  io_tx_cmd_payload_srcPort <= io_rx_cmd_payload_dstPort; --@[test13.scala 37:21]
-  io_tx_cmd_payload_dstPort <= io_rx_cmd_payload_srcPort; --@[test13.scala 38:21]
-  io_tx_cmd_payload_length <= pkg_unsigned("0000000000000111"); --@[test13.scala 39:21]
+  io_tx_cmd_payload_ip <= io_rx_cmd_payload_ip;
+  io_tx_cmd_payload_srcPort <= io_rx_cmd_payload_dstPort;
+  io_tx_cmd_payload_dstPort <= io_rx_cmd_payload_srcPort;
+  io_tx_cmd_payload_length <= pkg_unsigned("0000000000000111");
   process(fsm_discoveringRspTx_fsms_1_stateReg)
   begin
-    io_tx_data_valid <= pkg_toStdLogic(false); --@[test13.scala 41:23]
+    io_tx_data_valid <= pkg_toStdLogic(false);
     case fsm_discoveringRspTx_fsms_1_stateReg is
       when pkg_enum.sendHeader =>
-        io_tx_data_valid <= pkg_toStdLogic(true); --@[test13.scala 123:28]
+        io_tx_data_valid <= pkg_toStdLogic(true);
       when pkg_enum.sendMessage =>
-        io_tx_data_valid <= pkg_toStdLogic(true); --@[test13.scala 136:29]
+        io_tx_data_valid <= pkg_toStdLogic(true);
       when others =>
     end case;
   end process;
 
   process(fsm_discoveringRspTx_fsms_1_stateReg,fsm_discoveringRspTx_fsms_1_sendMessage_counter)
   begin
-    io_tx_data_payload_last_read_buffer <= pkg_toStdLogic(false); --@[test13.scala 42:19]
+    io_tx_data_payload_last_read_buffer <= pkg_toStdLogic(false);
     case fsm_discoveringRspTx_fsms_1_stateReg is
       when pkg_enum.sendHeader =>
       when pkg_enum.sendMessage =>
-        io_tx_data_payload_last_read_buffer <= pkg_toStdLogic(fsm_discoveringRspTx_fsms_1_sendMessage_counter = pkg_unsigned("101")); --@[test13.scala 138:25]
+        io_tx_data_payload_last_read_buffer <= pkg_toStdLogic(fsm_discoveringRspTx_fsms_1_sendMessage_counter = pkg_unsigned("101"));
       when others =>
     end case;
   end process;
 
   process(fsm_discoveringRspTx_fsms_1_stateReg,zz_io_tx_data_payload_fragment)
   begin
-    io_tx_data_payload_fragment <= pkg_stdLogicVector("00000000"); --@[test13.scala 43:23]
+    io_tx_data_payload_fragment <= pkg_stdLogicVector("00000000");
     case fsm_discoveringRspTx_fsms_1_stateReg is
       when pkg_enum.sendHeader =>
-        io_tx_data_payload_fragment <= pkg_stdLogicVector("00100010"); --@[test13.scala 124:29]
+        io_tx_data_payload_fragment <= pkg_stdLogicVector("00100010");
       when pkg_enum.sendMessage =>
-        io_tx_data_payload_fragment <= zz_io_tx_data_payload_fragment; --@[test13.scala 137:29]
+        io_tx_data_payload_fragment <= zz_io_tx_data_payload_fragment;
       when others =>
     end case;
   end process;
 
-  when_test13_l53 <= (io_rx_data_valid and io_rx_data_payload_last); --@[BaseType.scala 305:24]
-  fsm_wantExit <= pkg_toStdLogic(false); --@[StateMachine.scala 151:28]
+  when_statemachine3_l54 <= (io_rx_data_valid and io_rx_data_payload_last);
+  fsm_wantExit <= pkg_toStdLogic(false);
   process(fsm_stateReg)
   begin
-    fsm_wantStart <= pkg_toStdLogic(false); --@[StateMachine.scala 152:19]
+    fsm_wantStart <= pkg_toStdLogic(false);
     case fsm_stateReg is
       when pkg_enum.idle =>
       when pkg_enum.helloHeader =>
       when pkg_enum.discoveringRspTx =>
       when others =>
-        fsm_wantStart <= pkg_toStdLogic(true); --@[StateMachine.scala 362:15]
+        fsm_wantStart <= pkg_toStdLogic(true);
     end case;
   end process;
 
-  fsm_wantKill <= pkg_toStdLogic(false); --@[StateMachine.scala 153:18]
+  fsm_wantKill <= pkg_toStdLogic(false);
   process(fsm_discoveringRspTx_fsms_0_stateReg,io_tx_cmd_ready)
   begin
-    fsm_discoveringRspTx_fsms_0_wantExit <= pkg_toStdLogic(false); --@[StateMachine.scala 151:28]
+    fsm_discoveringRspTx_fsms_0_wantExit <= pkg_toStdLogic(false);
     case fsm_discoveringRspTx_fsms_0_stateReg is
       when pkg_enum.sendCmd =>
         if io_tx_cmd_ready = '1' then
-          fsm_discoveringRspTx_fsms_0_wantExit <= pkg_toStdLogic(true); --@[StateMachine.scala 366:14]
+          fsm_discoveringRspTx_fsms_0_wantExit <= pkg_toStdLogic(true);
         end if;
       when others =>
     end case;
@@ -672,22 +672,22 @@ begin
 
   process(when_StateMachine_l253_1)
   begin
-    fsm_discoveringRspTx_fsms_0_wantStart <= pkg_toStdLogic(false); --@[StateMachine.scala 152:19]
+    fsm_discoveringRspTx_fsms_0_wantStart <= pkg_toStdLogic(false);
     if when_StateMachine_l253_1 = '1' then
-      fsm_discoveringRspTx_fsms_0_wantStart <= pkg_toStdLogic(true); --@[StateMachine.scala 362:15]
+      fsm_discoveringRspTx_fsms_0_wantStart <= pkg_toStdLogic(true);
     end if;
   end process;
 
-  fsm_discoveringRspTx_fsms_0_wantKill <= pkg_toStdLogic(false); --@[StateMachine.scala 153:18]
+  fsm_discoveringRspTx_fsms_0_wantKill <= pkg_toStdLogic(false);
   process(fsm_discoveringRspTx_fsms_1_stateReg,io_tx_data_ready,io_tx_data_payload_last_read_buffer)
   begin
-    fsm_discoveringRspTx_fsms_1_wantExit <= pkg_toStdLogic(false); --@[StateMachine.scala 151:28]
+    fsm_discoveringRspTx_fsms_1_wantExit <= pkg_toStdLogic(false);
     case fsm_discoveringRspTx_fsms_1_stateReg is
       when pkg_enum.sendHeader =>
       when pkg_enum.sendMessage =>
         if io_tx_data_ready = '1' then
           if io_tx_data_payload_last_read_buffer = '1' then
-            fsm_discoveringRspTx_fsms_1_wantExit <= pkg_toStdLogic(true); --@[StateMachine.scala 366:14]
+            fsm_discoveringRspTx_fsms_1_wantExit <= pkg_toStdLogic(true);
           end if;
         end if;
       when others =>
@@ -696,65 +696,65 @@ begin
 
   process(when_StateMachine_l253_1)
   begin
-    fsm_discoveringRspTx_fsms_1_wantStart <= pkg_toStdLogic(false); --@[StateMachine.scala 152:19]
+    fsm_discoveringRspTx_fsms_1_wantStart <= pkg_toStdLogic(false);
     if when_StateMachine_l253_1 = '1' then
-      fsm_discoveringRspTx_fsms_1_wantStart <= pkg_toStdLogic(true); --@[StateMachine.scala 362:15]
+      fsm_discoveringRspTx_fsms_1_wantStart <= pkg_toStdLogic(true);
     end if;
   end process;
 
-  fsm_discoveringRspTx_fsms_1_wantKill <= pkg_toStdLogic(false); --@[StateMachine.scala 153:18]
+  fsm_discoveringRspTx_fsms_1_wantKill <= pkg_toStdLogic(false);
   process(fsm_discoveringRspTx_fsms_0_stateReg,io_tx_cmd_ready,fsm_discoveringRspTx_fsms_0_wantStart,fsm_discoveringRspTx_fsms_0_wantKill)
   begin
-    fsm_discoveringRspTx_fsms_0_stateNext <= fsm_discoveringRspTx_fsms_0_stateReg; --@[StateMachine.scala 217:17]
+    fsm_discoveringRspTx_fsms_0_stateNext <= fsm_discoveringRspTx_fsms_0_stateReg;
     case fsm_discoveringRspTx_fsms_0_stateReg is
       when pkg_enum.sendCmd =>
         if io_tx_cmd_ready = '1' then
-          fsm_discoveringRspTx_fsms_0_stateNext <= pkg_enum.BOOT; --@[Enum.scala 148:67]
+          fsm_discoveringRspTx_fsms_0_stateNext <= pkg_enum.BOOT;
         end if;
       when others =>
     end case;
     if fsm_discoveringRspTx_fsms_0_wantStart = '1' then
-      fsm_discoveringRspTx_fsms_0_stateNext <= pkg_enum.sendCmd; --@[Enum.scala 148:67]
+      fsm_discoveringRspTx_fsms_0_stateNext <= pkg_enum.sendCmd;
     end if;
     if fsm_discoveringRspTx_fsms_0_wantKill = '1' then
-      fsm_discoveringRspTx_fsms_0_stateNext <= pkg_enum.BOOT; --@[Enum.scala 148:67]
+      fsm_discoveringRspTx_fsms_0_stateNext <= pkg_enum.BOOT;
     end if;
   end process;
 
   process(fsm_discoveringRspTx_fsms_1_stateReg,io_tx_data_ready,io_tx_data_payload_last_read_buffer,fsm_discoveringRspTx_fsms_1_wantStart,fsm_discoveringRspTx_fsms_1_wantKill)
   begin
-    fsm_discoveringRspTx_fsms_1_stateNext <= fsm_discoveringRspTx_fsms_1_stateReg; --@[StateMachine.scala 217:17]
+    fsm_discoveringRspTx_fsms_1_stateNext <= fsm_discoveringRspTx_fsms_1_stateReg;
     case fsm_discoveringRspTx_fsms_1_stateReg is
       when pkg_enum.sendHeader =>
         if io_tx_data_ready = '1' then
-          fsm_discoveringRspTx_fsms_1_stateNext <= pkg_enum.sendMessage; --@[Enum.scala 148:67]
+          fsm_discoveringRspTx_fsms_1_stateNext <= pkg_enum.sendMessage;
         end if;
       when pkg_enum.sendMessage =>
         if io_tx_data_ready = '1' then
           if io_tx_data_payload_last_read_buffer = '1' then
-            fsm_discoveringRspTx_fsms_1_stateNext <= pkg_enum.BOOT; --@[Enum.scala 148:67]
+            fsm_discoveringRspTx_fsms_1_stateNext <= pkg_enum.BOOT;
           end if;
         end if;
       when others =>
     end case;
     if fsm_discoveringRspTx_fsms_1_wantStart = '1' then
-      fsm_discoveringRspTx_fsms_1_stateNext <= pkg_enum.sendHeader; --@[Enum.scala 148:67]
+      fsm_discoveringRspTx_fsms_1_stateNext <= pkg_enum.sendHeader;
     end if;
     if fsm_discoveringRspTx_fsms_1_wantKill = '1' then
-      fsm_discoveringRspTx_fsms_1_stateNext <= pkg_enum.BOOT; --@[Enum.scala 148:67]
+      fsm_discoveringRspTx_fsms_1_stateNext <= pkg_enum.BOOT;
     end if;
   end process;
 
-  when_StateMachine_l253 <= ((not pkg_toStdLogic(fsm_discoveringRspTx_fsms_1_stateReg = pkg_enum.sendMessage)) and pkg_toStdLogic(fsm_discoveringRspTx_fsms_1_stateNext = pkg_enum.sendMessage)); --@[BaseType.scala 305:24]
-  process(fsm_stateReg,when_test13_l65,io_rx_cmd_payload_dstPort,io_rx_data_valid,io_rx_data_payload_fragment,when_State_l179,fsm_wantStart,fsm_wantKill)
+  when_StateMachine_l253 <= ((not pkg_toStdLogic(fsm_discoveringRspTx_fsms_1_stateReg = pkg_enum.sendMessage)) and pkg_toStdLogic(fsm_discoveringRspTx_fsms_1_stateNext = pkg_enum.sendMessage));
+  process(fsm_stateReg,when_statemachine3_l66,io_rx_cmd_payload_dstPort,io_rx_data_valid,io_rx_data_payload_fragment,when_State_l179,fsm_wantStart,fsm_wantKill)
   begin
-    fsm_stateNext <= fsm_stateReg; --@[StateMachine.scala 217:17]
+    fsm_stateNext <= fsm_stateReg;
     case fsm_stateReg is
       when pkg_enum.idle =>
-        if when_test13_l65 = '1' then
+        if when_statemachine3_l66 = '1' then
           case io_rx_cmd_payload_dstPort is
             when "1001010001100000" =>
-              fsm_stateNext <= pkg_enum.helloHeader; --@[Enum.scala 148:67]
+              fsm_stateNext <= pkg_enum.helloHeader;
             when others =>
           end case;
         end if;
@@ -762,51 +762,51 @@ begin
         if io_rx_data_valid = '1' then
           case io_rx_data_payload_fragment is
             when "00010001" =>
-              fsm_stateNext <= pkg_enum.discoveringRspTx; --@[Enum.scala 148:67]
+              fsm_stateNext <= pkg_enum.discoveringRspTx;
             when others =>
-              fsm_stateNext <= pkg_enum.idle; --@[Enum.scala 148:67]
+              fsm_stateNext <= pkg_enum.idle;
           end case;
         end if;
       when pkg_enum.discoveringRspTx =>
         if when_State_l179 = '1' then
-          fsm_stateNext <= pkg_enum.idle; --@[Enum.scala 148:67]
+          fsm_stateNext <= pkg_enum.idle;
         end if;
       when others =>
     end case;
     if fsm_wantStart = '1' then
-      fsm_stateNext <= pkg_enum.idle; --@[Enum.scala 148:67]
+      fsm_stateNext <= pkg_enum.idle;
     end if;
     if fsm_wantKill = '1' then
-      fsm_stateNext <= pkg_enum.BOOT; --@[Enum.scala 148:67]
+      fsm_stateNext <= pkg_enum.BOOT;
     end if;
   end process;
 
-  when_test13_l65 <= (io_rx_cmd_valid and (not flushRx_active)); --@[BaseType.scala 305:24]
-  when_State_l179 <= ((pkg_toStdLogic(fsm_discoveringRspTx_fsms_0_stateReg = pkg_enum.BOOT) or fsm_discoveringRspTx_fsms_0_wantExit) and (pkg_toStdLogic(fsm_discoveringRspTx_fsms_1_stateReg = pkg_enum.BOOT) or fsm_discoveringRspTx_fsms_1_wantExit)); --@[BaseType.scala 305:24]
-  when_StateMachine_l253_1 <= ((not pkg_toStdLogic(fsm_stateReg = pkg_enum.discoveringRspTx)) and pkg_toStdLogic(fsm_stateNext = pkg_enum.discoveringRspTx)); --@[BaseType.scala 305:24]
+  when_statemachine3_l66 <= (io_rx_cmd_valid and (not flushRx_active));
+  when_State_l179 <= ((pkg_toStdLogic(fsm_discoveringRspTx_fsms_0_stateReg = pkg_enum.BOOT) or fsm_discoveringRspTx_fsms_0_wantExit) and (pkg_toStdLogic(fsm_discoveringRspTx_fsms_1_stateReg = pkg_enum.BOOT) or fsm_discoveringRspTx_fsms_1_wantExit));
+  when_StateMachine_l253_1 <= ((not pkg_toStdLogic(fsm_stateReg = pkg_enum.discoveringRspTx)) and pkg_toStdLogic(fsm_stateNext = pkg_enum.discoveringRspTx));
   process(clk, reset)
   begin
     if reset = '1' then
-      flushRx_active <= pkg_toStdLogic(false); --@[Data.scala 400:33]
-      fsm_discoveringRspTx_fsms_0_stateReg <= pkg_enum.BOOT; --@[Data.scala 400:33]
-      fsm_discoveringRspTx_fsms_1_stateReg <= pkg_enum.BOOT; --@[Data.scala 400:33]
-      fsm_stateReg <= pkg_enum.BOOT; --@[Data.scala 400:33]
+      flushRx_active <= pkg_toStdLogic(false);
+      fsm_discoveringRspTx_fsms_0_stateReg <= pkg_enum.BOOT;
+      fsm_discoveringRspTx_fsms_1_stateReg <= pkg_enum.BOOT;
+      fsm_stateReg <= pkg_enum.BOOT;
     elsif rising_edge(clk) then
       if flushRx_active = '1' then
-        if when_test13_l53 = '1' then
-          flushRx_active <= pkg_toStdLogic(false); --@[test13.scala 55:16]
+        if when_statemachine3_l54 = '1' then
+          flushRx_active <= pkg_toStdLogic(false);
         end if;
       end if;
-      fsm_discoveringRspTx_fsms_0_stateReg <= fsm_discoveringRspTx_fsms_0_stateNext; --@[StateMachine.scala 212:14]
-      fsm_discoveringRspTx_fsms_1_stateReg <= fsm_discoveringRspTx_fsms_1_stateNext; --@[StateMachine.scala 212:14]
-      fsm_stateReg <= fsm_stateNext; --@[StateMachine.scala 212:14]
+      fsm_discoveringRspTx_fsms_0_stateReg <= fsm_discoveringRspTx_fsms_0_stateNext;
+      fsm_discoveringRspTx_fsms_1_stateReg <= fsm_discoveringRspTx_fsms_1_stateNext;
+      fsm_stateReg <= fsm_stateNext;
       case fsm_stateReg is
         when pkg_enum.idle =>
-          if when_test13_l65 = '1' then
+          if when_statemachine3_l66 = '1' then
             case io_rx_cmd_payload_dstPort is
               when "1001010001100000" =>
               when others =>
-                flushRx_active <= pkg_toStdLogic(true); --@[test13.scala 47:14]
+                flushRx_active <= pkg_toStdLogic(true);
             end case;
           end if;
         when pkg_enum.helloHeader =>
@@ -814,12 +814,12 @@ begin
             case io_rx_data_payload_fragment is
               when "00010001" =>
               when others =>
-                flushRx_active <= pkg_toStdLogic(true); --@[test13.scala 47:14]
+                flushRx_active <= pkg_toStdLogic(true);
             end case;
           end if;
         when pkg_enum.discoveringRspTx =>
           if when_State_l179 = '1' then
-            flushRx_active <= pkg_toStdLogic(true); --@[test13.scala 47:14]
+            flushRx_active <= pkg_toStdLogic(true);
           end if;
         when others =>
       end case;
@@ -833,12 +833,12 @@ begin
         when pkg_enum.sendHeader =>
         when pkg_enum.sendMessage =>
           if io_tx_data_ready = '1' then
-            fsm_discoveringRspTx_fsms_1_sendMessage_counter <= (fsm_discoveringRspTx_fsms_1_sendMessage_counter + pkg_unsigned("001")); --@[test13.scala 140:19]
+            fsm_discoveringRspTx_fsms_1_sendMessage_counter <= (fsm_discoveringRspTx_fsms_1_sendMessage_counter + pkg_unsigned("001"));
           end if;
         when others =>
       end case;
       if when_StateMachine_l253 = '1' then
-        fsm_discoveringRspTx_fsms_1_sendMessage_counter <= pkg_unsigned("000"); --@[test13.scala 133:17]
+        fsm_discoveringRspTx_fsms_1_sendMessage_counter <= pkg_unsigned("000");
       end if;
     end if;
   end process;

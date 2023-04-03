@@ -1,0 +1,108 @@
+digraph root {
+  node [fontsize=8 margin=".1,.01" width=.5 height=.5 shape=box]
+  edge [fontsize=8]
+  rankdir=LR;
+  ranksep=.25;
+  nodesep=.5;
+
+{ subgraph cluster_1450500594 {
+  label = "toplevel"
+  style = solid
+  { rank=source; sig_d6cb0 [style="filled" fillcolor="#b5fed9" shape="rectangle"] }
+  { rank=sink; sig_2b60749e [style="filled" fillcolor="#e2cbc1" shape="rectangle"] }
+  { rank=sink; sig_53f2e5a0 [style="filled" fillcolor="#e2cbc1" shape="rectangle"] }
+  { rank=sink; sig_6c128f31 [style="filled" fillcolor="#e2cbc1" shape="rectangle"] }
+  { rank=source; sig_6bb4dd34 [style="filled" fillcolor="#b5fed9" shape="rectangle"] }
+  { rank=source; sig_3214ee6 [style="filled" fillcolor="#b5fed9" shape="rectangle"] }
+  { rank=source; sig_4a07d605 [style="filled" fillcolor="#b5fed9" shape="rectangle"] }
+  { rank=source; sig_2f01783a [style="filled" fillcolor="#b5fed9" shape="rectangle"] }
+  { rank=source; sig_a8ef162 [style="filled" fillcolor="#b5fed9" shape="rectangle"] }
+  { rank=source; sig_7fd7a283 [style="filled" fillcolor="#b5fed9" shape="rectangle"] }
+  { rank=source; sig_16612a51 [style="filled" fillcolor="#b5fed9" shape="rectangle"] }
+  { rank=source; sig_79defdc [style="filled" fillcolor="#b5fed9" shape="rectangle"] }
+  { sig_d6cb0 [label="io_a" style=""] }
+  { sig_2b60749e [label="io_b0" style=""] }
+  { sig_53f2e5a0 [label="io_b1" style=""] }
+  { sig_6c128f31 [label="io_b2" style=""] }
+  { sig_4a2e67e4 [label="tmp" style="bold"] }
+  { sig_6bb4dd34 [label="clk" style=""] }
+   sig_3ba9ad43 -> sig_6bb4dd34 []
+  { sig_3214ee6 [label="reset" style=""] }
+   sig_49d904ec -> sig_3214ee6 []
+  { sig_4a07d605 [label="cp_clk" style=""] }
+   sig_1e93647a -> sig_4a07d605 []
+  { sig_2f01783a [label="cp_reset" style=""] }
+   sig_5a884ded -> sig_2f01783a []
+  { sig_a8ef162 [label="ap_clk" style=""] }
+   sig_221b2a8a -> sig_a8ef162 []
+  { sig_7fd7a283 [label="ap_reset" style=""] }
+   sig_6d3e0eac -> sig_7fd7a283 []
+  { sig_16612a51 [label="adc_clk" style=""] }
+   sig_266de12f -> sig_16612a51 []
+  { sig_79defdc [label="adc_reset" style=""] }
+   sig_6b64a33e -> sig_79defdc []
+   sig_d6cb0 -> sig_4a2e67e4 []
+   sig_7e56725e -> sig_53f2e5a0 []
+   sig_79defdc -> sig_4e0ae11f []
+   sig_1ecc2bb8 -> sig_6c128f31 []
+   sig_7fd7a283 -> sig_78fa769e []
+   sig_4a07d605 -> sig_7d7758be []
+   sig_16612a51 -> sig_2c78324b []
+   sig_60faede8 -> sig_2b60749e []
+   sig_2f01783a -> sig_41488b16 []
+   sig_d6cb0 -> sig_5c2ed1c2 []
+   sig_a8ef162 -> sig_7ac296f6 []
+   sig_d6cb0 -> sig_116b549 []
+{ subgraph cluster_1429837992 {
+  label = "u_sub0"
+  style = solid
+  { rank=source; sig_5c2ed1c2 [style="filled" fillcolor="#b5fed9" shape="rectangle"] }
+  { rank=sink; sig_60faede8 [style="filled" fillcolor="#e2cbc1" shape="rectangle"] }
+  { rank=source; sig_7d7758be [style="filled" fillcolor="#b5fed9" shape="rectangle"] }
+  { rank=source; sig_41488b16 [style="filled" fillcolor="#b5fed9" shape="rectangle"] }
+  { sig_5c2ed1c2 [label="io_ai" style=""] }
+  { sig_60faede8 [label="io_ao" style=""] }
+  { sig_491b9b8 [label="io_ai_regNext" style="bold"] }
+   sig_1e93647a -> sig_491b9b8 [color="red"]
+   sig_5a884ded -> sig_491b9b8 [color="crimson"]
+  { sig_7d7758be [label="cp_clk" style=""] }
+  { sig_41488b16 [label="cp_reset" style=""] }
+   sig_5c2ed1c2 -> sig_491b9b8 []
+   sig_491b9b8 -> sig_60faede8 []
+}}{ subgraph cluster_1748466404 {
+  label = "u_sub1"
+  style = solid
+  { rank=source; sig_116b549 [style="filled" fillcolor="#b5fed9" shape="rectangle"] }
+  { rank=sink; sig_7e56725e [style="filled" fillcolor="#e2cbc1" shape="rectangle"] }
+  { rank=sink; sig_1ecc2bb8 [style="filled" fillcolor="#e2cbc1" shape="rectangle"] }
+  { rank=source; sig_7ac296f6 [style="filled" fillcolor="#b5fed9" shape="rectangle"] }
+  { rank=source; sig_78fa769e [style="filled" fillcolor="#b5fed9" shape="rectangle"] }
+  { rank=source; sig_2c78324b [style="filled" fillcolor="#b5fed9" shape="rectangle"] }
+  { rank=source; sig_4e0ae11f [style="filled" fillcolor="#b5fed9" shape="rectangle"] }
+  { sig_116b549 [label="io_ai" style=""] }
+  { sig_7e56725e [label="io_ao" style=""] }
+  { sig_1ecc2bb8 [label="io_a2" style=""] }
+  { sig_7a6d7e92 [label="io_ai_regNext" style="bold"] }
+   sig_221b2a8a -> sig_7a6d7e92 [color="red"]
+   sig_6d3e0eac -> sig_7a6d7e92 [color="crimson"]
+  { sig_e946bfd [label="area_tmp" style="bold"] }
+  { sig_5a5a729f [label="io_ai_regNext_1" style="bold"] }
+  { sig_1e6c367e [label="area_tmp2" style=""] }
+  { sig_79179359 [label="UInt + UInt" style=""] }
+   sig_e946bfd -> sig_79179359 []
+   sig_5a5a729f -> sig_79179359 []
+   sig_266de12f -> sig_e946bfd [color="red"]
+   sig_6b64a33e -> sig_e946bfd [color="crimson"]
+   sig_266de12f -> sig_5a5a729f [color="red"]
+   sig_6b64a33e -> sig_5a5a729f [color="crimson"]
+  { sig_7ac296f6 [label="ap_clk" style=""] }
+  { sig_78fa769e [label="ap_reset" style=""] }
+  { sig_2c78324b [label="adc_clk" style=""] }
+  { sig_4e0ae11f [label="adc_reset" style=""] }
+   sig_116b549 -> sig_e946bfd []
+   sig_116b549 -> sig_7a6d7e92 []
+   sig_116b549 -> sig_5a5a729f []
+   sig_7a6d7e92 -> sig_7e56725e []
+   sig_1e6c367e -> sig_1ecc2bb8 []
+   sig_79179359 -> sig_1e6c367e []
+}}}}}

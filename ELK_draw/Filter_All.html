@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>rtl连接图</title>
+</head>
+<script src="/js/elk.bundled.js"></script>
+<script src="/js/svg.min.js"></script>
+<script src="/js/hdelk.js"></script>
+
+<h4>选择你想看的图像</h4>
+<a href="#Filter"><button>Filter</button></a>&nbsp;
+<a href="#u_fifo_in"><button>u_fifo_in</button></a>&nbsp;
+<br><br><br><br><div id="Filter"></div>
+<h3>Filter</h3><br><br>
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"Filter",
+highlight:6,
+inPorts: ["smp_reset","clk","din","flush","smp_clk",],
+outPorts: ["dout",],
+children: [
+{id:"din_toStream",
+highlight:3,
+},
+{id:"u_fifo_in",
+highlight:1,
+inPorts: ["smp_reset","io_push","clk","smp_clk",],
+outPorts: ["io_popOccupancy","io_pop","io_pushOccupancy",],
+},
+],
+edges:[
+{ source:"u_fifo_in.io_pop", target:"Filter.dout",bus: 1,label:"Stream to Flow", },
+{ source:"Filter.clk", target:"u_fifo_in.clk",bus: 1,label:"Bool",highlight:3 },
+{ source:"Filter.smp_reset", target:"u_fifo_in.smp_reset",bus: 1,label:"Bool", },
+{ source:"din_toStream", target:"u_fifo_in.io_push",bus: 1,label:"Stream", },
+{ source:"Filter.smp_clk", target:"u_fifo_in.smp_clk",bus: 1,label:"Bool",highlight:2 },
+{ source:"Filter.din", target:"din_toStream",bus: 1,label:"Flow to Stream", },
+]
+},
+{id:"ClockKeys",
+children:[
+{id:"clk",highlight:3},
+{id:"smp_clk",highlight:2},
+]
+}
+],
+}
+hdelk.layout( mygraph, "Filter" );
+</script><div id="u_fifo_in"></div>
+<h3>u_fifo_in</h3><br><br>
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"u_fifo_in",
+highlight:6,
+inPorts: ["smp_reset","io_push","clk","smp_clk",],
+outPorts: ["io_popOccupancy","io_pop","io_pushOccupancy",],
+children: [
+{id:"_zz_io_pushOccupancy",
+highlight:2,
+},
+{id:"_zz_io_pushOccupancy_2",
+highlight:2,
+},
+{id:"bufferCC_3",
+highlight:4,
+inPorts: ["smp_reset","clk","io_dataIn",],
+outPorts: ["io_dataOut",],
+},
+{id:"_zz_io_popOccupancy",
+highlight:4,
+},
+{id:"_zz_io_pushOccupancy_1",
+highlight:2,
+},
+{id:"pushCC",
+highlight:2,
+},
+{id:"pushToPopGray_buffercc",
+highlight:4,
+inPorts: ["clk","io_dataIn","smp_reset_syncronized",],
+outPorts: ["io_dataOut",],
+},
+{id:"popToPushGray_buffercc",
+highlight:2,
+inPorts: ["smp_reset","io_dataIn","smp_clk",],
+outPorts: ["io_dataOut",],
+},
+{id:"smp_reset_syncronized",
+highlight:4,
+},
+{id:"io_pop_fire_1",
+highlight:4,
+},
+{id:"popToPushGray",
+highlight:4,
+},
+{id:"io_pop_fire",
+highlight:4,
+},
+{id:"io_push_fire_1",
+highlight:2,
+},
+{id:"_zz_io_popOccupancy_2",
+highlight:4,
+},
+{id:"io_pop_fire_2",
+highlight:4,
+},
+{id:"io_push_fire",
+highlight:2,
+},
+{id:"popCC",
+highlight:4,
+},
+{id:"_zz_io_pop_payload",
+highlight:4,
+},
+{id:"pushToPopGray",
+highlight:4,
+},
+{id:"_zz_1",
+highlight:2,
+},
+{id:"_zz_io_popOccupancy_1",
+highlight:4,
+},
+],
+edges:[
+{ source:"_zz_io_popOccupancy_1", target:"u_fifo_in.io_popOccupancy",bus: 0, },
+{ source:"popCC", target:"u_fifo_in.io_pop",bus: 0, },
+{ source:"popCC", target:"popToPushGray",bus: 0, },
+{ source:"pushCC", target:"_zz_io_pushOccupancy_2",bus: 0, },
+{ source:"io_pop_fire_1", target:"_zz_io_pop_payload",bus: 0, },
+{ source:"pushCC", target:"pushToPopGray",bus: 0, },
+{ source:"pushCC", target:"u_fifo_in.io_pushOccupancy",bus: 0, },
+{ source:"io_push_fire", target:"pushCC",bus: 0, },
+{ source:"popCC", target:"_zz_io_popOccupancy",bus: 0, },
+{ source:"u_fifo_in.io_push", target:"io_push_fire",bus: 0, },
+{ source:"popCC", target:"popCC",bus: 0, },
+{ source:"pushCC", target:"_zz_io_pushOccupancy_1",bus: 0, },
+{ source:"_zz_io_pushOccupancy_2", target:"_zz_io_pushOccupancy_1",bus: 0, },
+{ source:"_zz_io_popOccupancy_1", target:"_zz_io_popOccupancy",bus: 0, },
+{ source:"io_pop_fire", target:"popCC",bus: 0, },
+{ source:"io_push_fire_1", target:"_zz_1",bus: 0, },
+{ source:"_zz_io_popOccupancy_2", target:"u_fifo_in.io_popOccupancy",bus: 0, },
+{ source:"_zz_io_popOccupancy_2", target:"_zz_io_popOccupancy_1",bus: 0, },
+{ source:"_zz_io_pushOccupancy_1", target:"u_fifo_in.io_pushOccupancy",bus: 0, },
+{ source:"_zz_io_popOccupancy", target:"u_fifo_in.io_popOccupancy",bus: 0, },
+{ source:"u_fifo_in.io_push", target:"io_push_fire_1",bus: 0, },
+{ source:"pushCC", target:"pushCC",bus: 0, },
+{ source:"popCC", target:"_zz_io_pop_payload",bus: 0, },
+{ source:"_zz_io_pop_payload", target:"u_fifo_in.io_pop",bus: 0, },
+{ source:"_zz_io_pushOccupancy_1", target:"_zz_io_pushOccupancy",bus: 0, },
+{ source:"_zz_io_pushOccupancy", target:"u_fifo_in.io_pushOccupancy",bus: 0, },
+{ source:"bufferCC_3.io_dataOut", target:"smp_reset_syncronized",bus: 0, },
+{ source:"popCC", target:"u_fifo_in.io_popOccupancy",bus: 0, },
+{ source:"popCC", target:"_zz_io_popOccupancy_1",bus: 0, },
+{ source:"pushToPopGray_buffercc.io_dataOut", target:"popCC",bus: 0, },
+{ source:"pushCC", target:"_zz_io_pushOccupancy",bus: 0, },
+{ source:"io_push_fire_1", target:"pushCC",bus: 0, },
+{ source:"io_pop_fire_2", target:"popCC",bus: 0, },
+{ source:"popToPushGray_buffercc.io_dataOut", target:"pushCC",bus: 0, },
+{ source:"popCC", target:"_zz_io_popOccupancy_2",bus: 0, },
+{ source:"_zz_io_pushOccupancy_2", target:"u_fifo_in.io_pushOccupancy",bus: 0, },
+]
+},
+{id:"ClockKeys",
+children:[
+{id:"clk",highlight:4},
+{id:"smp_clk",highlight:2},
+]
+}
+],
+}
+hdelk.layout( mygraph, "u_fifo_in" );
+</script></html>

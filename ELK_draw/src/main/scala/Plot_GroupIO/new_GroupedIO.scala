@@ -1,14 +1,14 @@
 package Plot_GroupIO
 
 import analyzer.{DataAnalyzer, ModuleAnalyzer}
-import spinal.core.{Component, Data}
+import spinal.core.{BaseType, Component, Data, OwnableRef}
 
 import java.io.{File, FileWriter}
 import scala.collection.mutable
 import scala.collection.mutable.Set
 import scala.util.control._
 
-class newGroupedIO(module:Component,toplevelName:String,moduleName:String) {
+class newGroupedIO(module:Component,toplevelName:String,moduleName:String) extends OwnableRef{
   val fileName = toplevelName + "_All.html"
   val file = new File(fileName)
   val edges: Set[Edge] = Set()
@@ -18,13 +18,74 @@ class newGroupedIO(module:Component,toplevelName:String,moduleName:String) {
   val clkMap = new mutable.HashMap[String, Int]
   var clkCounter = 0
   val containedNode: Set[String] = Set()
-  def findParent(thisSon:Data):Data={
-    var thisparent=thisSon
-    while(thisparent.parent!=null&&thisparent.parent.getClass.getSimpleName!=""){
-      thisparent=thisparent.parent
+
+
+  def haveParent(thisSon: BaseType): Boolean = {
+    var judge = false
+    val parentList = thisSon.getRefOwnersChain()
+    if (parentList.nonEmpty) {
+      for (anyParent <- parentList) {
+        if (anyParent.isInstanceOf[Data]) {
+          val DataParent = anyParent.asInstanceOf[Data]
+          if (DataParent.getClass.getSimpleName != "") {
+            judge = true
+          }
+        }
+      }
     }
-    thisparent
+    judge
   }
+
+  def findParent(thisSon: BaseType): Data = {
+    val parentList = thisSon.getRefOwnersChain()
+    var returnParent = thisSon.parent
+    val loop = new Breaks
+    loop.breakable {
+      for (anyParent <- parentList) {
+        if (anyParent.isInstanceOf[Data]) {
+          val DataParent = anyParent.asInstanceOf[Data]
+          if (DataParent.getClass.getSimpleName != "") {
+            if (DataParent.getName() != "") {
+              returnParent = DataParent
+              loop.break()
+            }
+            else {
+              DataParent.setName("_zz_(" + DataParent.getClass.getSimpleName + ")")
+              returnParent = DataParent
+              loop.break()
+            }
+          }
+        }
+      }
+    }
+    returnParent
+  }
+
+  def haveRegParent(thisSon: BaseType): Boolean = {
+    var judge = false
+    val parentList = thisSon.getRefOwnersChain()
+    if (parentList.nonEmpty && parentList.size > 1) {
+      if (parentList.last.getClass.getSimpleName == "" && !parentList.last.isInstanceOf[Data]) {
+        judge = true
+      }
+    }
+    judge
+  }
+
+  def findRegParent(thisSon: BaseType): String = {
+    val anyParent = thisSon.getRefOwnersChain().last
+    val parentName = anyParent.toString.split("/").last
+    parentName
+  }
+
+
+//    def findParent(thisSon:Data):Data={
+//    var thisparent=thisSon
+//    while(thisparent.parent!=null&&thisparent.parent.getClass.getSimpleName!=""){
+//      thisparent=thisparent.parent
+//    }
+//    thisparent
+//  }
   //初始化一些数据
   def DealAllSignal: Unit = {
 
@@ -41,22 +102,25 @@ class newGroupedIO(module:Component,toplevelName:String,moduleName:String) {
     val allRegisters = moduleAnalyze.getRegisters
     val systemRegisters = moduleAnalyze.getNets(net => net.getComponent().getName() == module.getName() && !topInOuts.contains(net) && !allRegisters.contains(net))
     val allInOuts=moduleAnalyze.getPins(_ => true)
-
     //区分系统寄存器
+
+
     for(topInOut<-topInOuts){
-      val thisparent=topInOut.parent
-      if(thisparent!=null && thisparent.getClass.getSimpleName!=""){
-        val rootparent=findParent(thisparent)
+      if(haveParent(topInOut)) {
+        val rootparent = findParent(topInOut)
         if(rootparent.flatten.head.isInput)  topNode.inports.add(rootparent.getName())
-        else  topNode.outports.add(rootparent.getName())
+        else if(rootparent.flatten.head.isOutput)  topNode.outports.add(rootparent.getName())
+        else{
+          if(topInOut.isInput)  topNode.inports.add(rootparent.getName())
+          else  topNode.outports.add(rootparent.getName())
+        }
       }
       else{
-        if(topInOut.isInput)  topNode.inports.add(topInOut.getName())
-        else  topNode.outports.add(topInOut.getName())
+        if (topInOut.isInput) topNode.inports.add(topInOut.getName())
+        else topNode.outports.add(topInOut.getName())
       }
     }
-
-    //添加顶层模块
+    //添加顶层模块及其输入输出端口
 
 
     val innerModules = module.children
@@ -69,11 +133,14 @@ class newGroupedIO(module:Component,toplevelName:String,moduleName:String) {
       val innerModuleAna=new ModuleAnalyzer(innerModule)
       val innerInOuts=innerModuleAna.getInputs++innerModuleAna.getOutputs
       for(innerInOut<-innerInOuts){
-        val thisparent=innerInOut.parent
-        if (thisparent != null && thisparent.getClass.getSimpleName != "") {
-          val rootparent = findParent(thisparent)
+        if(haveParent(innerInOut)){
+          val rootparent = findParent(innerInOut)
           if (rootparent.flatten.head.isInput) newNode.inports.add(rootparent.getName())
-          else newNode.outports.add(rootparent.getName())
+          else if(rootparent.flatten.head.isOutput) newNode.outports.add(rootparent.getName())
+          else{
+            if(innerInOut.isInput)  newNode.inports.add(rootparent.getName())
+            else newNode.outports.add(rootparent.getName())
+          }
         }
         else {
           if (innerInOut.isInput) newNode.inports.add(innerInOut.getName())
@@ -82,17 +149,19 @@ class newGroupedIO(module:Component,toplevelName:String,moduleName:String) {
       }
       topNode.children.add(newNode)
     }
-    //添加内部子模块
+    //添加内部子模块及其输入输出端口
 
 
 
 
     val everyRegisters = allRegisters ++ systemRegisters
-
     for (toplevelRegister <- everyRegisters) {
       val newNode = new Node
-      if (toplevelRegister.parent != null&&toplevelRegister.parent.getClass.getSimpleName != "") {
-        newNode.labelname = findParent(toplevelRegister.parent).getName()
+      if (haveParent(toplevelRegister)) {
+        newNode.labelname = findParent(toplevelRegister).getName()
+      }
+      else if(haveRegParent(toplevelRegister)){
+        newNode.labelname=findRegParent(toplevelRegister)
       }
       else {
         newNode.labelname = toplevelRegister.getName()
@@ -104,7 +173,7 @@ class newGroupedIO(module:Component,toplevelName:String,moduleName:String) {
         containedNode.add(newNode.labelname)
       }
     }
-    //添加寄存器
+    //添加顶层模块的寄存器
 
     val allNets = everyRegisters ++ allInOuts
     for (net <- allNets) {
@@ -113,10 +182,9 @@ class newGroupedIO(module:Component,toplevelName:String,moduleName:String) {
       var inIsBus = 0
       var netIsWrong = false
       if(allInOuts.contains(net)){
-        val thisparent=net.parent
-        if(thisparent!=null && thisparent.getClass.getSimpleName!=""){
+        if(haveParent(net)){
           inIsBus=1
-          val rootParent=findParent(thisparent)
+          val rootParent=findParent(net)
           if(topInOuts.contains(net)){
             if(rootParent.flatten.head.isOutput)  netIsWrong=true
           }
@@ -136,11 +204,12 @@ class newGroupedIO(module:Component,toplevelName:String,moduleName:String) {
         }
       }
       else{
-        val thisparent=net.parent
-        if(thisparent!=null && thisparent.getClass.getSimpleName!=""){
+        if(haveParent(net)){
           inIsBus=1
-          val rootParent=findParent(thisparent)
-          sonName=rootParent.getName()
+          sonName=findParent(net).getName()
+        }
+        else if(haveRegParent(net)){
+          sonName=findRegParent(net)
         }
         else {
           sonName=net.getName()
@@ -169,7 +238,8 @@ class newGroupedIO(module:Component,toplevelName:String,moduleName:String) {
             val newNode = new Node
             val newEdge = new Edge
             newNode.labelname=sonName
-            if(inIsBus==1)  newEdge.label=findParent(net.parent).getClass.getSimpleName
+            newNode.highlight=topNode.highlight
+            if(inIsBus==1)  newEdge.label=findParent(net).getClass.getSimpleName
             if(!containedNode.contains(sonName)&& !netIsWrong){
               topNode.children.add(newNode)
               containedNode.add(sonName)
@@ -199,10 +269,9 @@ class newGroupedIO(module:Component,toplevelName:String,moduleName:String) {
 
 
         if (allInOuts.contains(fanOut)) {
-          val thisparent = fanOut.parent
-          if (thisparent != null && thisparent.getClass.getSimpleName != "") {
+          if (haveParent(fanOut)) {
             outIsBus = 1
-            val rootParent = findParent(thisparent)
+            val rootParent = findParent(fanOut)
             if (topInOuts.contains(fanOut)) {
               if (rootParent.flatten.head.isInput) fanoutIsWrong = true
             }
@@ -222,12 +291,12 @@ class newGroupedIO(module:Component,toplevelName:String,moduleName:String) {
           }
         }
         else {
-          println(sourceName+":"+fanOut)
-          val thisparent = fanOut.parent
-          if (thisparent != null && thisparent.getClass.getSimpleName != "") {
+          if (haveParent(fanOut)) {
             outIsBus=1
-            val rootParent = findParent(thisparent)
-            fanoutSonName = rootParent.getName()
+            fanoutSonName = findParent(fanOut).getName()
+          }
+          else if(haveRegParent(fanOut)){
+            fanoutSonName=findRegParent(fanOut)
           }
           else{
             fanoutSonName = fanOut.getName()
@@ -250,19 +319,14 @@ class newGroupedIO(module:Component,toplevelName:String,moduleName:String) {
         else fanoutIsWrong=true
 //得到终点名
 
+
         if (clkMap.contains(net.getName())) newEdge.highlight = clkMap(net.getName())
         newEdge.source = sourceName
 
         newEdge.isBus = inIsBus & outIsBus
         if (newEdge.isBus == 1) {
-          if(findParent(net.parent).getClass.getSimpleName==findParent(fanOut.parent).getClass.getSimpleName) newEdge.label=fanOut.parent.getClass.getSimpleName
-          else newEdge.label=findParent(net.parent).getClass.getSimpleName+" to "+findParent(fanOut.parent).getClass.getSimpleName
-        }
-        else if(inIsBus==1){
-          newEdge.label=fanOut.getName()
-        }
-        else if(outIsBus==1){
-          newEdge.label=net.getName()
+          if(findParent(net).getClass.getSimpleName==findParent(fanOut).getClass.getSimpleName) newEdge.label=findParent(fanOut).getClass.getSimpleName
+          else newEdge.label=findParent(net).getClass.getSimpleName+" to "+findParent(fanOut).getClass.getSimpleName
         }
         var isContined = false
         for (thisEdge <- edges) {
