@@ -1,4 +1,4 @@
-import Plot_All.Plot_All
+import Plot_GroupIO.Plot_All
 import spinal.core._
 import spinal.lib._
 import spinal.lib.bus.amba3.ahblite._

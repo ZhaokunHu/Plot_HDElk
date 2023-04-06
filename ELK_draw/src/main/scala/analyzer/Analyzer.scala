@@ -2,8 +2,8 @@ package analyzer
 
 import spinal.core._
 
-import scala.language._
 import scala.collection.mutable
+import scala.language._
 
 /** Module topology analyzer. It provides some methods that return the input or output pins,
  * all sub-modules or sub-blackboxes, all clocks inside, and filter the returned
@@ -11,11 +11,8 @@ import scala.collection.mutable
  * @param module the module being analyzed
  */
 class ModuleAnalyzer(module: Module) {
-  def foreach(value: Any): Unit = ???
-
 
   /** Get all input ports of the module
-   *
    * @return set of base type
    */
   def getInputs: mutable.LinkedHashSet[BaseType] =
@@ -163,7 +160,6 @@ class ModuleAnalyzer(module: Module) {
 }
 
 object ModuleAnalyzer {
-
   /** Implicitly convert Module/Component into ModuleAnalyzer */
   implicit def toAnalyzer(module: Module): ModuleAnalyzer = new ModuleAnalyzer(module)
 
@@ -179,8 +175,8 @@ import spinal.core._
 import spinal.core.internals._
 
 import scala.collection.immutable.ListSet
-import scala.language.implicitConversions
 import scala.collection.mutable
+import scala.language.implicitConversions
 
 /** Base type data analyzer. It provides some utilities that help designer analyze the
  * circuit at runtime.

@@ -1,3 +1,4 @@
-[debug] downloaded https://repo1.maven.org/maven2/org/scala-lang/scala-library/2.12.10/scala-library-2.12.10.pom
-[debug] downloaded https://repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.12.10/scala-reflect-2.12.10.pom
-[debug] downloaded https://repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.12.10/scala-compiler-2.12.10.pom
+[debug] downloaded https://repo1.maven.org/maven2/com/github/spinalhdl/spinalhdl-lib_2.11/1.8.1/spinalhdl-lib_2.11-1.8.1.pom
+[debug] downloaded https://repo1.maven.org/maven2/com/github/spinalhdl/spinalhdl-core_2.11/1.8.1/spinalhdl-core_2.11-1.8.1.pom
+[debug] downloaded https://repo1.maven.org/maven2/com/github/spinalhdl/spinalhdl-lib_2.11/1.8.1/spinalhdl-lib_2.11-1.8.1.pom.sha1
+[debug] downloaded https://repo1.maven.org/maven2/com/github/spinalhdl/spinalhdl-core_2.11/1.8.1/spinalhdl-core_2.11-1.8.1.pom.sha1

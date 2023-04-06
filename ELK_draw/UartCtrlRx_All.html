@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>rtl连接图</title>
+</head>
+<script src="/js/elk.bundled.js"></script>
+<script src="/js/svg.min.js"></script>
+<script src="/js/hdelk.js"></script>
+
+<h4>选择你想看的图像</h4>
+<a href="#UartCtrlRx"><button>UartCtrlRx</button></a>&nbsp;
+<br><br><br><br><div id="UartCtrlRx"></div>
+<h3>UartCtrlRx</h3><br><br>
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"UartCtrlRx",
+highlight:2,
+inPorts: ["io_rxd","io_samplingTick","clk","reset",],
+outPorts: ["io_read",],
+children: [
+{id:"bitCounter",
+highlight:2,
+},
+{id:"stateMachine",
+highlight:2,
+},
+{id:"when_statemashine2_l50",
+highlight:2,
+},
+{id:"when_statemashine2_l97",
+highlight:2,
+},
+{id:"_zz_(Vec)",
+highlight:2,
+},
+{id:"sampler_samples",
+highlight:2,
+},
+{id:"bitTimer",
+highlight:2,
+},
+{id:"sampler",
+highlight:2,
+},
+{id:"when_statemashine2_l83",
+highlight:2,
+},
+],
+edges:[
+{ source:"sampler", target:"when_statemashine2_l83",bus: 0, },
+{ source:"stateMachine", target:"bitTimer",bus: 0, },
+{ source:"bitTimer", target:"bitCounter",bus: 0, },
+{ source:"UartCtrlRx.io_samplingTick", target:"sampler",bus: 0, },
+{ source:"when_statemashine2_l50", target:"bitTimer",bus: 0, },
+{ source:"sampler", target:"stateMachine",bus: 0, },
+{ source:"when_statemashine2_l83", target:"bitTimer",bus: 0, },
+{ source:"stateMachine", target:"stateMachine",bus: 0, },
+{ source:"sampler_samples", target:"sampler",bus: 0, },
+{ source:"bitCounter", target:"bitCounter",bus: 0, },
+{ source:"bitTimer", target:"UartCtrlRx.io_read",bus: 0, },
+{ source:"bitTimer", target:"stateMachine",bus: 0, },
+{ source:"bitTimer", target:"bitTimer",bus: 0, },
+{ source:"sampler", target:"bitTimer",bus: 0, },
+{ source:"bitTimer", target:"when_statemashine2_l50",bus: 0, },
+{ source:"bitCounter", target:"when_statemashine2_l97",bus: 0, },
+{ source:"UartCtrlRx.io_samplingTick", target:"_zz_(Vec)",bus: 0, },
+{ source:"_zz_(Vec)", target:"sampler_samples",bus: 1,label:"Vec", },
+{ source:"_zz_(Vec)", target:"_zz_(Vec)",bus: 1,label:"Vec", },
+{ source:"bitCounter", target:"stateMachine",bus: 0, },
+{ source:"UartCtrlRx.io_rxd", target:"_zz_(Vec)",bus: 0, },
+{ source:"stateMachine", target:"bitCounter",bus: 0, },
+{ source:"stateMachine", target:"UartCtrlRx.io_read",bus: 0, },
+{ source:"when_statemashine2_l83", target:"stateMachine",bus: 0, },
+{ source:"when_statemashine2_l97", target:"stateMachine",bus: 0, },
+]
+},
+{id:"ClockKeys",
+children:[
+{id:"clk",highlight:2},
+]
+}
+],
+}
+hdelk.layout( mygraph, "UartCtrlRx" );
+</script></html>

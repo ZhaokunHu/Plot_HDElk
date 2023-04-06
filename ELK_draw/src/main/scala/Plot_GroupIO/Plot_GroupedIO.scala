@@ -7,18 +7,7 @@ import java.io.{File, FileWriter}
 import scala.collection.mutable
 import scala.collection.mutable.Set
 import scala.util.control._
-class Edge {
-  var source, target,label = ""
-  var isBus,highlight = 0
-}
 
-class Node {
-  var labelname = ""
-  var inports: Set[String] = Set()
-  var outports: Set[String] = Set()
-  var children: Set[Node] = Set()
-  var highlight=0
-}
 
 
 class PlotGroupedIO(module:Component,toplevelName:String,moduleName:String) {

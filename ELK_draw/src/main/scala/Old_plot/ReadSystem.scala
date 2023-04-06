@@ -22,6 +22,8 @@ class ReadSystem(rtl: SpinalReport[Component]) extends App {
               judge=true
             }
           }
+//          else if(anyParent.isInstanceOf[InitAssignmentStatement]||anyParent.isInstanceOf[InitialAssignmentStatement])
+//            println("found!!!")
         }
       }
       judge
@@ -33,6 +35,7 @@ class ReadSystem(rtl: SpinalReport[Component]) extends App {
         if(parentList.last.getClass.getSimpleName==""&& !parentList.last.isInstanceOf[Data]){
           judge=true
         }
+
       }
       judge
     }

@@ -1,5 +1,5 @@
 import Old_plot._
-import Plot_All.Plot_All
+import Plot_GroupIO.Plot_All
 import spinal.core._
 import spinal.lib._
 
@@ -64,8 +64,8 @@ object TopExample1{
 //    drawInner.begindraww
 //    val drawyed = new Plot_yEd(rtl.toplevel)
 //    drawyed.begindraw
-    val letread = new ReadSystem(SpinalVerilog(new Top6))
-    letread.beginread
+//    val letread = new ReadSystem(SpinalVerilog(new Top6))
+//    letread.beginread
 //    val letdraw = new Plot_UML(rtl.toplevel)
 //    letdraw.begindraw
 //    val drawELK = new Plot_ELK(rtl.toplevel)

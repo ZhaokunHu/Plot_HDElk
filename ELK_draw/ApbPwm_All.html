@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>rtl连接图</title>
+</head>
+<script src="/js/elk.bundled.js"></script>
+<script src="/js/svg.min.js"></script>
+<script src="/js/hdelk.js"></script>
+
+<h4>选择你想看的图像</h4>
+<a href="#ApbPwm"><button>ApbPwm</button></a>&nbsp;
+<br><br><br><br><div id="ApbPwm"></div>
+<h3>ApbPwm</h3><br><br>
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"ApbPwm",
+highlight:2,
+inPorts: ["clk","reset","io_apb",],
+outPorts: ["io_pwm",],
+children: [
+{id:"logic",
+highlight:2,
+},
+{id:"io_apb",
+highlight:2,
+},
+{id:"when_statemashine_l48",
+highlight:2,
+},
+{id:"when_statemashine_l45",
+highlight:2,
+},
+{id:"control",
+highlight:2,
+},
+],
+edges:[
+{ source:"io_apb", target:"logic",bus: 0, },
+{ source:"ApbPwm.io_apb", target:"io_apb",bus: 1,label:"Apb", },
+{ source:"control", target:"logic",bus: 0, },
+{ source:"logic", target:"ApbPwm.io_pwm",bus: 0, },
+{ source:"when_statemashine_l48", target:"logic",bus: 0, },
+{ source:"when_statemashine_l45", target:"logic",bus: 0, },
+{ source:"ApbPwm.io_apb", target:"control",bus: 0, },
+{ source:"logic", target:"when_statemashine_l45",bus: 0, },
+{ source:"logic", target:"when_statemashine_l48",bus: 0, },
+{ source:"logic", target:"logic",bus: 0, },
+{ source:"ApbPwm.io_apb", target:"logic",bus: 0, },
+]
+},
+{id:"ClockKeys",
+children:[
+{id:"clk",highlight:2},
+]
+}
+],
+}
+hdelk.layout( mygraph, "ApbPwm" );
+</script></html>

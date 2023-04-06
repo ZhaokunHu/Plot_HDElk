@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>rtl连接图</title>
+</head>
+<script src="/js/elk.bundled.js"></script>
+<script src="/js/svg.min.js"></script>
+<script src="/js/hdelk.js"></script>
+
+<h4>选择你想看的图像</h4>
+<a href="#TopLevel"><button>TopLevel</button></a>&nbsp;
+<a href="#pll100"><button>pll100</button></a>&nbsp;
+<a href="#rstCtrl"><button>rstCtrl</button></a>&nbsp;
+<a href="#bufferCC_3"><button>bufferCC_3</button></a>&nbsp;
+<a href="#core"><button>core</button></a>&nbsp;
+<a href="#clk50Area_keyMatrix"><button>clk50Area_keyMatrix</button></a>&nbsp;
+<a href="#uartCtrl_2"><button>uartCtrl_2</button></a>&nbsp;
+<a href="#clk50Area_hid"><button>clk50Area_hid</button></a>&nbsp;
+<br><br><br><br><div id="TopLevel"></div>
+<h3>TopLevel</h3><br><br>
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"TopLevel",
+highlight:6,
+inPorts: ["flash_data0","KEY_Fn","COL","CLK_50",],
+outPorts: ["flash_dclk","TXD","flash_sdo","ROW","LED_K","PS2_CLK","PS2_DAT","LED_A","LED_R6","flash_sce",],
+children: [
+{id:"bufferCC_3",
+highlight:2,
+inPorts: ["CLK_50","_zz_1","io_dataIn",],
+outPorts: ["io_dataOut",],
+},
+{id:"core",
+type:"BlackBox",
+inPorts: ["flash_data0","reset_reset_n","clk_clk",],
+outPorts: ["flash_dclk","flash_sdo","uart","io_col","io_row","flash_sce",],
+},
+{id:"_zz_1",
+},
+{id:"rstCtrl",
+highlight:3,
+inPorts: ["io_externalReset","io_clock",],
+outPorts: ["io_globalReset",],
+},
+{id:"toplevel_clk50Area_keyMatrix_scanIdx_payload_regNextWhen",
+highlight:2,
+},
+{id:"pll100",
+type:"BlackBox",
+inPorts: ["inclk0",],
+outPorts: ["locked","c0",],
+},
+{id:"_zz_io_write_valid",
+highlight:2,
+},
+{id:"clk50Area_hid",
+highlight:2,
+inPorts: ["keyStatus","scanIdx","CLK_50","_zz_LED_R6",],
+outPorts: ["TXD",],
+},
+{id:"_zz_LED_R6",
+},
+{id:"clk50Area_keyMatrix",
+highlight:2,
+inPorts: ["enabled","COL","CLK_50","_zz_LED_R6",],
+outPorts: ["keyStatus","ROW","scanIdx",],
+},
+{id:"uartCtrl_2",
+highlight:2,
+inPorts: ["io","CLK_50","_zz_LED_R6",],
+},
+],
+edges:[
+{ source:"_zz_1", target:"bufferCC_3._zz_1",bus: 0, },
+{ source:"_zz_io_write_valid", target:"uartCtrl_2.io",bus: 0,highlight:2 },
+{ source:"clk50Area_keyMatrix.ROW", target:"TopLevel.ROW",bus: 0,highlight:2 },
+{ source:"clk50Area_keyMatrix.scanIdx", target:"clk50Area_hid.scanIdx",bus: 1,label:"Flow",highlight:2 },
+{ source:"TopLevel.CLK_50", target:"clk50Area_keyMatrix.CLK_50",bus: 0,highlight:2 },
+{ source:"_zz_LED_R6", target:"clk50Area_hid._zz_LED_R6",bus: 0,highlight:2 },
+{ source:"TopLevel.COL", target:"clk50Area_keyMatrix.COL",bus: 0, },
+{ source:"pll100.c0", target:"core.clk_clk",bus: 0, },
+{ source:"core.io_col", target:"TopLevel.LED_K",bus: 0, },
+{ source:"TopLevel.CLK_50", target:"clk50Area_hid.CLK_50",bus: 0,highlight:2 },
+{ source:"core.flash_dclk", target:"TopLevel.flash_dclk",bus: 0, },
+{ source:"_zz_LED_R6", target:"clk50Area_keyMatrix._zz_LED_R6",bus: 0,highlight:2 },
+{ source:"TopLevel.flash_data0", target:"core.flash_data0",bus: 0, },
+{ source:"TopLevel.CLK_50", target:"rstCtrl.io_clock",bus: 0,highlight:2 },
+{ source:"_zz_LED_R6", target:"TopLevel.LED_R6",bus: 0,highlight:2 },
+{ source:"TopLevel.CLK_50", target:"pll100.inclk0",bus: 0,highlight:2 },
+{ source:"pll100.locked", target:"_zz_1",bus: 0, },
+{ source:"TopLevel.CLK_50", target:"uartCtrl_2.CLK_50",bus: 0,highlight:2 },
+{ source:"toplevel_clk50Area_keyMatrix_scanIdx_payload_regNextWhen", target:"uartCtrl_2.io",bus: 0,highlight:2 },
+{ source:"TopLevel.CLK_50", target:"bufferCC_3.CLK_50",bus: 0,highlight:2 },
+{ source:"clk50Area_keyMatrix.scanIdx", target:"toplevel_clk50Area_keyMatrix_scanIdx_payload_regNextWhen",bus: 0,highlight:2 },
+{ source:"_zz_LED_R6", target:"core.reset_reset_n",bus: 0,highlight:2 },
+{ source:"clk50Area_keyMatrix.scanIdx", target:"_zz_io_write_valid",bus: 0,highlight:2 },
+{ source:"core.flash_sce", target:"TopLevel.flash_sce",bus: 0, },
+{ source:"clk50Area_keyMatrix.keyStatus", target:"clk50Area_hid.keyStatus",bus: 1,label:"Vec",highlight:2 },
+{ source:"bufferCC_3.io_dataOut", target:"_zz_LED_R6",bus: 0,highlight:2 },
+{ source:"core.io_row", target:"TopLevel.LED_A",bus: 0, },
+{ source:"clk50Area_hid.TXD", target:"TopLevel.TXD",bus: 0,highlight:2 },
+{ source:"TopLevel.KEY_Fn", target:"rstCtrl.io_externalReset",bus: 0, },
+{ source:"rstCtrl.io_globalReset", target:"_zz_1",bus: 0, },
+{ source:"_zz_LED_R6", target:"uartCtrl_2._zz_LED_R6",bus: 0,highlight:2 },
+{ source:"core.flash_sdo", target:"TopLevel.flash_sdo",bus: 0, },
+]
+},
+{id:"ClockDomains",
+children:[
+{id:"io_clock",highlight:3},
+{id:"CLK_50",highlight:2},
+]
+}
+],
+}
+hdelk.layout( mygraph, "TopLevel" );
+</script><div id="pll100"></div>
+<h3>pll100</h3><br><br>
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"pll100",
+type:"BlackBox",
+inPorts: ["inclk0",],
+outPorts: ["locked","c0",],
+edges:[
+]
+},
+],
+}
+hdelk.layout( mygraph, "pll100" );
+</script><div id="rstCtrl"></div>
+<h3>rstCtrl</h3><br><br>
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"rstCtrl",
+highlight:2,
+inPorts: ["io_externalReset","io_clock",],
+outPorts: ["io_globalReset",],
+children: [
+{id:"_zz_4",
+highlight:2,
+},
+{id:"_zz_io_globalReset_5",
+highlight:2,
+},
+{id:"when_ResetController_l26",
+highlight:2,
+},
+{id:"io_externalReset_regNext",
+highlight:2,
+},
+{id:"_zz_io_globalReset_3",
+highlight:2,
+},
+{id:"_zz_6",
+highlight:2,
+},
+{id:"_zz_io_globalReset",
+highlight:2,
+},
+{id:"_zz_io_globalReset_2",
+highlight:2,
+},
+{id:"_zz_5",
+highlight:2,
+},
+{id:"_zz_io_globalReset_6",
+highlight:2,
+},
+{id:"_zz_1",
+highlight:2,
+},
+{id:"_zz_io_globalReset_1",
+highlight:2,
+},
+{id:"_zz_io_globalReset_4",
+highlight:2,
+},
+{id:"_zz_2",
+highlight:2,
+},
+{id:"_zz_3",
+highlight:2,
+},
+],
+edges:[
+{ source:"_zz_3", target:"_zz_2",bus: 0,highlight:2 },
+{ source:"_zz_io_globalReset_6", target:"rstCtrl.io_globalReset",bus: 0,highlight:2 },
+{ source:"rstCtrl.io_externalReset", target:"_zz_io_globalReset_1",bus: 0, },
+{ source:"rstCtrl.io_externalReset", target:"when_ResetController_l26",bus: 0, },
+{ source:"_zz_io_globalReset", target:"_zz_io_globalReset_6",bus: 0,highlight:2 },
+{ source:"_zz_io_globalReset_5", target:"_zz_io_globalReset_2",bus: 0,highlight:2 },
+{ source:"_zz_io_globalReset_5", target:"_zz_io_globalReset_6",bus: 0,highlight:2 },
+{ source:"io_externalReset_regNext", target:"when_ResetController_l26",bus: 0,highlight:2 },
+{ source:"_zz_io_globalReset_2", target:"_zz_io_globalReset_3",bus: 0,highlight:2 },
+{ source:"_zz_6", target:"_zz_io_globalReset_2",bus: 0,highlight:2 },
+{ source:"rstCtrl.io_externalReset", target:"io_externalReset_regNext",bus: 0, },
+{ source:"_zz_io_globalReset_3", target:"_zz_io_globalReset_2",bus: 0,highlight:2 },
+{ source:"_zz_io_globalReset_1", target:"_zz_io_globalReset_5",bus: 0,highlight:2 },
+{ source:"_zz_4", target:"_zz_5",bus: 0,highlight:2 },
+{ source:"_zz_3", target:"_zz_4",bus: 0,highlight:2 },
+{ source:"_zz_1", target:"_zz_5",bus: 0,highlight:2 },
+{ source:"_zz_io_globalReset_4", target:"_zz_io_globalReset_5",bus: 0,highlight:2 },
+{ source:"_zz_1", target:"_zz_2",bus: 0,highlight:2 },
+{ source:"_zz_io_globalReset_3", target:"_zz_io_globalReset_4",bus: 0,highlight:2 },
+{ source:"_zz_2", target:"_zz_3",bus: 0,highlight:2 },
+{ source:"_zz_io_globalReset_1", target:"_zz_io_globalReset_2",bus: 0,highlight:2 },
+{ source:"when_ResetController_l26", target:"_zz_6",bus: 0,highlight:2 },
+{ source:"_zz_5", target:"_zz_2",bus: 0,highlight:2 },
+{ source:"_zz_io_globalReset", target:"_zz_1",bus: 0,highlight:2 },
+{ source:"_zz_4", target:"_zz_io_globalReset",bus: 0,highlight:2 },
+]
+},
+{id:"ClockDomains",
+children:[
+{id:"io_clock",highlight:2},
+]
+}
+],
+}
+hdelk.layout( mygraph, "rstCtrl" );
+</script><div id="bufferCC_3"></div>
+<h3>bufferCC_3</h3><br><br>
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"bufferCC_3",
+highlight:2,
+inPorts: ["CLK_50","_zz_1","io_dataIn",],
+outPorts: ["io_dataOut",],
+children: [
+{id:"buffers",
+highlight:2,
+},
+],
+edges:[
+{ source:"buffers", target:"bufferCC_3.io_dataOut",bus: 0,highlight:2 },
+{ source:"bufferCC_3.io_dataIn", target:"buffers",bus: 0,highlight:2 },
+{ source:"buffers", target:"buffers",bus: 1,label:"Vec",highlight:2 },
+]
+},
+{id:"ClockDomains",
+children:[
+{id:"CLK_50",highlight:2},
+]
+}
+],
+}
+hdelk.layout( mygraph, "bufferCC_3" );
+</script><div id="core"></div>
+<h3>core</h3><br><br>
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"core",
+type:"BlackBox",
+inPorts: ["flash_data0","reset_reset_n","clk_clk",],
+outPorts: ["flash_dclk","flash_sdo","uart","io_col","io_row","flash_sce",],
+edges:[
+]
+},
+],
+}
+hdelk.layout( mygraph, "core" );
+</script><div id="clk50Area_keyMatrix"></div>
+<h3>clk50Area_keyMatrix</h3><br><br>
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"clk50Area_keyMatrix",
+highlight:6,
+inPorts: ["enabled","COL","CLK_50","_zz_LED_R6",],
+outPorts: ["keyStatus","ROW","scanIdx",],
+children: [
+{id:"_zz_scanIdx_valid",
+highlight:2,
+},
+{id:"debounce_1",
+highlight:2,
+inPorts: ["CLK_50","_zz_LED_R6","key_down",],
+outPorts: ["keyStatus",],
+},
+{id:"clkScan_counter_willClear",
+highlight:2,
+},
+{id:"clkScan_counter_willIncrement",
+highlight:2,
+},
+{id:"_zz_when_ClockDomain_l369",
+highlight:2,
+},
+{id:"scanK",
+type:"BlackBox",
+inPorts: ["clock","enabled","reset","COL",],
+outPorts: ["ROW","key_down",],
+},
+{id:"clkScan_counter_willOverflow",
+highlight:2,
+},
+{id:"clkScan_counter_value",
+highlight:2,
+},
+{id:"clkScan_state",
+highlight:2,
+},
+{id:"_zz_2",
+highlight:2,
+},
+{id:"_zz_1",
+highlight:2,
+},
+{id:"_zz_scanIdx_valid_2",
+highlight:2,
+},
+{id:"when_ClockDomain_l369_regNext",
+highlight:2,
+},
+{id:"clkScan_counter_willOverflowIfInc",
+highlight:2,
+},
+{id:"clkScan_stateRise",
+highlight:2,
+},
+{id:"_zz_scanIdx_valid_1",
+highlight:2,
+},
+{id:"clkScan_counter_valueNext",
+highlight:2,
+},
+{id:"when_ClockDomain_l369",
+highlight:2,
+},
+],
+edges:[
+{ source:"clkScan_counter_willOverflow", target:"clkScan_stateRise",bus: 0,highlight:2 },
+{ source:"_zz_when_ClockDomain_l369", target:"when_ClockDomain_l369",bus: 0,highlight:2 },
+{ source:"clkScan_counter_value", target:"clkScan_counter_willOverflowIfInc",bus: 0,highlight:2 },
+{ source:"clkScan_counter_willOverflowIfInc", target:"clkScan_counter_willOverflow",bus: 0,highlight:2 },
+{ source:"when_ClockDomain_l369", target:"_zz_when_ClockDomain_l369",bus: 0,highlight:2 },
+{ source:"_zz_scanIdx_valid_2", target:"_zz_scanIdx_valid_1",bus: 0,highlight:2 },
+{ source:"_zz_scanIdx_valid", target:"_zz_2",bus: 0,highlight:2 },
+{ source:"clkScan_counter_willIncrement", target:"clkScan_counter_valueNext",bus: 0,highlight:2 },
+{ source:"clkScan_state", target:"clkScan_stateRise",bus: 0,highlight:2 },
+{ source:"scanK.ROW", target:"clk50Area_keyMatrix.ROW",bus: 0,highlight:2 },
+{ source:"clkScan_counter_willIncrement", target:"clkScan_counter_willOverflow",bus: 0,highlight:2 },
+{ source:"clkScan_counter_willOverflow", target:"clkScan_state",bus: 0,highlight:2 },
+{ source:"clkScan_counter_willOverflow", target:"clkScan_counter_valueNext",bus: 0,highlight:2 },
+{ source:"clkScan_counter_willClear", target:"clkScan_counter_valueNext",bus: 0,highlight:2 },
+{ source:"clkScan_state", target:"clkScan_state",bus: 0,highlight:2 },
+{ source:"clkScan_counter_value", target:"clkScan_counter_valueNext",bus: 0,highlight:2 },
+{ source:"clkScan_state", target:"clkScan_counter_willClear",bus: 0,highlight:2 },
+{ source:"clkScan_counter_valueNext", target:"clkScan_counter_value",bus: 0,highlight:2 },
+{ source:"_zz_scanIdx_valid_2", target:"_zz_1",bus: 0,highlight:2 },
+{ source:"_zz_when_ClockDomain_l369", target:"_zz_when_ClockDomain_l369",bus: 0,highlight:2 },
+{ source:"_zz_scanIdx_valid", target:"_zz_scanIdx_valid_1",bus: 0,highlight:2 },
+{ source:"when_ClockDomain_l369", target:"when_ClockDomain_l369_regNext",bus: 0,highlight:2 },
+{ source:"debounce_1.keyStatus", target:"clk50Area_keyMatrix.keyStatus",bus: 1,label:"Vec",highlight:2 },
+{ source:"_zz_scanIdx_valid_1", target:"_zz_scanIdx_valid_2",bus: 0,highlight:2 },
+{ source:"_zz_1", target:"_zz_2",bus: 0,highlight:2 },
+{ source:"_zz_2", target:"_zz_scanIdx_valid_1",bus: 0,highlight:2 },
+{ source:"_zz_scanIdx_valid_2", target:"clk50Area_keyMatrix.scanIdx",bus: 0,highlight:2 },
+]
+},
+{id:"ClockDomains",
+children:[
+{id:"CLK_50",highlight:2},
+]
+}
+],
+}
+hdelk.layout( mygraph, "clk50Area_keyMatrix" );
+</script><div id="uartCtrl_2"></div>
+<h3>uartCtrl_2</h3><br><br>
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"uartCtrl_2",
+highlight:2,
+inPorts: ["io","CLK_50","_zz_LED_R6",],
+children: [
+{id:"tx",
+highlight:2,
+inPorts: ["io_configFrame","io_cts","io_break","io_samplingTick","io_write","CLK_50","_zz_LED_R6",],
+outPorts: ["io_txd",],
+},
+{id:"io_write_thrown",
+highlight:2,
+},
+{id:"rx",
+highlight:2,
+inPorts: ["io_configFrame","io_rxd","io_samplingTick","CLK_50","_zz_LED_R6",],
+outPorts: ["io_error","io_break","io_read","io_rts",],
+},
+{id:"clockDivider",
+highlight:2,
+},
+],
+edges:[
+{ source:"clockDivider", target:"clockDivider",bus: 0,highlight:2 },
+{ source:"uartCtrl_2.io", target:"io_write_thrown",bus: 1,label:"UartCtrlIo to Stream",highlight:2 },
+{ source:"uartCtrl_2.io", target:"clockDivider",bus: 0,highlight:2 },
+{ source:"rx.io_break", target:"io_write_thrown",bus: 0,highlight:2 },
+]
+},
+{id:"ClockDomains",
+children:[
+{id:"CLK_50",highlight:2},
+]
+}
+],
+}
+hdelk.layout( mygraph, "uartCtrl_2" );
+</script><div id="clk50Area_hid"></div>
+<h3>clk50Area_hid</h3><br><br>
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"clk50Area_hid",
+highlight:2,
+inPorts: ["keyStatus","scanIdx","CLK_50","_zz_LED_R6",],
+outPorts: ["TXD",],
+children: [
+{id:"staLatch",
+highlight:2,
+},
+{id:"uartCtrl_2",
+highlight:2,
+inPorts: ["io","CLK_50","_zz_LED_R6",],
+},
+{id:"machine",
+highlight:2,
+},
+{id:"idxLatch",
+highlight:2,
+},
+],
+edges:[
+{ source:"clk50Area_hid.scanIdx", target:"staLatch",bus: 0,highlight:2 },
+{ source:"clk50Area_hid.scanIdx", target:"machine",bus: 0,highlight:2 },
+{ source:"clk50Area_hid.scanIdx", target:"idxLatch",bus: 0,highlight:2 },
+{ source:"machine", target:"machine",bus: 0,highlight:2 },
+]
+},
+{id:"ClockDomains",
+children:[
+{id:"CLK_50",highlight:2},
+]
+}
+],
+}
+hdelk.layout( mygraph, "clk50Area_hid" );
+</script></html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>rtl连接图</title>
+</head>
+<script src="/js/elk.bundled.js"></script>
+<script src="/js/svg.min.js"></script>
+<script src="/js/hdelk.js"></script>
+
+<h4>选择你想看的图像</h4>
+<a href="#Top1"><button>Top1</button></a>&nbsp;
+<br><br><br><br><div id="Top1"></div>
+<h3>Top1</h3><br><br>
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"Top1",
+highlight:2,
+inPorts: ["clk","reset","source",],
+outPorts: ["sink",],
+children: [
+{id:"source_thrown_m2sPipe",
+highlight:2,
+},
+{id:"source_thrown_rData",
+highlight:2,
+},
+{id:"source_thrown",
+highlight:2,
+},
+{id:"when_Stream_l368",
+highlight:2,
+},
+{id:"when_Stream_l438",
+highlight:2,
+},
+{id:"source_thrown_rValid",
+highlight:2,
+},
+],
+edges:[
+{ source:"source_thrown", target:"source_thrown_rData",bus: 1,label:"Stream to RGB",highlight:2 },
+{ source:"source_thrown_rValid", target:"source_thrown_m2sPipe",bus: 0,highlight:2 },
+{ source:"source_thrown_m2sPipe", target:"Top1.sink",bus: 1,label:"Stream",highlight:2 },
+{ source:"Top1.source", target:"source_thrown",bus: 1,label:"Stream",highlight:2 },
+{ source:"source_thrown_m2sPipe", target:"source_thrown",bus: 1,label:"Stream",highlight:2 },
+{ source:"when_Stream_l368", target:"source_thrown",bus: 0,highlight:2 },
+{ source:"source_thrown_m2sPipe", target:"when_Stream_l368",bus: 0,highlight:2 },
+{ source:"Top1.source", target:"when_Stream_l438",bus: 0,highlight:2 },
+{ source:"source_thrown", target:"source_thrown_rValid",bus: 0,highlight:2 },
+{ source:"source_thrown_rData", target:"source_thrown_m2sPipe",bus: 1,label:"RGB to Stream",highlight:2 },
+{ source:"when_Stream_l438", target:"source_thrown",bus: 0,highlight:2 },
+]
+},
+{id:"ClockDomains",
+children:[
+{id:"clk",highlight:2},
+]
+}
+],
+}
+hdelk.layout( mygraph, "Top1" );
+</script></html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>rtl连接图</title>
+</head>
+<script src="/js/elk.bundled.js"></script>
+<script src="/js/svg.min.js"></script>
+<script src="/js/hdelk.js"></script>
+
+<h4>选择你想看的图像</h4>
+<a href="#InternalClockWithPllExample"><button>InternalClockWithPllExample</button></a>&nbsp;
+<a href="#pll_1"><button>pll_1</button></a>&nbsp;
+<br><br><br><br><div id="InternalClockWithPllExample"></div>
+<h3>InternalClockWithPllExample</h3><br><br>
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"InternalClockWithPllExample",
+highlight:2,
+inPorts: ["io_aReset","io_clk100M",],
+outPorts: ["io_result",],
+children: [
+{id:"myClockName_reset",
+},
+{id:"pll_1",
+inPorts: ["io_clkIn",],
+outPorts: ["io_clkOut","io_reset",],
+},
+{id:"myClockName_clk",
+},
+{id:"myArea",
+highlight:2,
+},
+],
+edges:[
+{ source:"InternalClockWithPllExample.io_aReset", target:"myClockName_reset",bus: 0, },
+{ source:"pll_1.io_reset", target:"myClockName_reset",bus: 0, },
+{ source:"pll_1.io_clkOut", target:"myClockName_clk",bus: 0, },
+{ source:"myArea", target:"InternalClockWithPllExample.io_result",bus: 0,highlight:2 },
+{ source:"InternalClockWithPllExample.io_clk100M", target:"pll_1.io_clkIn",bus: 0, },
+{ source:"myArea", target:"myArea",bus: 0,highlight:2 },
+]
+},
+{id:"ClockDomains",
+children:[
+{id:"myClockName_clk",highlight:2},
+]
+}
+],
+}
+hdelk.layout( mygraph, "InternalClockWithPllExample" );
+</script><div id="pll_1"></div>
+<h3>pll_1</h3><br><br>
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"pll_1",
+inPorts: ["io_clkIn",],
+outPorts: ["io_clkOut","io_reset",],
+children: [
+{id:"io_clkIn",
+},
+],
+edges:[
+{ source:"pll_1.io_clkIn", target:"io_clkIn",bus: 0, },
+{ source:"io_clkIn", target:"pll_1.io_clkOut",bus: 0, },
+]
+},
+],
+}
+hdelk.layout( mygraph, "pll_1" );
+</script></html>

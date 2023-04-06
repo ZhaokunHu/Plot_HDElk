@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>rtl连接图</title>
+</head>
+<script src="/js/elk.bundled.js"></script>
+<script src="/js/svg.min.js"></script>
+<script src="/js/hdelk.js"></script>
+
+<h4>选择你想看的图像</h4>
+<a href="#MemorySumming"><button>MemorySumming</button></a>&nbsp;
+<a href="#ram"><button>ram</button></a>&nbsp;
+<br><br><br><br><div id="MemorySumming"></div>
+<h3>MemorySumming</h3><br><br>
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"MemorySumming",
+highlight:2,
+inPorts: ["io_wr_en","io_wr_addr","io_sum_start","io_sum_reset","io_wr_clk","io_wr_data","io_sum_clk",],
+outPorts: ["io_sum_done","io_sum_value",],
+children: [
+{id:"ram",
+inPorts: ["io_wr_en","io_wr_addr","io_rd_clk","io_rd_en","io_rd_addr","io_wr_clk","io_wr_data",],
+outPorts: ["io_rd_data",],
+},
+{id:"sumArea",
+highlight:2,
+},
+{id:"when_test12_l64",
+highlight:2,
+},
+{id:"when_test12_l69",
+highlight:2,
+},
+{id:"sumArea_readDataValid_regNext",
+highlight:2,
+},
+{id:"when_test12_l83",
+highlight:2,
+},
+],
+edges:[
+{ source:"MemorySumming.io_wr_clk", target:"ram.io_wr_clk",bus: 0, },
+{ source:"when_test12_l83", target:"MemorySumming.io_sum_done",bus: 0, },
+{ source:"sumArea_readDataValid_regNext", target:"when_test12_l83",bus: 0, },
+{ source:"sumArea", target:"sumArea",bus: 0, },
+{ source:"when_test12_l64", target:"sumArea",bus: 0, },
+{ source:"MemorySumming.io_wr_addr", target:"ram.io_wr_addr",bus: 0, },
+{ source:"sumArea", target:"MemorySumming.io_sum_value",bus: 0, },
+{ source:"MemorySumming.io_sum_clk", target:"ram.io_rd_clk",bus: 0,highlight:2 },
+{ source:"sumArea", target:"ram.io_rd_addr",bus: 0, },
+{ source:"sumArea", target:"when_test12_l64",bus: 0, },
+{ source:"MemorySumming.io_sum_start", target:"sumArea",bus: 0, },
+{ source:"when_test12_l69", target:"sumArea",bus: 0, },
+{ source:"MemorySumming.io_wr_en", target:"ram.io_wr_en",bus: 0, },
+{ source:"sumArea", target:"when_test12_l83",bus: 0, },
+{ source:"sumArea", target:"ram.io_rd_en",bus: 0, },
+{ source:"sumArea", target:"when_test12_l69",bus: 0, },
+{ source:"ram.io_rd_data", target:"sumArea",bus: 0, },
+{ source:"MemorySumming.io_wr_data", target:"ram.io_wr_data",bus: 0, },
+{ source:"sumArea", target:"sumArea_readDataValid_regNext",bus: 0, },
+]
+},
+{id:"ClockKeys",
+children:[
+{id:"io_sum_clk",highlight:2},
+]
+}
+],
+}
+hdelk.layout( mygraph, "MemorySumming" );
+</script><div id="ram"></div>
+<h3>ram</h3><br><br>
+<script type="text/javascript">
+
+var mygraph = {
+children:[
+{id:"ram",
+inPorts: ["io_wr_en","io_wr_addr","io_rd_clk","io_rd_en","io_rd_addr","io_wr_clk","io_wr_data",],
+outPorts: ["io_rd_data",],
+edges:[
+]
+},
+],
+}
+hdelk.layout( mygraph, "ram" );
+</script></html>

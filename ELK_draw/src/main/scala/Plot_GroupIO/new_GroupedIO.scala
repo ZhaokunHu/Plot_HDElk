@@ -1,13 +1,28 @@
 package Plot_GroupIO
 
 import analyzer.{DataAnalyzer, ModuleAnalyzer}
-import spinal.core.{BaseType, Component, Data, OwnableRef}
+import spinal.core._
+//import spinal.lib.tools._
+
+import spinal.core.{Component, SpinalReport}
 
 import java.io.{File, FileWriter}
 import scala.collection.mutable
 import scala.collection.mutable.Set
 import scala.util.control._
 
+class Edge {
+  var source, target,label = ""
+  var isBus,highlight = 0
+}
+
+class Node {
+  var labelname,typeName= ""
+  var inports: Set[String] = Set()
+  var outports: Set[String] = Set()
+  var children: Set[Node] = Set()
+  var highlight=0
+}
 class newGroupedIO(module:Component,toplevelName:String,moduleName:String) extends OwnableRef{
   val fileName = toplevelName + "_All.html"
   val file = new File(fileName)
@@ -15,8 +30,10 @@ class newGroupedIO(module:Component,toplevelName:String,moduleName:String) exten
   val pw = new FileWriter(file, true)
   val topNode = new Node
   topNode.labelname = moduleName
+  if(module.isInstanceOf[BlackBox]) topNode.typeName="BlackBox"
   val clkMap = new mutable.HashMap[String, Int]
-  var clkCounter = 0
+  val clkNamesMap=new mutable.HashMap[String, Int]
+  var clkCounter = 1
   val containedNode: Set[String] = Set()
 
 
@@ -91,9 +108,17 @@ class newGroupedIO(module:Component,toplevelName:String,moduleName:String) exten
 
     val moduleAnalyze = new ModuleAnalyzer(module)
     val allClk = moduleAnalyze.getClocks
+
     for (thisClk <- allClk) {
-      clkCounter += 1
-      clkMap.put(thisClk.toString(), clkCounter + 1)
+      if(!clkMap.contains(thisClk.clock.getName())){
+        clkCounter += 1
+        clkNamesMap.put(thisClk.clock.getName(), clkCounter)
+        clkMap.put(thisClk.clock.getName(), clkCounter)
+        if(thisClk.reset!=null)
+          clkMap.put(thisClk.reset.getName(), clkCounter)
+        if(thisClk.softReset!=null)
+          clkMap.put(thisClk.softReset.getName(), clkCounter)
+      }
     }
     if(allClk.size>1) topNode.highlight=6
     else if(allClk.size==1) topNode.highlight=clkMap(allClk.head.toString())
@@ -127,9 +152,9 @@ class newGroupedIO(module:Component,toplevelName:String,moduleName:String) exten
     for (innerModule <- innerModules) {
       val newNode = new Node
       newNode.labelname = innerModule.getName()
+      if (innerModule.isInstanceOf[BlackBox]) newNode.typeName="BlackBox"
       val clks = new ModuleAnalyzer(innerModule).getClocks
-      if (clks.size > 1) newNode.highlight = 1
-      else if (clks.size == 1) newNode.highlight = clkMap(clks.head.toString())
+      if (clks.nonEmpty) newNode.highlight = clkMap(clks.head.toString())
       val innerModuleAna=new ModuleAnalyzer(innerModule)
       val innerInOuts=innerModuleAna.getInputs++innerModuleAna.getOutputs
       for(innerInOut<-innerInOuts){
@@ -183,7 +208,8 @@ class newGroupedIO(module:Component,toplevelName:String,moduleName:String) exten
       var netIsWrong = false
       if(allInOuts.contains(net)){
         if(haveParent(net)){
-          inIsBus=1
+          if(!clkMap.contains(net.getName()))
+            inIsBus=1
           val rootParent=findParent(net)
           if(topInOuts.contains(net)){
             if(rootParent.flatten.head.isOutput)  netIsWrong=true
@@ -320,9 +346,9 @@ class newGroupedIO(module:Component,toplevelName:String,moduleName:String) exten
 //得到终点名
 
 
-        if (clkMap.contains(net.getName())) newEdge.highlight = clkMap(net.getName())
+        if(clkMap.contains(net.getName()))  newEdge.highlight = clkMap(net.getName())
+        else if (clkMap.contains(net.clockDomain.toString())) newEdge.highlight = clkMap(net.clockDomain.toString())
         newEdge.source = sourceName
-
         newEdge.isBus = inIsBus & outIsBus
         if (newEdge.isBus == 1) {
           if(findParent(net).getClass.getSimpleName==findParent(fanOut).getClass.getSimpleName) newEdge.label=findParent(fanOut).getClass.getSimpleName
@@ -341,6 +367,7 @@ class newGroupedIO(module:Component,toplevelName:String,moduleName:String) exten
 //设置并添加线
     def drawNodes(thisNode: Node): Unit = {
       pw.write("{id:\"" + thisNode.labelname + "\",\n")
+      if(thisNode.typeName!="") pw.write("type:\""+thisNode.typeName+"\",\n")
       if (thisNode.highlight != 0)
         pw.write(s"highlight:${thisNode.highlight},\n")
       if (thisNode.inports.nonEmpty) {
@@ -375,9 +402,9 @@ class newGroupedIO(module:Component,toplevelName:String,moduleName:String) exten
       pw.write("]\n")
     }
 
-    def drawKeys={
-      pw.write("{id:\"ClockKeys\",\nchildren:[\n")
-      for(element<-clkMap){
+    def drawClockDomains={
+      pw.write("{id:\"ClockDomains\",\nchildren:[\n")
+      for(element<-clkNamesMap){
         pw.write("{id:\""+element._1+"\",highlight:"+element._2+"},\n")
       }
       pw.write("]\n}\n")
@@ -387,10 +414,35 @@ class newGroupedIO(module:Component,toplevelName:String,moduleName:String) exten
       pw.write("<div id=\"" + topNode.labelname + "\"></div>\n<h3>" + topNode.labelname + "</h3><br><br>\n<script type=\"text/javascript\">\n\nvar mygraph = {\nchildren:[\n")
       DealAllSignal
       drawNodes(topNode)
-      if(clkMap.size>0)
-        drawKeys
+      if(clkMap.nonEmpty)
+        drawClockDomains
       pw.write("],\n}\nhdelk.layout( mygraph, \"" + topNode.labelname + "\" );\n</script>")
       pw.close()
     }
+}
 
+class Plot_All(rtl: SpinalReport[Component]) {
+  def plot_All: Unit ={
+    val module=rtl.toplevel
+    val fileName = rtl.toplevelName + "_All.html"
+    val file = new File(fileName)
+    val pw = new FileWriter(file)
+    pw.write("<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"UTF-8\" />\n    <title>rtl连接图</title>\n</head>\n")
+    pw.write("<script src=\"/js/elk.bundled.js\"></script>\n<script src=\"/js/svg.min.js\"></script>\n<script src=\"/js/hdelk.js\"></script>\n\n<h4>选择你想看的图像</h4>\n")
+    val moduleanalyze = new ModuleAnalyzer(module)
+    pw.write("<a href=\"#"+rtl.toplevelName+"\"><button>"+rtl.toplevelName+"</button></a>&nbsp;\n")
+    val allInnerCells = module.children
+    for (cell <- allInnerCells) {
+      pw.write("<a href=\"#"+cell.getName()+"\"><button>"+cell.getName()+"</button></a>&nbsp;\n")
+    }
+    pw.write("<br><br><br><br>")
+    pw.close()
+    new newGroupedIO(module, rtl.toplevelName, rtl.toplevelName).begindraw
+    for(inner<-module.children)
+      new newGroupedIO(inner,rtl.toplevelName,inner.getName()).begindraw
+    //      new Plot_Inner_Module(rtl).begindraww
+    val pa = new FileWriter(file, true)
+    pa.write("</html>")
+    pa.close()
+  }
 }
