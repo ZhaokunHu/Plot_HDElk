@@ -54,7 +54,7 @@ object Top111 {
         Mapping(base = 0x6000, range = 0x3000)
       )
     )))
-    Plott.plot_All
+    Plott
     val letread = new ReadSystem(SpinalConfig(targetDirectory = "rtl").generateVhdl(new Apb3Decoder(
       apbConfig = Apb3Config(
         addressWidth = 16,

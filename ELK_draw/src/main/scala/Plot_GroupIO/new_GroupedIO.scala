@@ -2,12 +2,13 @@ package Plot_GroupIO
 
 import analyzer.{DataAnalyzer, ModuleAnalyzer}
 import spinal.core._
+
+import scala.collection.mutable
 //import spinal.lib.tools._
 
 import spinal.core.{Component, SpinalReport}
 
 import java.io.{File, FileWriter}
-import scala.collection.mutable
 import scala.collection.mutable.Set
 import scala.util.control._
 
@@ -24,10 +25,8 @@ class Node {
   var highlight=0
 }
 class newGroupedIO(module:Component,toplevelName:String,moduleName:String) extends OwnableRef{
-  val fileName = toplevelName + "_All.html"
-  val file = new File(fileName)
+  val builder = new StringBuilder()
   val edges: Set[Edge] = Set()
-  val pw = new FileWriter(file, true)
   val topNode = new Node
   topNode.labelname = moduleName
   if(module.isInstanceOf[BlackBox]) topNode.typeName="BlackBox"
@@ -35,7 +34,6 @@ class newGroupedIO(module:Component,toplevelName:String,moduleName:String) exten
   val clkNamesMap=new mutable.HashMap[String, Int]
   var clkCounter = 1
   val containedNode: Set[String] = Set()
-
 
   def haveParent(thisSon: BaseType): Boolean = {
     var judge = false
@@ -366,83 +364,172 @@ class newGroupedIO(module:Component,toplevelName:String,moduleName:String) exten
   }
 //设置并添加线
     def drawNodes(thisNode: Node): Unit = {
-      pw.write("{id:\"" + thisNode.labelname + "\",\n")
-      if(thisNode.typeName!="") pw.write("type:\""+thisNode.typeName+"\",\n")
-      if (thisNode.highlight != 0)
-        pw.write(s"highlight:${thisNode.highlight},\n")
+      builder ++=s"""{id:"${thisNode.labelname}",\n"""
+      if(thisNode.typeName!="") builder ++=s"""type:"${thisNode.typeName}",\n"""
+      if (thisNode.highlight != 0) builder ++=s"""highlight:${thisNode.highlight},\n"""
       if (thisNode.inports.nonEmpty) {
-        pw.write("inPorts: [")
-        for (inport <- thisNode.inports) pw.write("\"" + inport + "\",")
-        pw.write("],\n")
+        builder ++=s"""inPorts: ["""
+        for (inport <- thisNode.inports) builder ++=s""""$inport","""
+        builder ++=s"""],\n"""
       }
       if (thisNode.outports.nonEmpty) {
-        pw.write("outPorts: [")
-        for (outport <- thisNode.outports) pw.write("\"" + outport + "\",")
-        pw.write("],\n")
+        builder ++= s"""outPorts: ["""
+        for (outport <- thisNode.outports) builder ++= s""""$outport","""
+        builder ++= s"""],\n"""
       }
       if (thisNode.children.nonEmpty) {
-        pw.write("children: [\n")
+        builder ++= s"""children: [\n"""
         for (thischildren <- thisNode.children) drawNodes(thischildren)
-        pw.write("],\n")
+        builder ++= s"""],\n"""
       }
       if (thisNode == topNode) drawedges
-      pw.write("},\n")
+      builder ++= s"""},\n"""
     }
 
     def drawedges: Unit = {
-      pw.write("edges:[\n")
+      builder ++= s"""edges:[\n"""
       for (edge <- edges) {
-        pw.write("{ source:\"" + edge.source + "\", target:\"" + edge.target + "\",bus: " + edge.isBus + ",")
+        builder ++= s"""{ source:"${edge.source}",target:"${edge.target}",bus:${edge.isBus},"""
         if (edge.label != "")
-          pw.write("label:\"" + edge.label + "\",")
+          builder ++= s"""label:"${edge.label}","""
         if (edge.highlight != 0)
-          pw.write(s"highlight:${edge.highlight}")
-        pw.write(" },\n")
+          builder ++= s"""highlight:${edge.highlight}"""
+        builder ++= s"""},\n"""
       }
-      pw.write("]\n")
+      builder ++= s"""]\n"""
     }
 
     def drawClockDomains={
-      pw.write("{id:\"ClockDomains\",\nchildren:[\n")
+      builder ++= s"""{id:"ClockDomains",\nchildren:[\n"""
       for(element<-clkNamesMap){
-        pw.write("{id:\""+element._1+"\",highlight:"+element._2+"},\n")
+        builder ++= s"""{id:"${element._1}",highlight:${element._2}},\n"""
       }
-      pw.write("]\n}\n")
+      builder ++= s"""]\n}\n"""
     }
     def begindraw = {
-
-      pw.write("<div id=\"" + topNode.labelname + "\"></div>\n<h3>" + topNode.labelname + "</h3><br><br>\n<script type=\"text/javascript\">\n\nvar mygraph = {\nchildren:[\n")
+      builder ++=
+        s"""
+           |<div id="${topNode.labelname}"></div>
+           |<h3>${topNode.labelname}</h3><br><br><br><br>
+           |<script type="text/javascript">
+           |
+           |var mygraph = {
+           |children:[
+           |""".stripMargin
       DealAllSignal
       drawNodes(topNode)
       if(clkMap.nonEmpty)
         drawClockDomains
-      pw.write("],\n}\nhdelk.layout( mygraph, \"" + topNode.labelname + "\" );\n</script>")
+      builder ++= s"""],\n}\nhdelk.layout( mygraph,"${topNode.labelname}");\n</script>\n"""
+      val fileName = toplevelName + "_All.html"
+      val file = new File(fileName)
+      val pw = new FileWriter(file, true)
+      pw.write(builder.toString())
       pw.close()
     }
 }
 
 class Plot_All(rtl: SpinalReport[Component]) {
-  def plot_All: Unit ={
+  def apply: Unit ={
     val module=rtl.toplevel
     val fileName = rtl.toplevelName + "_All.html"
     val file = new File(fileName)
     val pw = new FileWriter(file)
-    pw.write("<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"UTF-8\" />\n    <title>rtl连接图</title>\n</head>\n")
-    pw.write("<script src=\"/js/elk.bundled.js\"></script>\n<script src=\"/js/svg.min.js\"></script>\n<script src=\"/js/hdelk.js\"></script>\n\n<h4>选择你想看的图像</h4>\n")
-    val moduleanalyze = new ModuleAnalyzer(module)
-    pw.write("<a href=\"#"+rtl.toplevelName+"\"><button>"+rtl.toplevelName+"</button></a>&nbsp;\n")
+    val builder = new StringBuilder()
+    builder ++=
+      s"""<!DOCTYPE html>
+         |<html>
+         |<head>
+         |    <meta charset="UTF-8">
+         |    <title>RTL连接图</title>
+         |    <style>
+         |.buttons-container {
+         | display: flex;
+         | justify-content: center;
+         | margin-top:30px;
+         |}
+         |
+         |.buttons-container button {
+         | background-color: #4CAF50;
+         | color: white;
+         | border: none;
+         | padding:10px20px;
+         | margin:010px;
+         | cursor: pointer;
+         | border-radius:5px;
+         |}
+         |
+         |.image-container {
+         | margin-top:50px;
+         | text-align: center;
+         |}
+         |
+         |.image-container h2 {
+         | margin:0;
+         |}
+         |.center-title {
+         |  text-align: center;
+         |  font-size:24px;
+         |  font-weight: bold;
+         |  margin-top:20px;
+         | margin-bottom: 20px;
+         |}
+         |.goTop {
+         |	width: 50px;
+         |	height: 50px;
+         |	background-color: aquamarine;
+         |	font-size: 20px;
+         |	text-align: center;
+         |	line-height: 25px;
+         |	color: azure;
+         |	position: fixed;
+         |	bottom: 50px;
+         |	right: 50px;
+         |	display: none;
+         |}
+         |    </style>
+         |</head>
+         |<body>
+         |<buttion class="goTop" id="gotop">Go Top</buttion>
+         |<script>
+         |	var goTop=document.getElementById("gotop")
+         |	    window.onscroll=function(){
+         |		var jhlheight=document.documentElement.scrollTop||document.body.scrollTop
+         |		if(jhlheight>=300){
+         |		goTop.style.display="block"
+         |		}else{
+         |		goTop.style.display="none"
+         |   }
+         |	}
+         |	  goTop.onclick=function(){
+         |		window.scrollTo({
+         |			top:0,
+         |			behavior:"smooth"
+         |		})
+         |	}
+         |</script>
+         |<script src="/js/elk.bundled.js"></script>
+         |<script src="/js/svg.min.js"></script>
+         |<script src="/js/hdelk.js"></script>
+         |
+         |<h1 class="center-title">choose diagrams</h1>
+         |<div class="buttons-container">
+         |<a href="#${rtl.toplevelName}"><button>${rtl.toplevelName}</button></a>&nbsp;
+         |""".stripMargin
+
     val allInnerCells = module.children
     for (cell <- allInnerCells) {
-      pw.write("<a href=\"#"+cell.getName()+"\"><button>"+cell.getName()+"</button></a>&nbsp;\n")
+      builder ++= s"""<a href="#${cell.getName()}"><button>${cell.getName()}</button></a>&nbsp;\n"""
     }
-    pw.write("<br><br><br><br>")
+    builder ++=s"""</div><br><br><br><br>\n"""
+    pw.write(builder.toString())
     pw.close()
     new newGroupedIO(module, rtl.toplevelName, rtl.toplevelName).begindraw
     for(inner<-module.children)
       new newGroupedIO(inner,rtl.toplevelName,inner.getName()).begindraw
     //      new Plot_Inner_Module(rtl).begindraww
     val pa = new FileWriter(file, true)
-    pa.write("</html>")
+    pa.write("</body></html>")
     pa.close()
   }
 }

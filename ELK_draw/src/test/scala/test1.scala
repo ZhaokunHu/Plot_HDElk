@@ -32,7 +32,7 @@ object Top1 {
   def main(args: Array[String]): Unit = {
     //    println(reports.getRtlString())
     val drawELK = new Plot_All(SpinalVerilog(new Top1))
-    drawELK.plot_All
+    drawELK
 //    val letread = new ReadSystem(SpinalVerilog(new Top1))
 //    letread.beginread
   }

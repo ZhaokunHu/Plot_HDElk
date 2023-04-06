@@ -153,6 +153,6 @@ object TimerMain{
   def main(args: Array[String]) {
     val letRead=new ReadSystem(SpinalConfig(targetDirectory = "rtl").generateVhdl(UdpApp("012345"))).beginread
     val Plott = new Plot_All(SpinalConfig(targetDirectory = "rtl").generateVhdl(UdpApp("012345")))
-    Plott.plot_All
+    Plott
   }
 }

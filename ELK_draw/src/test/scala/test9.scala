@@ -47,7 +47,7 @@ class TopLevel extends Component {
 object TopLevel {
   def main(args: Array[String]): Unit = {
     val plott=new Plot_All(SpinalConfig(targetDirectory = "rtl").generateVerilog(new TopLevel))
-    plott.plot_All
+    plott
 
   }
 }

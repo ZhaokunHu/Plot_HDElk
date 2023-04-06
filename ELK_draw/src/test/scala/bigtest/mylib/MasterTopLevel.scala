@@ -67,7 +67,7 @@ class MasterTopLevel extends Component {
 
 object MasterTopLevelVerilog {
   def main(args: Array[String]) {
-    new Plot_All(SpinalVerilog(new MasterTopLevel)).plot_All
+    new Plot_All(SpinalVerilog(new MasterTopLevel))
   }
 }
 

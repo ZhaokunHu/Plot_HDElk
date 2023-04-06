@@ -57,8 +57,7 @@ class Top6 extends Component {
 object TopExample1{
   def main(args: Array[String]): Unit = {
     val Plott = new Plot_All(SpinalVerilog(new Top6))
-    Plott.plot_All
-
+    Plott
 
 //    val drawInner=new Plot_Inner_Module(SpinalVerilog(new Top6))
 //    drawInner.begindraww

@@ -43,7 +43,7 @@ class MyTopLevel extends Component {
 //Generate the MyTopLevel's Verilog
 object MyTopLevelVerilog {
   def main(args: Array[String]) {
-    new Plot_All(SpinalVerilog(new MyTopLevel)).plot_All
+    new Plot_All(SpinalVerilog(new MyTopLevel))
   }
 }
 

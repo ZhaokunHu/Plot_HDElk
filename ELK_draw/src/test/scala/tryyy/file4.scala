@@ -39,6 +39,6 @@ object Mytoplev{
     c
   }
   def main(args: Array[String]): Unit = {
-    new Plot_All(SpinalVerilog(ffIo(new Example))).plot_All
+    new Plot_All(SpinalVerilog(ffIo(new Example)))
   }
 }

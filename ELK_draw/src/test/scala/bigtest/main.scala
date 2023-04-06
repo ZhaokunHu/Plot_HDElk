@@ -13,7 +13,7 @@ import spinal.lib.com.uart._
 object GenerateTop extends App {
   new Plot_All(new SpinalConfig(
     defaultClockDomainFrequency = FixedFrequency(50 MHz)
-  ).generateVerilog(new TopLevel)).plot_All
+  ).generateVerilog(new TopLevel))
 
   /*val prj = new QuartusProject(
         "/home/devel/SpinalKeyboardtest/tmp/",
@@ -27,7 +27,7 @@ object GenerateIP extends App {
   new Plot_All(
   new SpinalConfig(
     defaultClockDomainFrequency = FixedFrequency(100 MHz)
-  ).generateVerilog(new LedMatrix)).plot_All
+  ).generateVerilog(new LedMatrix))
   val letread = new ReadSystem(new SpinalConfig(
     defaultClockDomainFrequency = FixedFrequency(100 MHz)
   ).generateVerilog(new LedMatrix))
@@ -45,7 +45,7 @@ object Test extends App {
 
   new Plot_All(new SpinalConfig(
     defaultClockDomainFrequency = FixedFrequency(50 MHz)
-  ).generateVerilog(Top())).plot_All
+  ).generateVerilog(Top()))
 
 //  println(QuartusFlow(
 //    quartusPath="F:/intelFPGA_lite/20.1/quartus/bin64/",

@@ -52,6 +52,6 @@ object Top5 {
 //    val drawELKBUS = new Plot_Simple_ELK(SpinalVerilog(new InternalClockWithPllExample))
 //    drawELKBUS.begindraw
 val drawELK = new Plot_All(SpinalVerilog(new InternalClockWithPllExample))
-    drawELK.plot_All
+    drawELK
   }
 }

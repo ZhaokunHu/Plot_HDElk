@@ -116,7 +116,7 @@ object Top11 {
   def main(args: Array[String]) {
     val mm=UartRxGenerics()
     val Plott = new Plot_All(SpinalVerilog(UartCtrlRx(mm)))
-    Plott.plot_All
+    Plott
     val letread = new ReadSystem(SpinalVerilog(UartCtrlRx(mm)))
     letread.beginread
   }

@@ -58,7 +58,7 @@ object Top3{
 //     val drawELKBUS=new Plot_Simple_ELK(SpinalVerilog(new Top3))
 //     drawELKBUS.begindraw
 val drawELK = new Plot_All(SpinalVerilog(new Top3))
-    drawELK.plot_All
+    drawELK
 //    val letread = new ReadSystem(SpinalVerilog(new Top3))
 //    letread.beginread
   }

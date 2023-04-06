@@ -78,6 +78,6 @@ object Top10 {
     val apbc=ApbConfig(8,32,1)
     val timer=8
     val Plott = new Plot_All(SpinalVerilog(ApbPwm(apbc,timer)))
-   Plott.plot_All
+   Plott
   }
 }

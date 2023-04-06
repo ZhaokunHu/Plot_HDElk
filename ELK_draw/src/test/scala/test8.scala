@@ -67,6 +67,6 @@ case class LambdaComponent(bitsWidth: Int) extends Component {
 object BlackBoxTry {
   def main(args: Array[String]) {
     val Plott = new Plot_All(SpinalVhdl(LambdaComponent(8)))
-    Plott.plot_All
+    Plott
   }
 }

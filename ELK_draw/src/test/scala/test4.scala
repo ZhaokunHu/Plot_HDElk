@@ -39,7 +39,7 @@ object Top4 {
     val fc=FilterConfig(8)
     val rtl = SpinalVerilog(new Filter(fc))
     val drawELK = new Plot_All(SpinalVerilog(new Filter(fc)))
-    drawELK.plot_All
+    drawELK
 //    val letread = new ReadSystem(SpinalVerilog(new Filter(fc)))
 //    letread.beginread
 //    val letread = new ReadSystem(SpinalVerilog(new Filter(fc)))

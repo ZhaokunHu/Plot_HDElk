@@ -1,181 +1,107 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8" />
-    <title>rtl连接图</title>
+    <title>Image Gallery</title>
+    <style>
+ body {
+ font-family: Arial, sans-serif;
+ margin: 0;
+        padding:0;
+ }
+ header {
+ background-color: #333;
+ color: #fff;
+ padding:10px;
+ text-align: center;
+ }
+ h1 {
+ margin:0;
+ }
+      .container {
+        max-width:800px;
+ margin:0 auto;
+ padding:20px;
+ }
+ .gallery {
+ display: flex;
+        flex-wrap: wrap;
+ justify-content: space-between;
+      }
+ .gallery img {
+ width:300px;
+ height:200px;
+ object-fit: cover;
+ margin-bottom:20px;
+ }
+ .gallery h2 {
+ margin-top:0;
+        font-size: 18px;
+ }
+ .btn {
+ display: block;
+ margin:20px auto;
+ padding:10px20px;
+ background-color: #333;
+ color: #fff;
+ border: none;
+        border-radius:5px;
+ font-size:16px;
+ cursor: pointer;
+      }
+      .btn:hover {
+ background-color: #555;
+ }
+ #back-to-top {
+ position: fixed;
+ bottom:20px;
+ right:20px;
+ display: none;
+ }
+ </style>
 </head>
-<script src="/js/elk.bundled.js"></script>
-<script src="/js/svg.min.js"></script>
-<script src="/js/hdelk.js"></script>
-
-<h4>选择你想看的图像</h4>
-<a href="#Filter"><button>Filter</button></a>&nbsp;
-<a href="#u_fifo_in"><button>u_fifo_in</button></a>&nbsp;
-<br><br><br><br><div id="Filter"></div>
-<h3>Filter</h3><br><br>
-<script type="text/javascript">
-
-var mygraph = {
-children:[
-{id:"Filter",
-highlight:6,
-inPorts: ["smp_reset","clk","din","flush","smp_clk",],
-outPorts: ["dout",],
-children: [
-{id:"din_toStream",
-highlight:3,
-},
-{id:"u_fifo_in",
-highlight:2,
-inPorts: ["smp_reset","io_push","clk","smp_clk",],
-outPorts: ["io_popOccupancy","io_pop","io_pushOccupancy",],
-},
-],
-edges:[
-{ source:"u_fifo_in.io_pop", target:"Filter.dout",bus: 1,label:"Stream to Flow",highlight:3 },
-{ source:"Filter.clk", target:"u_fifo_in.clk",bus: 0,highlight:3 },
-{ source:"Filter.smp_reset", target:"u_fifo_in.smp_reset",bus: 0,highlight:2 },
-{ source:"din_toStream", target:"u_fifo_in.io_push",bus: 1,label:"Stream",highlight:3 },
-{ source:"Filter.smp_clk", target:"u_fifo_in.smp_clk",bus: 0,highlight:2 },
-{ source:"Filter.din", target:"din_toStream",bus: 1,label:"Flow to Stream",highlight:3 },
-]
-},
-{id:"ClockDomains",
-children:[
-{id:"clk",highlight:3},
-{id:"smp_clk",highlight:2},
-]
-}
-],
-}
-hdelk.layout( mygraph, "Filter" );
-</script><div id="u_fifo_in"></div>
-<h3>u_fifo_in</h3><br><br>
-<script type="text/javascript">
-
-var mygraph = {
-children:[
-{id:"u_fifo_in",
-highlight:6,
-inPorts: ["smp_reset","io_push","clk","smp_clk",],
-outPorts: ["io_popOccupancy","io_pop","io_pushOccupancy",],
-children: [
-{id:"_zz_io_pushOccupancy",
-highlight:2,
-},
-{id:"_zz_io_pushOccupancy_2",
-highlight:2,
-},
-{id:"bufferCC_3",
-highlight:3,
-inPorts: ["smp_reset","clk","io_dataIn",],
-outPorts: ["io_dataOut",],
-},
-{id:"_zz_io_popOccupancy",
-highlight:3,
-},
-{id:"_zz_io_pushOccupancy_1",
-highlight:2,
-},
-{id:"pushCC",
-highlight:2,
-},
-{id:"pushToPopGray_buffercc",
-highlight:3,
-inPorts: ["clk","io_dataIn","smp_reset_syncronized",],
-outPorts: ["io_dataOut",],
-},
-{id:"popToPushGray_buffercc",
-highlight:2,
-inPorts: ["smp_reset","io_dataIn","smp_clk",],
-outPorts: ["io_dataOut",],
-},
-{id:"smp_reset_syncronized",
-highlight:3,
-},
-{id:"io_pop_fire_1",
-highlight:3,
-},
-{id:"popToPushGray",
-highlight:3,
-},
-{id:"io_pop_fire",
-highlight:3,
-},
-{id:"io_push_fire_1",
-highlight:2,
-},
-{id:"_zz_io_popOccupancy_2",
-highlight:3,
-},
-{id:"io_pop_fire_2",
-highlight:3,
-},
-{id:"io_push_fire",
-highlight:2,
-},
-{id:"popCC",
-highlight:3,
-},
-{id:"_zz_io_pop_payload",
-highlight:3,
-},
-{id:"pushToPopGray",
-highlight:3,
-},
-{id:"_zz_1",
-highlight:2,
-},
-{id:"_zz_io_popOccupancy_1",
-highlight:3,
-},
-],
-edges:[
-{ source:"_zz_io_popOccupancy_1", target:"u_fifo_in.io_popOccupancy",bus: 0,highlight:3 },
-{ source:"popCC", target:"u_fifo_in.io_pop",bus: 0,highlight:3 },
-{ source:"popCC", target:"popToPushGray",bus: 0,highlight:3 },
-{ source:"pushCC", target:"_zz_io_pushOccupancy_2",bus: 0,highlight:2 },
-{ source:"io_pop_fire_1", target:"_zz_io_pop_payload",bus: 0,highlight:3 },
-{ source:"pushCC", target:"pushToPopGray",bus: 0,highlight:2 },
-{ source:"pushCC", target:"u_fifo_in.io_pushOccupancy",bus: 0,highlight:2 },
-{ source:"io_push_fire", target:"pushCC",bus: 0,highlight:2 },
-{ source:"popCC", target:"_zz_io_popOccupancy",bus: 0,highlight:3 },
-{ source:"u_fifo_in.io_push", target:"io_push_fire",bus: 0,highlight:3 },
-{ source:"popCC", target:"popCC",bus: 0,highlight:3 },
-{ source:"pushCC", target:"_zz_io_pushOccupancy_1",bus: 0,highlight:2 },
-{ source:"_zz_io_pushOccupancy_2", target:"_zz_io_pushOccupancy_1",bus: 0,highlight:2 },
-{ source:"_zz_io_popOccupancy_1", target:"_zz_io_popOccupancy",bus: 0,highlight:3 },
-{ source:"io_pop_fire", target:"popCC",bus: 0,highlight:3 },
-{ source:"io_push_fire_1", target:"_zz_1",bus: 0,highlight:2 },
-{ source:"_zz_io_popOccupancy_2", target:"u_fifo_in.io_popOccupancy",bus: 0,highlight:3 },
-{ source:"_zz_io_popOccupancy_2", target:"_zz_io_popOccupancy_1",bus: 0,highlight:3 },
-{ source:"_zz_io_pushOccupancy_1", target:"u_fifo_in.io_pushOccupancy",bus: 0,highlight:2 },
-{ source:"_zz_io_popOccupancy", target:"u_fifo_in.io_popOccupancy",bus: 0,highlight:3 },
-{ source:"u_fifo_in.io_push", target:"io_push_fire_1",bus: 0,highlight:3 },
-{ source:"pushCC", target:"pushCC",bus: 0,highlight:2 },
-{ source:"popCC", target:"_zz_io_pop_payload",bus: 0,highlight:3 },
-{ source:"_zz_io_pop_payload", target:"u_fifo_in.io_pop",bus: 0,highlight:3 },
-{ source:"_zz_io_pushOccupancy_1", target:"_zz_io_pushOccupancy",bus: 0,highlight:2 },
-{ source:"_zz_io_pushOccupancy", target:"u_fifo_in.io_pushOccupancy",bus: 0,highlight:2 },
-{ source:"bufferCC_3.io_dataOut", target:"smp_reset_syncronized",bus: 0,highlight:3 },
-{ source:"popCC", target:"u_fifo_in.io_popOccupancy",bus: 0,highlight:3 },
-{ source:"popCC", target:"_zz_io_popOccupancy_1",bus: 0,highlight:3 },
-{ source:"pushToPopGray_buffercc.io_dataOut", target:"popCC",bus: 0,highlight:3 },
-{ source:"pushCC", target:"_zz_io_pushOccupancy",bus: 0,highlight:2 },
-{ source:"io_push_fire_1", target:"pushCC",bus: 0,highlight:2 },
-{ source:"io_pop_fire_2", target:"popCC",bus: 0,highlight:3 },
-{ source:"popToPushGray_buffercc.io_dataOut", target:"pushCC",bus: 0,highlight:2 },
-{ source:"popCC", target:"_zz_io_popOccupancy_2",bus: 0,highlight:3 },
-{ source:"_zz_io_pushOccupancy_2", target:"u_fifo_in.io_pushOccupancy",bus: 0,highlight:2 },
-]
-},
-{id:"ClockDomains",
-children:[
-{id:"clk",highlight:3},
-{id:"smp_clk",highlight:2},
-]
-}
-],
-}
-hdelk.layout( mygraph, "u_fifo_in" );
-</script></html>
+<body>
+<header>
+    <h1>Image Gallery</h1>
+</header>
+<div class="container">
+    <div class="gallery">
+        <div>
+            <a href="#img1"><img src="image1.jpg" alt="Image1"></a>
+            <h2>Image1</h2>
+        </div>
+        <div>
+            <a href="#img2"><img src="image2.jpg" alt="Image2"></a>
+            <h2>Image2</h2>
+        </div>
+        <div>
+            <a href="#img3"><img src="image3.jpg" alt="Image3"></a>
+            <h2>Image3</h2>
+        </div>
+        <div>
+            <a href="#img4"><img src="image4.jpg" alt="Image4"></a>
+            <h2>Image 4</h2>
+        </div>
+        <div>
+            <a href="#img5"><img src="image5.jpg" alt="Image5"></a>
+            <h2>Image5</h2>
+        </div>
+        <div>
+            <a href="#img6"><img src="image6.jpg" alt="Image6"></a>
+            <h2>Image6</h2>
+        </div>
+    </div>
+    <a href="#top" class="btn">Back to Top</a>
+</div>
+<a href="#top" id="back-to-top"><img src="arrow-up.png" alt="Back to Top"></a>
+<script>
+      window.onscroll = function() {scrollFunction()};
+      function scrollFunction() {
+ if (document.body.scrollTop >20 || document.documentElement.scrollTop >20) {
+ document.getElementById("back-to-top").style.display = "block";
+ } else {
+ document.getElementById("back-to-top").style.display = "none";
+ }
+ }
+ </script>
+</body>
+</html>

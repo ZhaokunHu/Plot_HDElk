@@ -29,7 +29,7 @@ object Top2 {
   def main(args: Array[String]): Unit = {
     val rtl=SpinalVerilog(new Adder(3))
     val plot=new Plot_All(SpinalVerilog(new Adder(3)))
-    plot.plot_All
+    plot
 //    val letread = new ReadSystem(SpinalVerilog(new Adder(3)))
 //    letread.beginread
 //    val test=new Deal_Wires

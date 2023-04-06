@@ -93,7 +93,7 @@ object Top122 {
   def main(args: Array[String]): Unit = {
 
     val Plott = new Plot_All(SpinalConfig(targetDirectory = "rtl").generateVerilog(MemorySumming(ClockDomain.external("io_wr"),ClockDomain.external("io_sum"))))
-    Plott.plot_All
+    Plott
 //    val letread = new ReadSystem(SpinalVerilog(MemorySumming(clock_a,clock_b)))
 //    letread.beginread
   }
